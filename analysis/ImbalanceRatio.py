@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from tabulate import tabulate
 
 class IR:
@@ -8,7 +9,7 @@ class IR:
     zbilansowaniem klas w przestrzeni problemu
 
     Usage:
-        obj = IR('datasetname')
+        obj = IR(['datasetname'])
         obj.calculate()
         obj.tab(true)
     """
@@ -19,8 +20,10 @@ class IR:
         self.scores = []
         self.y = []
         self.dataset_name = []
+
         for data_id, dataset in enumerate(self.datasets):
-            dataset = np.genfromtxt("datasets/%s.csv" % (dataset), delimiter=',')
+            os.chdir('../datasets')
+            dataset = np.genfromtxt("%s.csv" % (dataset), delimiter=',')
             self.y = dataset[:, -1].astype(int)
             l, c = np.unique(self.y, return_counts=True)
             minor_probas = np.amin(c)
@@ -39,7 +42,13 @@ class IR:
         headers = ['datasets', 'N_min', 'N_maj', 'IR']
 
         if save == True:
-            with open('latexTable/IR.txt', 'w') as f:
+            os.chdir('../latexTable')
+            with open('IR.txt', 'w') as f:
                 f.write(tabulate(t, headers, tablefmt='latex'))
         else:
             print(tabulate(t, headers))
+
+if __name__ == '__main__':
+    obj = IR(['balance','appendicitis', 'banana', 'bupa', 'glass'])
+    obj.calculate()
+    obj.tab(True)
