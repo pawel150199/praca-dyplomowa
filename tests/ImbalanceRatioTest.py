@@ -1,7 +1,9 @@
-import os
+import sys
 import unittest
 import numpy as np
-from ..analysis.ImbalanceRatio import IR
+
+sys.path.append('../algorithms')
+from Bagging import BaggingClassifier
 
 class Test(unittest.TestCase):
     def e2eTest(self):

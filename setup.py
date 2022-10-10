@@ -1,12 +1,20 @@
-from random import random
-import random
+#! /usr/bin/env python
+import os
+from setuptools import find_packages, setup
 
-li = [x * random.randint(1,10) for x in range(10)]
-li.append(10)
-li.append(10)
+this_directory = os.path.abspath(os.path.dirname(__file__))
 
-# Remove duplicates
-li_unique = set(li)
-print(len(li_unique))
-li_reversed = reversed(li)
-print(li_reversed)
+DISTNAME = "Inzynierka"
+DESCRIPTION = "Praca inzynierska"
+MAINTAINER = "Pawel Polski"
+MAINTAINER_EMAIL = "253401@student.pwr.edu.pl"
+URL = "https://github.com/pawel150199/Inzynierka"
+INSTALL_REQUIRES = ["numpy", "scipy", "scikit-learn", "tabulate", "imblearn"]
+
+setup(
+    name = DISTNAME,
+    maintainer=MAINTAINER,
+    maintainer_email=MAINTAINER_EMAIL,
+    url=URL,
+    install_requires=INSTALL_REQUIRES
+)

@@ -23,8 +23,6 @@ class RandomSubspaceEnsemble(BaseEnsemble, ClassifierMixin):
         if self.n_subspace_features > self.n_features:
             raise ValueError("Number of features in subspace higher than number of features.")
         self.subspaces = np.random.randint(0, self.n_features, (self.n_estimators, self.n_subspace_features))
-        print(self.subspaces.shape)
-        exit()
         self.ensemble_ = []
         for i in range(self.n_estimators):
             self.ensemble_.append(clone(self.base_estimator).fit(X[:, self.subspaces[i]], y))
