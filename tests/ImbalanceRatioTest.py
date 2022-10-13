@@ -5,7 +5,7 @@ import numpy as np
 sys.path.append('../algorithms')
 from Bagging import BaggingClassifier
 
-class Test(unittest.TestCase):
+class ImbalanceTest(unittest.TestCase):
     def e2eTest(self):
         obj = IR(['glass'])
         obj.calculate()

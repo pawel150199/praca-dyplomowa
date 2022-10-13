@@ -1,6 +1,8 @@
 #! /usr/bin/env python
+from __future__ import absolute_import
 import os
 from setuptools import find_packages, setup
+
 
 this_directory = os.path.abspath(os.path.dirname(__file__))
 

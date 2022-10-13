@@ -1,17 +1,13 @@
 import numpy as np
 from sklearn.ensemble import BaseEnsemble
-from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC, LinearSVC
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import LinearSVC
 from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 from scipy.stats import mode
 
+"""Random Sample Partition - na cechach"""
 
-
-
-class RSP(BaseEnsemble, ClassifierMixin):
-    """Random Sample Partition - na cechach """
+class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
 
     def __init__(self, base_estimator=LinearSVC(), n_estimators=10, n_subspace_choose=0.4, n_subspace_features=2, hard_voting=True, random_state=None):
         self.base_estimator = base_estimator
@@ -40,9 +36,11 @@ class RSP(BaseEnsemble, ClassifierMixin):
         x = np.random.choice(n_subspace, size=(self.n_subspace_choose),replace=False)
         self.subspaces = self.subspaces[x,:]
 
+        #Zmiana ilości estymatorów w przypadku przekroczenia dostępnych podprzestrzeni
         if self.n_estimators > self.n_subspace_choose:
             self.n_estimators = self.n_subspace_choose
 
+        #Wyuczenie nowych modeli i stworzenie zespołu
         self.ensemble_ = []
         for i in range(self.n_estimators):
             self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
@@ -58,6 +56,7 @@ class RSP(BaseEnsemble, ClassifierMixin):
 
 
         if self.hard_voting:
+            #Głosowanie większościowe
             pred_ = []
             for i in range(self.n_estimators):
                 pred_.append(self.ensemble_[i].predict(X[:, self.subspaces[i]]))
@@ -65,6 +64,7 @@ class RSP(BaseEnsemble, ClassifierMixin):
             prediction = mode(pred_, axis=0)[0].flatten()
             return self.classes_[prediction]
         else:
+            #Głosowanie na podstawie wektorów wsparc
             esm = self.ensemble_support_matrix(X)
             average_support = np.mean(esm, axis=0)
             prediction = np.argmax(average_support, axis=1)
