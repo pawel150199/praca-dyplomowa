@@ -1,14 +1,18 @@
-import sys
-import unittest
+from distutils.log import error
+import sys, os
 import numpy as np
 
-sys.path.append('../algorithms')
-from Bagging import BaggingClassifier
+sys.path.append('../analysis')
+from ImbalanceRatio import IR
 
-class ImbalanceTest(unittest.TestCase):
-    def e2eTest(self):
-        obj = IR(['glass'])
-        obj.calculate()
-        obj.tab(True)
-        os.chdir('../latexTable')
-        os.path.exists('IR.txt')
+
+def main():
+    obj = IR(['glass'])
+    obj.calculate()
+    obj.tab(True)
+    os.chdir('../latexTable')
+    if not os.path.exists('IR.txt'):
+        error('Nie działa!!!!')
+
+if __name__=='__main__':
+    main()

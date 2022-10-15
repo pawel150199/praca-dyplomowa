@@ -1,0 +1,8 @@
+\begin{tabular}{llll}
+\hline
+ datasets   & Bagging LSVC5   & Bagging LSVC10   & Bagging LSVC15   \\
+\hline
+ glass      & 0.527579        & 0.479802         & 0.516726         \\
+            & ---             & ---              & ---              \\
+\hline
+\end{tabular}

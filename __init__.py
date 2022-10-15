@@ -1,9 +1,9 @@
-import algorithms
+import ensemble
 import analysis
 import tests
 
 __all__ = [
-    "algorithms",
+    "ensemble",
     "analysis",
     "tests"
 ]
