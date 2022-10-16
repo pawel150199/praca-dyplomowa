@@ -2,7 +2,7 @@
 
 tests=$(ls | grep '^[A-Z]')
 DATE=$(date)
-echo $tests
+
 function log_sh() {
     echo "$DATE [TESTS EXECUTION]" $@
 }
