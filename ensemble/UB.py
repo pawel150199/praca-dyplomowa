@@ -5,7 +5,7 @@ from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 from scipy.stats import mode 
 
-"""Bagging Classifier"""
+"""Undersampled Bagging Classifier"""
 
 class BaggingClassifier(BaseEnsemble, ClassifierMixin):
 

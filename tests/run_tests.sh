@@ -12,9 +12,9 @@ do
     python3 $i > /dev/null
     if [ ! $? -eq 0 ]
     then
-        log_sh "Test $i failed"
+        log_sh "Test $i failed!"
         exit 1
     else
-        log_sh "All tests passed"
+        log_sh "Test $i passed!"
     fi
 done
