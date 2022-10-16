@@ -32,11 +32,11 @@ y = iris.target
 
 #Zespoły klasyfikatorów
 clfs = {
-    'kNN' : KNeighborsClassifier(n_neighbors=5),
-    'Bagging kNN x5' : BaggingClassifier(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=5, random_state=1410),
-    'Bagging kNN x10' : BaggingClassifier(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=10, random_state=1410),
-    'Bagging kNN x15' : BaggingClassifier(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=15, random_state=1410),
+    #'kNN' : KNeighborsClassifier(n_neighbors=5),
+    'RSE kNN x5' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=5, random_state=1410, n_subspace_features=2),
+    'RSE kNN x10' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=10, random_state=1410, n_subspace_features=2),
+    'RSE kNN x15' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=15, random_state=1410, n_subspace_features=2),
 }
 
-db = DecisionBoundary(clfs, 'LSVC')
+db = DecisionBoundary(clfs, 'kNN')
 db.process(X, y)
