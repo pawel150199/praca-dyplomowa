@@ -14,5 +14,7 @@ do
     then
         log_sh "Test $i failed"
         exit 1
+    else
+        log_sh "All tests passed"
     fi
 done
