@@ -10,10 +10,8 @@ jobs:
       - run:
           command: |
             pip3 install -r requirements.txt
-            python3 tests/DecisionBoundaryTest.py
-            python3 tests/EvaluationTest.py
-            python3 tests/ImbalanceRatioTest.py
-            python3 tests/MCCTest.py
+            cd tests
+            ./run_tests.sh
 
 workflows:
   build_and_test:
