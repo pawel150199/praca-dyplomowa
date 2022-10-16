@@ -2,7 +2,7 @@ import unittest
 import sys
 import numpy as np
 from sklearn.datasets import make_classification
-sys.path.append("./preprocessing")
+sys.path.append("../preprocessing")
 from ModifiedClusterCentroids import ModifiedClusterCentroids
 
 X,y = make_classification(

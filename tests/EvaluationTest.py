@@ -1,9 +1,5 @@
 import sys
-import numpy as np
-from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC, LinearSVC
-from sklearn.neighbors import KNeighborsClassifier
-from strlearn.metrics import balanced_accuracy_score
+from sklearn.metrics import accuracy_score
 from sklearn.neural_network import MLPClassifier
 sys.path.append('../ensemble')
 from Bagging import BaggingClassifier
@@ -23,7 +19,7 @@ def main():
     datasets = ['glass']
 
     metrics = {
-        'BAC' : balanced_accuracy_score
+        'BAC' : accuracy_score
     }
 
     ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
