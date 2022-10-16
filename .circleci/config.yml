@@ -1,29 +1,21 @@
 version: 2.1
-orbs:
-  python: circleci/python@2.1.1
+
+jobs:
+  build-and-test:
+    working_directory: 
+    docker:
+      - image: "circleci/python:3.9.9"
+    steps:
+      - checkout
+      - run:
+          command: |
+            pip3 install -r requirements.txt
+            python3 tests/DecisionBoundaryTest.py
+            python3 tests/EvaluationTest.py
+            python3 tests/ImbalanceRatioTest.py
+            python3 tests/MCCTest.py
 
 workflows:
   build_and_test:
     jobs:
       - build-and-test
-
-jobs: 
-  build-and-test:
-    working_directory: 
-      
-    docker:
-      - image: "circleci/python:3.9.9"
-
-    steps:
-      - checkout
-
-      - python/install-packages:
-          pkg-manager: pip
-
-      - run:
-        name: Run tests
-        command:  |
-          python3 tests/DecisionBoundaryTest.py
-          python3 tests/EvaluationTest.py
-          python3 tests/ImbalanceRatioTest.py
-          python3 tests/MCCTest.py
