@@ -40,22 +40,21 @@ class DecisionBoundary():
 
         #Model
         for clf_id, clf_name in enumerate(self.clfs):
-            fig, ax = 0, 0
             clf = clone(self.clfs[clf_name])
             clf.fit(X, y)
             yhat = clf.predict(grid)
             zz = yhat.reshape(xx.shape)
-            
-            plt.contour(xx, yy, zz, cmap='Paired')
+
+            f, axarr = plt.subplots(1,1, sharex="col", sharey="row", figsize=(15,7))
+            axarr.contour(xx, yy, zz, cmap='Paired')
             for class_value in range(2):
                 row_ix = np.where(y == class_value)
-                plt.scatter(X[row_ix, 0], X[row_ix, 1], cmap='Paired')
-                plt.ylim(-4, 4)
-                plt.xlim(-4, 4)
-                plt.xlabel("Feature 0")
-                plt.ylabel("Feature 1")
-                plt.title(f"{clf_name} Decision Boundary")
+                axarr.scatter(X[row_ix, 0], X[row_ix, 1], cmap='Paired')
+                axarr.set_xlabel("Feature 0")
+                axarr.set_ylabel("Feature 1")
+                axarr.set_title(f"{self.name} - {clf_name} Boundary Decision")
+                plt.tight_layout()
                 os.chdir('../images')
-                plt.savefig(f"boundaryDecision-{self.name}-{clf_name}.png")
+                plt.savefig(f"{self.name}-{clf_name}.png") 
                 
             
