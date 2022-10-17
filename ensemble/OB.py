@@ -1,16 +1,14 @@
-import sys
 import numpy as np
+from scipy.stats import mode
 from sklearn.ensemble import BaseEnsemble
+from imblearn.over_sampling import SMOTE
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone 
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
-from scipy.stats import mode 
-sys.path.append('../preprocessing')
-from ModifiedClusterCentroids import ModifiedClusterCentroids
 
-"""Undersampled Bagging Classifier"""
+"""Oversampled Bagging Classifier"""
 
-class UB(BaseEnsemble, ClassifierMixin):
+class OB(BaseEnsemble, ClassifierMixin):
 
     def __init__(self, base_estimator=DecisionTreeClassifier(), n_estimators=5, random_state=None, hard_voting=True):
         self.base_estimator = base_estimator
@@ -18,16 +16,16 @@ class UB(BaseEnsemble, ClassifierMixin):
         self.hard_voting = hard_voting
         self.random_state = random_state
         np.random.seed(self.random_state)
-    
-    def undersample(self, X, y):
-        """Undersampling"""
-        preprocs = ModifiedClusterCentroids()
-        X_new, y_new = preprocs.fit_resample(X,y)
-        return X_new, y_new
 
+    def oversample(self, X, y):
+        """Oversampling"""
+        preproc = SMOTE(random_state=1410)
+        X_new, y_new = preproc.fit_resample(X,y)
+        return X_new, y_new
+    
     def fit(self, X, y):
         """Trening"""
-        X, y = self.undersample(X,y) 
+        X, y = self.oversample(X,y)
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]

@@ -1,8 +1,8 @@
-\begin{tabular}{llll}
+\begin{tabular}{lllr}
 \hline
- datasets   & Bagging LSVC5   & Bagging LSVC10   & Bagging LSVC15   \\
+ datasets   & Bagging LSVC5   & Bagging LSVC10   &   Bagging LSVC15 \\
 \hline
- glass      & 0.359813        & 0.356075         & 0.387850         \\
-            & all             & ---              & ---              \\
+ glass      & 0.369159        & 0.357944         &         0.369159 \\
+            & ---             & ---              &         1        \\
 \hline
 \end{tabular}

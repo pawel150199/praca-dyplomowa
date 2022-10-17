@@ -5,6 +5,8 @@ from sklearn.datasets import make_classification
 sys.path.append("../preprocessing")
 from ModifiedClusterCentroids import ModifiedClusterCentroids
 
+"""Test klasy ModifiedClusterCentroids"""
+
 X,y = make_classification(
             n_samples=1000,
             n_features=2,
@@ -52,6 +54,7 @@ class Test(unittest.TestCase):
         with self.assertRaises(ValueError):
             preprocs = ModifiedClusterCentroids(cluster_algorithm='OPTIC', CC_strategy='auto')
             X_new, y_new = preprocs.fit_resample(X,y)
+            
         with self.assertRaises(ValueError):
             preprocs = ModifiedClusterCentroids(cluster_algorithm='OPTICS', CC_strategy='au')
             X_new, y_new = preprocs.fit_resample(X,y)

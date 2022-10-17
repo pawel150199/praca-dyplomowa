@@ -7,6 +7,8 @@ sys.path.append('../evaluation')
 from Evaluator import Evaluator
 from StatisticTest import StatisticTest
 
+"""Test e2e ewaluacji eksperymentu"""
+
 def main():
     #Klasyfikatory
     clfs = {
@@ -18,6 +20,7 @@ def main():
     #Zbiór danych
     datasets = ['glass']
 
+    #metryki
     metrics = {
         'BAC' : accuracy_score
     }

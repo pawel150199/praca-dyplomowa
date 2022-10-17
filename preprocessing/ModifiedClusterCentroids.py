@@ -17,7 +17,7 @@ class ModifiedClusterCentroids(ClusterMixin):
     max_eps -> Parametr potrzebny w przypadku uzycia algorytmu OPTICS definiuje jak duzy bedzie analizowany obszar
     (domyślnie nieskonczonosc co znaczy ze cała przestrzeń problemu będzie analizowana)
     """
-    def __init__(self, CC_strategy='auto', eps=0.5, metric='euclidean', algorithm='auto', min_samples=5, cluster_algorithm='DBSCAN', max_eps=np.inf):
+    def __init__(self, CC_strategy='const', eps=0.5, metric='euclidean', algorithm='auto', min_samples=5, cluster_algorithm='DBSCAN', max_eps=np.inf):
         self.eps = eps
         self.cluster_algorithm = cluster_algorithm
         self.min_samples = min_samples
@@ -109,7 +109,7 @@ class ModifiedClusterCentroids(ClusterMixin):
             elif self.cluster_algorithm == 'OPTICS':
                 clustering = OPTICS(min_samples=self.min_samples, max_eps=self.max_eps).fit(X[y!=minor_class])
             else:
-                raise ValueError('Niepoprawna wartoś cluster_algorithm!')
+                raise ValueError('Niepoprawna wartośc cluster_algorithm!')
 
             #Obliczenia std
             l, c = np.unique(clustering.labels_, return_counts=True)

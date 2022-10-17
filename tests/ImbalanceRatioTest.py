@@ -1,18 +1,18 @@
-from distutils.log import error
+import unittest
 import sys, os
 import numpy as np
-
 sys.path.append('../analysis')
 from ImbalanceRatio import IR
 
+"""Test e2e klasy ImbalanceRatio"""
 
-def main():
-    obj = IR(['glass'])
-    obj.calculate()
-    obj.tab(True)
-    os.chdir('../latexTable')
-    if not os.path.exists('IR.txt'):
-        error('Nie działa!!!!')
+class Test(unittest.TestCase):
+    def teste2e(self):
+        obj = IR(['glass', 'appendicitis', 'balance', 'banana', 'bupa'])
+        obj.calculate()
+        obj.tab(True)
+        os.chdir('../latexTable')
+        self.assertTrue(os.path.exists('IR.txt'))
 
 if __name__=='__main__':
-    main()
+    unittest.main()
