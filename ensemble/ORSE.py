@@ -8,7 +8,7 @@ from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
 class ORSE(BaseEnsemble, ClassifierMixin):
 
-    def __init__(self, base_estimator=None, n_estimators=10, n_subspace_features=5, voting='soft', random_state=None):
+    def __init__(self, base_estimator=None, n_estimators=10, n_subspace_features=5, voting='hard', random_state=None):
         self.base_estimator = base_estimator
         self.n_estimators = n_estimators
         self.n_subspace_features=n_subspace_features

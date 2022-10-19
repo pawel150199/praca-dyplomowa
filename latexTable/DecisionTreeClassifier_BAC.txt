@@ -1,0 +1,8 @@
+\begin{tabular}{llllllllll}
+\hline
+ datasets     & Bagging   & RSE      & RSP      & OB       & ORSE     & ORSP     & UB       & URSE     & URSP          \\
+\hline
+ appendicitis & 0.726636  & 0.759534 & 0.739750 & 0.740650 & 0.739278 & 0.687681 & 0.690609 & 0.708345 & 0.758568      \\
+              & ---       & ---      & ---      & ---      & ---      & ---      & ---      & ---      & 1, 4, 5, 5, 6 \\
+\hline
+\end{tabular}

@@ -29,10 +29,10 @@ class StatisticTest():
                 t = []
                 for db_idx, db_name in enumerate(datasets):
                     #Wiersz z wartoscia srednia
-                    t.append([db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :]])
+                    t.append([db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :, m_id]])
                     #Jesli podamy std_fmt w zmiennych globalnych zostanie do tabeli dodany wiersz z odchyleniem standardowym
                     if std_fmt:
-                        t.append( [std_fmt % v for v in std[db_idx, :]])
+                        t.append( [std_fmt % v for v in std[db_idx, :, m_id]])
                     #Obliczenie wartosci T i P z testu T-studenta
                     T, p = np.array(
                         [[ttest_ind(scores[db_idx, i, :],

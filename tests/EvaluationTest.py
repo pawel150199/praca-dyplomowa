@@ -1,5 +1,5 @@
 import sys
-from sklearn.metrics import accuracy_score
+from strlearn.metrics import balanced_accuracy_score, recall
 from sklearn.neural_network import MLPClassifier
 sys.path.append('../ensemble')
 from Bagging import BaggingClassifier
@@ -22,7 +22,8 @@ def main():
 
     #metryki
     metrics = {
-        'BAC' : accuracy_score
+        'BAC' : balanced_accuracy_score,
+        'RECALL' : recall
     }
 
     ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
