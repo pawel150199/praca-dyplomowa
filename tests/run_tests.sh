@@ -4,7 +4,7 @@ tests=$(ls | grep '^[A-Z]')
 DATE=$(date)
 
 function log_sh() {
-    echo "[$DATE  TESTS EXECUTION]" $@
+    echo "[$DATE]  [TESTS EXECUTION]" $@
 }
 
 for i in $tests
