@@ -1,7 +1,6 @@
 import numpy as np
 import os
 import time
-import sklearn
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC, LinearSVC
 from sklearn.neighbors import KNeighborsClassifier
