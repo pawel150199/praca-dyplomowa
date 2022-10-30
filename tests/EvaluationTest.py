@@ -7,7 +7,7 @@ sys.path.append('../evaluation')
 from Evaluator import Evaluator
 from StatisticTest import StatisticTest
 
-"""Test e2e ewaluacji eksperymentu"""
+"""Test e2e experiment evaluation"""
 
 def main():
     #Klasyfikatory

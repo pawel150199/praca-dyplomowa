@@ -12,7 +12,7 @@ from RandomSamplePartition import RandomSamplePartition
 sys.path.append('../analysis')
 from DecisionBoundary2 import DecisionBoundary
 
-"""Test e2e klasy DecisionBoundary"""
+"""Test e2e Decision Boundary class"""
 
 class Test(unittest.TestCase):
     def prepare(self):
@@ -20,7 +20,7 @@ class Test(unittest.TestCase):
         self.X = iris.data[:, [0, 2]]
         self.y = iris.target
 
-        #Zespoły klasyfikatorów
+        # Ensemble classifiers
         self.clfs = {
             #'kNN' : KNeighborsClassifier(n_neighbors=5),
             'RSE kNN x5' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=5, random_state=1410, n_subspace_features=2),
@@ -29,6 +29,7 @@ class Test(unittest.TestCase):
         }
     
     def testDecisionBoundary(self):
+        """Decision Boundary test"""
         self.prepare()
         db = DecisionBoundary(self.clfs, 'kNN')
         db.process(self.X, self.y)

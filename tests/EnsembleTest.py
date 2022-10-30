@@ -14,7 +14,7 @@ from ORSE import ORSE
 from ORSP import ORSP
 from sklearn.metrics import balanced_accuracy_score
 
-"""Test e2e Metod zespołowych"""
+"""Test e2e Ensemble methods"""
 
 #Klasyfikatory
 clfs = {

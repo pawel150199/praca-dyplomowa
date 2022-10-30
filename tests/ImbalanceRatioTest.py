@@ -4,7 +4,7 @@ import numpy as np
 sys.path.append('../analysis')
 from ImbalanceRatio import IR
 
-"""Test e2e klasy ImbalanceRatio"""
+"""Test e2e ImbalanceRatio class"""
 
 class Test(unittest.TestCase):
     def teste2e(self):

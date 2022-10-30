@@ -5,7 +5,7 @@ from sklearn.datasets import make_classification
 sys.path.append("../preprocessing")
 from ModifiedClusterCentroids import ModifiedClusterCentroids
 
-"""Test klasy ModifiedClusterCentroids"""
+"""Test ModifiedClusterCentroids class"""
 
 X,y = make_classification(
             n_samples=1000,
