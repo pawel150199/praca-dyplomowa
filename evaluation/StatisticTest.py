@@ -5,7 +5,7 @@ from tabulate import tabulate
 from scipy.stats import ttest_ind
 
 """ 
-Klasa generuje wyniki testów statystycznych, które zapisywane są w katalogu results
+Class generate tables with paired statistic tests and store it
 """
 
 class StatisticTest():
@@ -13,8 +13,9 @@ class StatisticTest():
         self.evaluator = evaluator
 
     def process(self, table_name, alpha=0.05, m_fmt="%3f", std_fmt=None, nc="---", db_fmt="%s", tablefmt="plain"):
+        """Process"""
         try:
-            #DATA X FOLD X CLASSIFIER X METRIC 
+            # DATA X FOLD X CLASSIFIER X METRIC 
             scores = self.evaluator.scores
             mean_scores = self.evaluator.mean
             std = self.evaluator.std
@@ -23,17 +24,17 @@ class StatisticTest():
             datasets = self.evaluator.datasets
             n_clfs = len(clfs)
 
-            #Generowanie tabel
+            # Generate tables 
             for m_id, m_name in enumerate(metrics):
                 #
                 t = []
                 for db_idx, db_name in enumerate(datasets):
-                    #Wiersz z wartoscia srednia
+                    # Mean value
                     t.append([db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :, m_id]])
-                    #Jesli podamy std_fmt w zmiennych globalnych zostanie do tabeli dodany wiersz z odchyleniem standardowym
+                    # If std_fmt is not None, std will appear in tables
                     if std_fmt:
                         t.append( [std_fmt % v for v in std[db_idx, :, m_id]])
-                    #Obliczenie wartosci T i P z testu T-studenta
+                    # Calculate T and P for T-studenta test
                     T, p = np.array(
                         [[ttest_ind(scores[db_idx, i, :],
                             scores[db_idx, j, :])
@@ -48,16 +49,16 @@ class StatisticTest():
                                     if len(c) > 0 and len(c) < len(clfs)-1 else ("all" if len(c) == len(clfs)-1 else nc)
                                     for c in conclusions])
 
-                #Prezentacja wyników
+                # Show outputs 
                 print('\n\n\n', m_name, '\n')  
                 headers = ['datasets']
                 for i in clfs:
                     headers.append(i)
                 print(tabulate(t, headers))
 
-                #Zapisanie wyników w formacie .tex
+                # Save outputs as .tex extension
                 os.chdir('../latexTable')
                 with open('%s_%s.txt' % (table_name, m_name), 'w') as f:
                     f.write(tabulate(t, headers, tablefmt='latex'))
         except ValueError:
-            error('Operacja nie powiodła się!')
+            error('Incorrect value!')

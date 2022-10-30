@@ -4,9 +4,7 @@ from tabulate import tabulate
 
 class IR:
     """
-    Klasa słuzy do wygenerowania tabeli ze statystykami zbiorów danych
-    Im większy współczynnik IR tym większa rónica pomiędzy
-    zbilansowaniem klas w przestrzeni problemu
+    Class is used for generate table with imbalacement ratio of choosen datasets
 
     Usage:
         obj = IR(['datasetname'])
@@ -17,6 +15,7 @@ class IR:
         self.datasets = datasets
     
     def calculate(self):
+        """Calculate IR"""
         self.scores = []
         self.y = []
         self.dataset_name = []
@@ -35,7 +34,8 @@ class IR:
         return self
 
     def tab(self, save):
-        # save -> parametr mówiący czy zapisac wyniki w postaci tablicy w formacie tex
+        """Generate tables"""
+        # save -> parameter is used for choose store tables or not
         t = []
         for data_id, data_name in enumerate(self.datasets):
             t.append(['%s' % data_name] + ['%.3f' % v for v in self.scores[data_id]])
@@ -49,6 +49,7 @@ class IR:
             print(tabulate(t, headers))
 
 if __name__ == '__main__':
+    # Simple usage
     obj = IR(['balance','appendicitis', 'banana', 'bupa', 'glass'])
     obj.calculate()
     obj.tab(True)

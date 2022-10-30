@@ -9,8 +9,8 @@ from RandomSubspaceEnsemble import RandomSubspaceEnsemble
 from RandomSamplePartition import RandomSamplePartition
 
 """
-Moja własna implementacja 
-Pokaz granic decyzyjnych poszczególnych zespołów klasyfikatorów
+Own implementatiom
+Show decision boundary of classificators
 """
 
 class DecisionBoundary():
@@ -20,25 +20,26 @@ class DecisionBoundary():
         self.name = name
 
     def process(self, X , y):
-        #Definicja granic
+        """Process"""
+        # Boundary decision
         min1, max1 = X[:, 0].min()-1, X[:, 0].max()+1
         min2, max2 = X[:, 1].min()-1, X[:, 1].max()+1
 
-        #Definicja  skali x i y
+        # Scale definition
         x1grid = np.arange(min1, max1, 0.1)
         x2grid = np.arange(min2, max2, 0.1)
 
-        #Definicja meshgrid
+        # Meshgrid definition
         xx, yy = np.meshgrid(x1grid, x2grid)
 
-        #Spłaszczanie gridów do wektora
+        # Grid flattening
         r1, r2 = xx.flatten(), yy.flatten()
         r1, r2 = r1.reshape((len(r1), 1)), r2.reshape((len(r2), 1))
 
-        #Zmiana z vektora do kolumny
+        # change vector to column
         grid = np.hstack((r1, r2))
 
-        #Model
+        # Model
         for clf_id, clf_name in enumerate(self.clfs):
             clf = clone(self.clfs[clf_name])
             clf.fit(X, y)

@@ -9,7 +9,7 @@ from Bagging import BaggingClassifier
 
 
 """
-Klasa słuzy do przeprowadzania ewaluacji eksperymentu
+Class is used for evaluate experiment
 """
 class Evaluator():
     def __init__(self, datasets, storage_dir=None, n_splits=2, n_repeats=5, random_state=None, metrics=accuracy_score):
@@ -20,15 +20,15 @@ class Evaluator():
         self.random_state = random_state
         self.metrics = metrics
 
-        #Sprawdzenie czy istnieje storage
+        # Check does exist storage
         if self.storage_dir is not None:
             return
         else:
-            raise ValueError('Katalog nie moze byc None')
+            raise ValueError('Directory cannot be None!')
 
     def process(self, clfs, result_name):
         """
-        Funkcja do przeprowadzania ewaluacji eksperymentu
+        Evaluation function
         """
         self.clfs = clfs
         rskf = rskf = RepeatedStratifiedKFold(n_splits=self.n_splits, n_repeats=self.n_repeats, random_state = self.random_state)
@@ -46,19 +46,19 @@ class Evaluator():
                 clf.fit(X[train], y[train])
                 y_pred = clf.predict(X[test])
                 for metric_id, metric_name in enumerate(self.metrics):
-                    #DATA X FOLD X CLASSIFIER X METRIC 
+                    # DATA X FOLD X CLASSIFIER X METRIC 
                     self.scores[data_id, fold_id, clf_id, metric_id] = self.metrics[metric_name](y[test],y_pred)
     
-        #Wyświetlenie wyników
+        # Show outputs
         self.mean = np.mean(self.scores, axis=1)
         self.std = np.std(self.scores, axis=1)
         for clf_id, clf_name in enumerate(clfs):
             print("%s: %.3f (%.3f)" % (clf_name, self.mean[0,clf_id,0], self.std[0,clf_id,0]))
 
         if result_name != None:
-            #Zapisanie  wyników
+            # Save outputs
             try:
                 os.chdir('../%s' % (self.storage_dir))
                 np.save(result_name, self.scores)
             except ValueError:
-                print("Nieprawidlowa wartośc")
+                print("Incorrect value!")

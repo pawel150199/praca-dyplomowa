@@ -19,12 +19,13 @@ sys.path.append('../evaluation')
 from Evaluator import Evaluator
 from StatisticTest import StatisticTest
 
-"""Eksperyment"""
+"""Experiment evaluation"""
 
 N_ESTIMATORS = 5
 
 def evaluation(base_estimator, n_estimators, name):
-    #Klasyfikatory
+    """Evaluation"""
+    # Classificators
     clfs = {
         'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators),
         'RSE' : RandomSubspaceEnsemble(base_estimator=base_estimator, n_estimators=n_estimators),
@@ -36,9 +37,10 @@ def evaluation(base_estimator, n_estimators, name):
         'URSE' : URSE(base_estimator=base_estimator, n_estimators=n_estimators),
         'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators),
     }
-    #Zbiór danych
+    # Datasets
     datasets = ['appendicitis']
-    #metryki
+
+    # Metrics
     metrics = {
         'BAC' : balanced_accuracy_score,
         'Recall' : recall
@@ -49,6 +51,7 @@ def evaluation(base_estimator, n_estimators, name):
     st.process(name)
 
 def main():
+    """Main function"""
     #GaussianNB
     evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
     #kNN

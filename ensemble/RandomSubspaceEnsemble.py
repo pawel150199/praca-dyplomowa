@@ -3,7 +3,7 @@ from sklearn.ensemble import BaseEnsemble
 from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
-"""Random Subspace Ensemble - Komitet klasyfikatorow losowych podprzestrzeni cech"""
+"""Random Subspace Ensemble"""
 
 class RandomSubspaceEnsemble(BaseEnsemble, ClassifierMixin):
 
@@ -16,29 +16,29 @@ class RandomSubspaceEnsemble(BaseEnsemble, ClassifierMixin):
         np.random.seed(self.random_state)
         
     def fit(self, X, y):
-        """Uczenie"""
+        """Fitting"""
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]
         if self.n_subspace_features > self.n_features:
             raise ValueError("Number of features in subspace higher than number of features!")
-        #Wylosowanie podprzestrzeni cech
+        # Generate random subspaces
         self.subspaces = np.random.randint(0, self.n_features, (self.n_estimators, self.n_subspace_features))
-        #Wyuczenie nowych modeli i stworzenie zespołu
+        # Fit new models and save it in ensemble matrix
         self.ensemble_ = []
         for i in range(self.n_estimators):
             self.ensemble_.append(clone(self.base_estimator).fit(X[:, self.subspaces[i]], y))
 
         return self
     def predict(self, X):
-        """Predykcja"""
+        """Prediction"""
         check_is_fitted(self, "classes_")
         X = check_array(X)
         if X.shape[1] != self.n_features:
             raise ValueError("Number of features does not match!")
 
         if self.voting == 'hard':
-            #Głosowanie większościowe
+            # Hard voting
             pred_ = []
             for i, member_clf in enumerate(self.ensemble_):
                 pred_.append(member_clf.predict(X[:, self.subspaces[i]]))
@@ -48,7 +48,7 @@ class RandomSubspaceEnsemble(BaseEnsemble, ClassifierMixin):
             return self.classes_[prediction]
 
         elif self.voting == 'soft':
-            #Decyzja na podstawie wektora wsparcia
+            # Soft voting
             esm = self.ensemble_support_matrix(X)
             average_support = np.mean(esm, axis=0)
             prediction = np.argmax(average_support, axis=1)
@@ -57,7 +57,7 @@ class RandomSubspaceEnsemble(BaseEnsemble, ClassifierMixin):
             raise ValueError("Incorrect voting type!")
 
     def ensemble_support_matrix(self, X):
-        """Wyliczenie macierzy wsparcia"""
+        """Support matrix"""
         probas_ = []
         for i, member_clf in enumerate(self.ensemble_):
             probas_.append(member_clf.predict_proba(X[:, self.subspaces[i]]))

@@ -1,11 +1,13 @@
+import sys
 import numpy as np
 from sklearn.ensemble import BaseEnsemble
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone
+from imblearn.over_sampling import SMOTE
 
-"""AdaBoost - Przykładowa implementacja Boostingu"""
+"""Undersampled AdaBoost - przykładowa implementacja Boostingu z undersamplingiem"""
 
-class Boosting(BaseEnsemble, ClassifierMixin):
+class OBO(BaseEnsemble, ClassifierMixin):
     def __init__(self, base_estimator=DecisionTreeClassifier(), M=10):
         self.base_estimator = base_estimator
         self.M = M
@@ -40,6 +42,17 @@ class Boosting(BaseEnsemble, ClassifierMixin):
     def update_weights(self, w_i, alpha, y, y_pred):
         """Uaktualnienia wag po kadej iteracji boostingu"""
         return w_i * np.exp(alpha * (np.not_equal(y, y_pred)).astype(int))
+
+    def oversample(self, X, y):
+        """Oversampling"""
+        preproc = SMOTE(random_state=1410)
+        X_new, y_new = preproc.fit_resample(X,y)
+        return X_new, y_new
+    
+    def undersample(self, X, y):
+        preproc = ModifiedClusterCentroids()
+        X_new, y_new = preproc.fit_resample(X,y)
+        return X_new, y_new
     
     def fit(self, X, y):
         """Trening"""
@@ -48,6 +61,10 @@ class Boosting(BaseEnsemble, ClassifierMixin):
         self.alphas = []
         self.training_errors = []
 
+        # Oversampling
+        X, y = self.oversample(X, y)
+
+        # Boosting
         for m in range(self.M):
             # Ustawienie wag dla pierwszej iteracji
             if m == 0:
@@ -77,17 +94,8 @@ class Boosting(BaseEnsemble, ClassifierMixin):
         for m in range(self.M):
             y_pred_m = self.ensemble[m].predict(X) * self.alphas[m]
             weak_preds[:,m] = y_pred_m
+        
         # Predykcja
-        print(weak_preds.T.sum(axis=0))
-        y_pred = np.sign(weak_preds.sum(axis=1)).flatten()
-        #y_pred = (1 * np.sign(weak_preds.T.sum(axis=0))).astype(int)
+        y_pred = (1 * np.sign(weak_preds.T.sum())).astype(int)
+
         return y_pred
-        
-            
-
-        
-
-
-
-
-    

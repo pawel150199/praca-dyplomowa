@@ -24,24 +24,24 @@ class OB(BaseEnsemble, ClassifierMixin):
         return X_new, y_new
     
     def fit(self, X, y):
-        """Trening"""
+        """Fitting"""
         X, y = self.oversample(X,y)
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]
         
-        #Macierz na wyniki
+        # Matrix for classifiers
         self.ensemble_ = []
 
-        #Bagging
+        # Bagging
         for i in range(self.n_estimators):
             self.bootstrap = np.random.choice(len(X),size=len(X), replace=True)
             self.ensemble_.append(clone(self.base_estimator).fit(X[self.bootstrap], y[self.bootstrap]))
         return self
     
     def predict(self, X):
-        """Predykcja"""
-        #Sprawdzenie czy modele są wyuczone
+        """Prediction"""
+        # Check if classifiers are fitted
         check_is_fitted(self, "classes_")
         X = check_array(X)
         if X.shape[1] != self.n_features:
@@ -49,7 +49,7 @@ class OB(BaseEnsemble, ClassifierMixin):
 
 
         if self.hard_voting:
-            #Głosowanie większościowe
+            # Hard voting 
             pred_ = []
             for i, member_clf in enumerate(self.ensemble_):
                 pred_.append(member_clf.predict(X))
@@ -58,14 +58,14 @@ class OB(BaseEnsemble, ClassifierMixin):
             return self.classes_[prediction]
 
         else:
-            #Głosowanie na podstawie wektorów wsparc
+            # Soft voting
             esm = self.ensemble_support_matrix(X)
             average_support = np.mean(esm, axis=0)
             prediction = np.argmax(average_support, axis=1)
             return self.classes_[prediction]
                   
     def ensemble_support_matrix(self, X):
-        """Macierz wsparć"""
+        """Support matrix"""
         probas_ = []
         for i, member_clf in enumerate(self.ensemble_):
             probas_.append(member_clf.predict_proba(X))

@@ -6,7 +6,7 @@ from imblearn.over_sampling import SMOTE
 from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
-"""Oversampled Random Sample Partition - na cechach"""
+"""Oversampled Random Sample Partition - on features"""
 
 class ORSP(BaseEnsemble, ClassifierMixin):
 
@@ -26,7 +26,7 @@ class ORSP(BaseEnsemble, ClassifierMixin):
         return X_new, y_new
 
     def fit(self, X, y):
-        """Uczenie"""
+        """Fitting"""
         self.n_subspace_choose=1
         X, y = self.oversample(X,y)
         X, y = check_X_y(X,y)
@@ -44,11 +44,11 @@ class ORSP(BaseEnsemble, ClassifierMixin):
         x = np.random.choice(n_subspace, size=(self.n_subspace_choose),replace=False)
         self.subspaces = self.subspaces[x,:]
 
-        #Zmiana ilości estymatorów w przypadku przekroczenia dostępnych podprzestrzeni
+        # If n_estimators value is higher than n_subspace_choose, n_estimator value will be changed
         if self.n_estimators > self.n_subspace_choose:
             self.n_estimators = self.n_subspace_choose
 
-        #Wyuczenie nowych modeli i stworzenie zespołu
+        # Fit new models and save it in ensemble matrix
         self.ensemble_ = []
         for i in range(self.n_estimators):
             self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
@@ -56,15 +56,15 @@ class ORSP(BaseEnsemble, ClassifierMixin):
 
 
     def predict(self, X):
-        """Predykcja"""
+        """Prediction"""
         check_is_fitted(self, "classes_")
         X = check_array(X)
         if X.shape[1] != self.n_features:
-            raise ValueError("number of features does not match")
+            raise ValueError("Number of features does not match")
 
 
         if self.hard_voting:
-            #Głosowanie większościowe
+            # Hard voting
             pred_ = []
             for i in range(self.n_estimators):
                 pred_.append(self.ensemble_[i].predict(X[:, self.subspaces[i]]))
@@ -72,14 +72,14 @@ class ORSP(BaseEnsemble, ClassifierMixin):
             prediction = mode(pred_, axis=0)[0].flatten()
             return self.classes_[prediction]
         else:
-            #Głosowanie na podstawie wektorów wsparc
+            # Soft voting
             esm = self.ensemble_support_matrix(X)
             average_support = np.mean(esm, axis=0)
             prediction = np.argmax(average_support, axis=1)
             return self.classes_[prediction]
 
     def ensemble_support_matrix(self, X):
-        """Wyliczenie macierzy wsparcia"""
+        """Support matrix"""
         probas_ = []
         for i, member_clf in enumerate(self.ensemble_):
             probas_.append(member_clf.predict_proba(X[:, self.subspaces[i]]))
