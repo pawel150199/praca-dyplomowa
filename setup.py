@@ -1,10 +1,5 @@
 #! /usr/bin/env python
-from __future__ import absolute_import
-import os
 from setuptools import find_packages, setup
-
-
-this_directory = os.path.abspath(os.path.dirname(__file__))
 
 DISTNAME = "Inzynierka"
 DESCRIPTION = "Praca inzynierska"
@@ -16,6 +11,7 @@ INSTALL_REQUIRES = ["numpy", "scipy", "scikit-learn", "tabulate", "imblearn"]
 setup(
     name = DISTNAME,
     maintainer=MAINTAINER,
+    description=DESCRIPTION,
     maintainer_email=MAINTAINER_EMAIL,
     url=URL,
     install_requires=INSTALL_REQUIRES

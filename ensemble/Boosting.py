@@ -52,6 +52,7 @@ class Boosting(BaseEnsemble, ClassifierMixin):
             # Ustawienie wag dla pierwszej iteracji
             if m == 0:
                 w_i = np.ones(len(y)) * 1 / len(y)
+                print(w_i)
             else:
                 # Uaktualnienie wag
                 w_i = self.update_weights(w_i, alpha_m, y, y_pred)
@@ -70,24 +71,14 @@ class Boosting(BaseEnsemble, ClassifierMixin):
             #Obliczenie alfa
             alpha_m = self.compute_alpha(error_m)
             self.alphas.append(alpha_m)
+        print("ALPHAS", len(self.alphas))
             
     def predict(self, X):
         """Predykcja"""
-        weak_preds = np.zeros((len(X), self.M))
-        for m in range(self.M):
-            y_pred_m = self.ensemble[m].predict(X) * self.alphas[m]
-            weak_preds[:,m] = y_pred_m
-        # Predykcja
-        print(weak_preds.T.sum(axis=0))
-        y_pred = np.sign(weak_preds.sum(axis=1)).flatten()
-        #y_pred = (1 * np.sign(weak_preds.T.sum(axis=0))).astype(int)
-        return y_pred
-        
-            
-
-        
-
-
-
-
-    
+        yhats = []
+        for e in range(self.M):
+            yhats_p = self.ensemble[e].predict(X)*self.alphas[e]
+            yhats.append(yhats_p)
+        yhats = np.array(yhats)
+        print(yhats)
+        return np.sign(yhats.T.sum(axis=1)).astype(int)

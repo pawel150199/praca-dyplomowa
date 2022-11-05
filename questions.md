@@ -1,3 +1,7 @@
 # Pytania
-## Czy jest sens robic jakiekolwiek zespoły bez preprocessingu?
+## Czy sensownym podejściem jest badanie zespołów bez preprocessingu?
 ## Czy w pracy dodawac jakieś informacje o CI i testach?
+## Co z anglikanizmami w pracy?
+## Czy zaproponowana struktura pracy jest w porządku?
+## Jak dobrze pisac pseudokod?
+## Czy do pracy nalezy dodac link do repozytorium z kodem wykorzystanym w pracy?

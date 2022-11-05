@@ -17,8 +17,6 @@ class AdaBoost(BaseEnsemble, ClassifierMixin):
         
         # Instantiate stuff
         weights = np.repeat(1/N, N)
-        self.ensembles = []
-        self.alphas = []
         self.yhats = np.empty((N, self.M))
         
         for t in range(self.M):
