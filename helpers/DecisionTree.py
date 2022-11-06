@@ -15,7 +15,3 @@ clf.fit(X,y)
 # Plot tree
 tree.plot_tree(clf, filled=True, rounded=True, class_names=class_names, feature_names=feature_names)
 plt.savefig("../images/DecisionTree.png")
-
-
-
-
