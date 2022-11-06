@@ -16,7 +16,7 @@ from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.inspection import DecisionBoundaryDisplay
 
 """
-This code is used to display comparision between implementes ensemble methods
+This code is used to display comparision between implemented ensemble methods
 """
 names = [
     "Nearest Neighbors",
@@ -59,9 +59,9 @@ datasets = [
 
 figure = plt.figure(figsize=(27, 9))
 i = 1
-# iterate over datasets
+# Iterate over datasets
 for ds_cnt, ds in enumerate(datasets):
-    # preprocess dataset, split into training and test part
+    # Preprocess dataset, split into training and test part
     X, y = ds
     X = StandardScaler().fit_transform(X)
     X_train, X_test, y_train, y_test = train_test_split(
@@ -71,7 +71,7 @@ for ds_cnt, ds in enumerate(datasets):
     x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
     y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
 
-    # just plot the dataset first
+    # Just plot the dataset first
     cm = plt.cm.RdBu
     cm_bright = ListedColormap(["#FF0000", "#0000FF"])
     ax = plt.subplot(len(datasets), len(classifiers) + 1, i)
@@ -89,7 +89,7 @@ for ds_cnt, ds in enumerate(datasets):
     ax.set_yticks(())
     i += 1
 
-    # iterate over classifiers
+    # Iterate over classifiers
     for name, clf in zip(names, classifiers):
         ax = plt.subplot(len(datasets), len(classifiers) + 1, i)
         clf.fit(X_train, y_train)
@@ -128,4 +128,4 @@ for ds_cnt, ds in enumerate(datasets):
         i += 1
 
 plt.tight_layout()
-plt.show()
+plt.savefig("../images/BoundaryDecisionComparision.png")

@@ -20,11 +20,11 @@ class IR:
         self.y = []
         self.dataset_name = []
 
-        for data_id, dataset in enumerate(self.datasets):
+        for _, dataset in enumerate(self.datasets):
             os.chdir('../datasets')
             dataset = np.genfromtxt("%s.csv" % (dataset), delimiter=',')
             self.y = dataset[:, -1].astype(int)
-            l, c = np.unique(self.y, return_counts=True)
+            _, c = np.unique(self.y, return_counts=True)
             minor_probas = np.amin(c)
             idx = np.where(minor_probas!=c)
             Nmax = sum(c[idx])

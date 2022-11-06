@@ -16,7 +16,7 @@ from sklearn.metrics import balanced_accuracy_score
 
 """Test e2e Ensemble methods"""
 
-#Klasyfikatory
+# Classifiers
 clfs = {
     'Bagging' : BaggingClassifier(base_estimator=GaussianNB(), n_estimators=5),
     'RSP': RandomSamplePartition(base_estimator=GaussianNB(), n_estimators=5),
@@ -29,7 +29,7 @@ clfs = {
     'URSE': URSE(base_estimator=GaussianNB(), n_estimators=5)
 }
 
-#Zbiór danych
+# Datasets
 datasets = ['bupa']
 
 def main():
@@ -37,10 +37,10 @@ def main():
     n_repeats = 5
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
 
-    #Tablice z wynikami
+    # Tables with outputs
     scores = np.zeros((n_splits*n_repeats, len(clfs)))
 
-    #Eksperyment
+    # Experiment
     for data_id, data_name in enumerate(datasets):
         os.chdir('../datasets')
         dataset = np.genfromtxt("%s.csv" % (data_name) , delimiter=',')
@@ -54,7 +54,7 @@ def main():
                 y_pred = clf.predict(X[test])
                 scores[fold_id, clf_id] = balanced_accuracy_score(y[test],y_pred)
     
-    #Wyświetlenie wyników
+    # Show outputs
     mean = np.mean(scores, axis=1)
     std = np.std(scores, axis=1)
     for clf_id, clf_name in enumerate(clfs):

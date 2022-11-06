@@ -41,7 +41,7 @@ class ModifiedClusterCentroids(ClusterMixin):
         l, c = np.unique(y, return_counts=True)
         minor_probas = np.amin(c)
         minor_class = l[minor_probas==c]
-        major_class = l[minor_probas!=c]
+        
         # Table for data after resampling
         X_resampled = []
         y_resampled = []

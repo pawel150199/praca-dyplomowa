@@ -34,7 +34,7 @@ class Test(unittest.TestCase):
         db = DecisionBoundary(self.clfs, 'kNN')
         db.process(self.X, self.y)
         os.chdir('../images')
-        for clf_id, clf_name in enumerate(self.clfs):
+        for _, clf_name in enumerate(self.clfs):
             self.assertTrue(os.path.exists(f"kNN-BoundaryDecision-{clf_name}.png"))
     
 

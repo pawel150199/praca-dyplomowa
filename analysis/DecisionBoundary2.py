@@ -19,12 +19,12 @@ class DecisionBoundary():
 
     def process(self, X , y):
         """Process"""
-        for clf_id, clf_name in enumerate(self.clfs):
+        for _, clf_name in enumerate(self.clfs):
             clf = clone(self.clfs[clf_name])
             clf.fit(X, y)
             
             # Decision boundary
-            f, axarr = plt.subplots(1,1, sharex="col", sharey="row", figsize=(15,7))
+            fig, axarr = plt.subplots(1,1, sharex="col", sharey="row", figsize=(15,7))
             DecisionBoundaryDisplay.from_estimator(clf, X, alpha=0.4, ax=axarr, response_method="predict")
             axarr.scatter(X[:, 0], X[:, 1], c=y, s=20, edgecolors="k")
             axarr.set_xlabel("Feature 0")

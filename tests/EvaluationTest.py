@@ -10,17 +10,17 @@ from StatisticTest import StatisticTest
 """Test e2e experiment evaluation"""
 
 def main():
-    #Klasyfikatory
+    # Classifiers
     clfs = {
         'Bagging LSVC5' : BaggingClassifier(MLPClassifier(hidden_layer_sizes=10), n_estimators=1),
         'Bagging LSVC10': BaggingClassifier(MLPClassifier(hidden_layer_sizes=10), n_estimators=9),
         'Bagging LSVC15': BaggingClassifier(MLPClassifier(hidden_layer_sizes=10), n_estimators=12)
     }
 
-    #Zbiór danych
+    # Datasets
     datasets = ['glass']
 
-    #metryki
+    # Metrics
     metrics = {
         'BAC' : balanced_accuracy_score,
         'RECALL' : recall
