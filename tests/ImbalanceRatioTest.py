@@ -1,11 +1,12 @@
 import unittest
 import sys, os
-import numpy as np
+import warnings
 sys.path.append('../analysis')
 from ImbalanceRatio import IR
 
 """Test e2e ImbalanceRatio class"""
-
+# Ignore warnings
+warnings.filterwarnings("ignore")
 class Test(unittest.TestCase):
     def teste2e(self):
         obj = IR(['glass', 'appendicitis', 'balance', 'banana', 'bupa'])

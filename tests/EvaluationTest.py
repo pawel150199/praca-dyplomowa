@@ -2,12 +2,16 @@ import sys
 from strlearn.metrics import balanced_accuracy_score, recall
 from sklearn.neural_network import MLPClassifier
 sys.path.append('../ensemble')
+import warnings
 from Bagging import BaggingClassifier
 sys.path.append('../evaluation')
 from Evaluator import Evaluator
 from StatisticTest import StatisticTest
 
 """Test e2e experiment evaluation"""
+
+# Ignore warnings
+warnings.filterwarnings("ignore")
 
 def main():
     # Classifiers

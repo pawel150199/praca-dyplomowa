@@ -1,12 +1,12 @@
 import unittest
 import sys
-import numpy as np
+import warnings
 from sklearn.datasets import make_classification
 sys.path.append("../preprocessing")
 from ModifiedClusterCentroids import ModifiedClusterCentroids
 
 """Test ModifiedClusterCentroids class"""
-
+# Ignore warnings
 X,y = make_classification(
             n_samples=1000,
             n_features=2,

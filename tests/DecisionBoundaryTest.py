@@ -5,6 +5,7 @@ from sklearn.svm import SVC
 from sklearn.datasets import make_classification
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.datasets import load_iris
+import warnings
 sys.path.append('../ensemble')
 from Bagging import BaggingClassifier
 from RandomSubspaceEnsemble import RandomSubspaceEnsemble
@@ -13,6 +14,9 @@ sys.path.append('../analysis')
 from DecisionBoundary2 import DecisionBoundary
 
 """Test e2e Decision Boundary class"""
+
+# Ignore warnings
+warnings.filterwarnings("ignore")
 
 class Test(unittest.TestCase):
     def prepare(self):

@@ -1,5 +1,6 @@
 import numpy as np
 import os, sys
+import warnings
 from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import RepeatedStratifiedKFold
 sys.path.append('../ensemble')
@@ -15,6 +16,9 @@ from ORSP import ORSP
 from sklearn.metrics import balanced_accuracy_score
 
 """Test e2e Ensemble methods"""
+
+# Ignore warnings
+warnings.filterwarnings("ignore")
 
 # Classifiers
 clfs = {
