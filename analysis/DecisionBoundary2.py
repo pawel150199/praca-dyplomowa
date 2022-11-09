@@ -24,7 +24,7 @@ class DecisionBoundary():
             clf.fit(X, y)
             
             # Decision boundary
-            fig, axarr = plt.subplots(1,1, sharex="col", sharey="row", figsize=(15,7))
+            _, axarr = plt.subplots(1,1, sharex="col", sharey="row", figsize=(15,7))
             DecisionBoundaryDisplay.from_estimator(clf, X, alpha=0.4, ax=axarr, response_method="predict")
             axarr.scatter(X[:, 0], X[:, 1], c=y, s=20, edgecolors="k")
             axarr.set_xlabel("Feature 0")

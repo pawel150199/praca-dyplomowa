@@ -5,6 +5,7 @@ sys.path.append('../analysis')
 from ImbalanceRatio import IR
 
 """Test e2e ImbalanceRatio class"""
+
 # Ignore warnings
 warnings.filterwarnings("ignore")
 class Test(unittest.TestCase):
