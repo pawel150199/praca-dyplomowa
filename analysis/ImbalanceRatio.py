@@ -11,26 +11,25 @@ class IR:
         obj.calculate()
         obj.tab(true)
     """
-    def __init__(self, datasets):
-        self.datasets = datasets
+    def __init__(self):
+        self.datasets = os.listdir("../datasets")
     
     def calculate(self):
         """Calculate IR"""
         self.scores = []
         self.y = []
-        self.dataset_name = []
 
         for _, dataset in enumerate(self.datasets):
             os.chdir('../datasets')
-            dataset = np.genfromtxt("%s.csv" % (dataset), delimiter=',')
+            dataset = np.genfromtxt("%s" % (dataset), delimiter=',')
             self.y = dataset[:, -1].astype(int)
             _, c = np.unique(self.y, return_counts=True)
             minor_probas = np.amin(c)
             idx = np.where(minor_probas!=c)
-            Nmax = sum(c[idx])
-            Nmin = minor_probas
-            IR = round((Nmax/Nmin), 2)
-            self.scores.append([Nmin, Nmax, IR])
+            n_max = sum(c[idx])
+            n_min = minor_probas
+            ir = round((n_max/n_min), 2)
+            self.scores.append([n_min, n_max, ir])
         return self
 
     def tab(self, save):
@@ -50,6 +49,6 @@ class IR:
 
 if __name__ == '__main__':
     # Simple usage
-    obj = IR(['balance','appendicitis', 'banana', 'bupa', 'glass'])
+    obj = IR()
     obj.calculate()
     obj.tab(True)

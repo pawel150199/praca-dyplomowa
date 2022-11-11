@@ -1,12 +1,29 @@
 \begin{tabular}{lrrr}
 \hline
- datasets     &   N\_min &   N\_maj &     IR \\
+ datasets                     &   N\_min &   N\_maj &    IR \\
 \hline
- balance      &      49 &     576 &  11.76 \\
- appendicitis &      21 &      85 &   4.05 \\
- banana       &    2376 &    2924 &   1.23 \\
- bupa         &     145 &     200 &   1.38 \\
- glass        &       9 &     205 &  22.78 \\
- breast       &       1 &     151 & 151    \\
+ newthyroid2.csv              &      35 &     180 &  5.14 \\
+ winequality-white-9\_vs\_4.csv &       5 &     163 & 32.6  \\
+ ecoli-0-1-4-7\_vs\_5-6.csv     &      25 &     307 & 12.28 \\
+ ecoli-0-1\_vs\_2-3-5.csv       &      24 &     220 &  9.17 \\
+ glass-0-1-6\_vs\_5.csv         &       9 &     175 & 19.44 \\
+ yeast-0-3-5-9\_vs\_7-8.csv     &      50 &     456 &  9.12 \\
+ new-thyroid1.csv             &      35 &     180 &  5.14 \\
+ abalone-3\_vs\_11.csv          &      15 &     487 & 32.47 \\
+ ecoli4.csv                   &      20 &     316 & 15.8  \\
+ glass-0-1-6\_vs\_2.csv         &      17 &     175 & 10.29 \\
+ abalone-21\_vs\_8.csv          &      14 &     567 & 40.5  \\
+ yeast-2\_vs\_8.csv             &      20 &     462 & 23.1  \\
+ poker-9\_vs\_7.csv             &       8 &     236 & 29.5  \\
+ ecoli2.csv                   &      52 &     284 &  5.46 \\
+ shuttle-6\_vs\_2-3.csv         &      10 &     220 & 22    \\
+ glass2.csv                   &      17 &     197 & 11.59 \\
+ ecoli-0-6-7\_vs\_3-5.csv       &      22 &     200 &  9.09 \\
+ glass4.csv                   &      13 &     201 & 15.46 \\
+ abalone9-18.csv              &      42 &     689 & 16.4  \\
+ glass5.csv                   &       9 &     205 & 22.78 \\
+ glass-0-1-5\_vs\_2.csv         &      17 &     155 &  9.12 \\
+ yeast6.csv                   &      35 &    1449 & 41.4  \\
+ yeast-0-2-5-7-9\_vs\_3-6-8.csv &      99 &     905 &  9.14 \\
 \hline
 \end{tabular}
