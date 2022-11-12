@@ -8,5 +8,5 @@ scipy==1.9.2
 sklearn==0.0
 stream-learn==0.8.18
 tabulate==0.8.9
-tqdm==4.64.0altgraph==0.17.2
+tqdm==4.64.0
 pandas==1.4.1

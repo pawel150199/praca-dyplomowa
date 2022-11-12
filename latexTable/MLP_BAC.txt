@@ -1,8 +1,8 @@
-\begin{tabular}{llllllllll}
+\begin{tabular}{llll}
 \hline
- datasets     & Bagging   & RSE      & RSP      & OB       & ORSE     & ORSP     & UB       & URSE     & URSP     \\
+ datasets   & Bagging LSVC5   & Bagging LSVC10   & Bagging LSVC15   \\
 \hline
- appendicitis & 0.635414  & 0.543704 & 0.497674 & 0.795705 & 0.790080 & 0.784864 & 0.773797 & 0.785135 & 0.798142 \\
-              & ---       & ---      & ---      & ---      & ---      & ---      & ---      & ---      & ---      \\
+ ecoli2     & 0.500000        & 0.500000         & 0.500000         \\
+            & ---             & ---              & ---              \\
 \hline
 \end{tabular}
