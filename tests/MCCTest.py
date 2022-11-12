@@ -23,7 +23,7 @@ X,y = make_classification(
 class Test(unittest.TestCase):
     def test_DBSCAN_const(self):
         preprocs = ModifiedClusterCentroids(cluster_algorithm='DBSCAN', CC_strategy='const')
-        X_new, y_new = preprocs.fit_resample(X,y)
+        X_new, _ = preprocs.fit_resample(X,y)
         self.assertNotEqual(X.shape[0], X_new.shape[0])
         self.assertEqual(X.shape[1], X_new.shape[1])
         self.assertNotEqual(X.shape[0], 0)
@@ -31,7 +31,7 @@ class Test(unittest.TestCase):
     
     def test_DBSCAN_auto(self):
         preprocs = ModifiedClusterCentroids(cluster_algorithm='DBSCAN', CC_strategy='const')
-        X_new, y_new = preprocs.fit_resample(X,y)
+        X_new, _ = preprocs.fit_resample(X,y)
         self.assertNotEqual(X.shape[0], X_new.shape[0])
         self.assertEqual(X.shape[1], X_new.shape[1])
         self.assertNotEqual(X.shape[0], 0)
@@ -39,7 +39,7 @@ class Test(unittest.TestCase):
 
     def test_OPTICS_const(self):
         preprocs = ModifiedClusterCentroids(cluster_algorithm='OPTICS', CC_strategy='const')
-        X_new, y_new = preprocs.fit_resample(X,y)
+        X_new, _ = preprocs.fit_resample(X,y)
         self.assertNotEqual(X.shape[0], X_new.shape[0])
         self.assertEqual(X.shape[1], X_new.shape[1])
         self.assertNotEqual(X.shape[0], 0)
@@ -47,7 +47,7 @@ class Test(unittest.TestCase):
     
     def test_OPTICS_auto(self):
         preprocs = ModifiedClusterCentroids(cluster_algorithm='OPTICS', CC_strategy='auto')
-        X_new, y_new = preprocs.fit_resample(X,y)
+        X_new, _ = preprocs.fit_resample(X,y)
         self.assertNotEqual(X.shape[0], X_new.shape[0])
         self.assertEqual(X.shape[1], X_new.shape[1])
         self.assertNotEqual(X.shape[0], 0)
