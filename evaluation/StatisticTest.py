@@ -1,5 +1,6 @@
 from distutils.log import error
 import numpy as np
+import warnings
 import os
 from tabulate import tabulate
 from scipy.stats import ttest_ind
@@ -14,6 +15,10 @@ class StatisticTest():
 
     def process(self, table_name, alpha=0.05, m_fmt="%3f", std_fmt=None, nc="---", db_fmt="%s", tablefmt="plain"):
         """Process"""
+
+        # Ignore warnings
+        warnings.filterwarnings("ignore")
+
         try:
             # DATA X FOLD X CLASSIFIER X METRIC 
             scores = self.evaluator.scores

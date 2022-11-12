@@ -28,8 +28,8 @@ test_errors = []
 for n in n_neighbors:
     clf.set_params(n_neighbors=int(n))
     clf.fit(X_train, y_train)
-    train_errors.append(clf.score(X_train, y_train))
-    test_errors.append(clf.score(X_test, y_test))
+    train_errors.append(1-clf.score(X_train, y_train))
+    test_errors.append(1-clf.score(X_test, y_test))
 
 i_alpha_optim = np.argmax(test_errors)
 alpha_optim = n_neighbors[i_alpha_optim]
@@ -39,7 +39,7 @@ plt.subplots(1,1,figsize=(10,5))
 plt.plot(n_neighbors, train_errors, label="Zbiór treningowy")
 plt.plot(n_neighbors, test_errors, label="Zbiór testowy")
 
-plt.legend(loc="lower left")
+plt.legend(loc="upper right")
 plt.ylim([0, 1.2])
 plt.xlabel("Liczba sąsiadów")
 plt.ylabel("Błąd")

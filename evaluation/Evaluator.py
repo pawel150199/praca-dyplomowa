@@ -1,5 +1,6 @@
 import numpy as np
 import os, sys
+import warnings
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.ensemble import BaggingClassifier as OBgg
@@ -30,6 +31,9 @@ class Evaluator():
         """
         Evaluation function
         """
+        # Ignore warnings
+        warnings.filterwarnings("ignore")
+        
         self.clfs = clfs
         rskf = rskf = RepeatedStratifiedKFold(n_splits=self.n_splits, n_repeats=self.n_repeats, random_state = self.random_state)
         self.scores = np.zeros((len(self.datasets), self.n_splits*self.n_repeats, len(self.clfs), len(self.metrics)))

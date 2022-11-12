@@ -1,11 +1,9 @@
 import unittest
+import warnings
 import os, sys
-import numpy as np
-from sklearn.svm import SVC
 from sklearn.datasets import make_classification
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.datasets import load_iris
-import warnings
 sys.path.append('../ensemble')
 from Bagging import BaggingClassifier
 from RandomSubspaceEnsemble import RandomSubspaceEnsemble
@@ -13,10 +11,10 @@ from RandomSamplePartition import RandomSamplePartition
 sys.path.append('../analysis')
 from DecisionBoundary2 import DecisionBoundary
 
-"""Test e2e Decision Boundary class"""
-
 # Ignore warnings
 warnings.filterwarnings("ignore")
+
+"""Test e2e Decision Boundary class"""
 
 class Test(unittest.TestCase):
     def prepare(self):

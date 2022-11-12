@@ -1,8 +1,12 @@
 import unittest
+import warnings
 import sys, os
 import warnings
 sys.path.append('../analysis')
 from ImbalanceRatio import IR
+
+# Ignore warnings
+warnings.filterwarnings("ignore")
 
 """Test e2e ImbalanceRatio class"""
 
@@ -10,7 +14,7 @@ from ImbalanceRatio import IR
 warnings.filterwarnings("ignore")
 class Test(unittest.TestCase):
     def teste2e(self):
-        obj = IR(['glass', 'appendicitis', 'balance', 'banana', 'bupa'])
+        obj = IR()
         obj.calculate()
         obj.tab(True)
         os.chdir('../latexTable')

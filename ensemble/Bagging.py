@@ -3,7 +3,7 @@ from sklearn.ensemble import BaseEnsemble
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone 
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
-from scipy.stats import mode 
+from scipy.stats import mode
 
 """Bagging Classifier"""
 
@@ -59,6 +59,6 @@ class BaggingClassifier(BaseEnsemble, ClassifierMixin):
     def ensemble_support_matrix(self, X):
         """Support matrix"""
         probas_ = []
-        for i, member_clf in enumerate(self.ensemble_):
+        for _, member_clf in enumerate(self.ensemble_):
             probas_.append(member_clf.predict_proba(X))
         return np.array(probas_)

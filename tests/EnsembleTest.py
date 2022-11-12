@@ -1,6 +1,6 @@
 import numpy as np
-import os, sys
 import warnings
+import os, sys
 from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import RepeatedStratifiedKFold
 sys.path.append('../ensemble')
@@ -15,10 +15,10 @@ from ORSE import ORSE
 from ORSP import ORSP
 from sklearn.metrics import balanced_accuracy_score
 
-"""Test e2e Ensemble methods"""
-
 # Ignore warnings
 warnings.filterwarnings("ignore")
+
+"""Test e2e Ensemble methods"""
 
 # Classifiers
 clfs = {
@@ -34,7 +34,7 @@ clfs = {
 }
 
 # Datasets
-datasets = ['bupa']
+datasets = ['ecoli2']
 
 def main():
     n_splits = 2

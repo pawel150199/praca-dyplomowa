@@ -1,4 +1,5 @@
 import sys
+import warnings
 from strlearn.metrics import balanced_accuracy_score, recall
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
@@ -20,6 +21,9 @@ from Evaluator import Evaluator
 from StatisticTest import StatisticTest
 
 """Experiment evaluation"""
+
+# Ignore warnings
+warnings.filterwarnings("ignore")
 
 N_ESTIMATORS = 5
 
