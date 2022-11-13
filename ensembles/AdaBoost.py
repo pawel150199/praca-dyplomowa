@@ -1,7 +1,8 @@
 import numpy as np
 from sklearn.ensemble import BaseEnsemble
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.base import ClassifierMixin, clone 
+from sklearn.base import ClassifierMixin, clone
+from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
 
 """Implementation of Adaptive Boosting"""
@@ -40,6 +41,7 @@ class AdaBoostClassifier(ClassifierMixin, BaseEnsemble):
 
     def fit(self,X,y):
         """Fitting model"""
+        X, y = check_X_y(X,y)
         X = np.float64(X)
         N = len(y)
         w = np.array([1/N for i in range(N)])
@@ -61,6 +63,7 @@ class AdaBoostClassifier(ClassifierMixin, BaseEnsemble):
 
     def predict(self,X):
         "Predict labels"
+        check_is_fitted(self, "classes_")
         k = len(self.classes)
         y_pred = sum(Bm * self.__indexToVector(Gm(X),k,self.labelDict) for Bm,Gm in self.models)
         

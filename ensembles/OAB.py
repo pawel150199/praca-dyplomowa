@@ -3,6 +3,7 @@ from imblearn.over_sampling import SMOTE
 from sklearn.ensemble import BaseEnsemble
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone 
+from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
 
 """Implementation of Adaptive Boosting"""
