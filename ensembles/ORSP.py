@@ -19,7 +19,7 @@ class ORSP(BaseEnsemble, ClassifierMixin):
         self.random_state = random_state
         np.random.seed(self.random_state)
 
-    def oversample(self, X, y):
+    def __oversample(self, X, y):
         """Oversampling"""
         preproc = SMOTE(random_state=1410)
         X_new, y_new = preproc.fit_resample(X,y)
@@ -28,7 +28,7 @@ class ORSP(BaseEnsemble, ClassifierMixin):
     def fit(self, X, y):
         """Fitting"""
         self.n_subspace_choose=1
-        X, y = self.oversample(X,y)
+        X, y = self.__oversample(X,y)
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]

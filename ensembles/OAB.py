@@ -1,4 +1,5 @@
 import numpy as np
+from imblearn.over_sampling import SMOTE
 from sklearn.ensemble import BaseEnsemble
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone 
@@ -37,9 +38,16 @@ class AdaBoostClassifier(ClassifierMixin, BaseEnsemble):
         self.classes = classes
         for i,cl in enumerate(classes):
             self.labelDict[cl] = i
+    
+    def __oversample(self, X, y):
+        """Oversampling"""
+        preproc = SMOTE(random_state=1410)
+        X_new, y_new = preproc.fit_resample(X,y)
+        return X_new, y_new
 
     def fit(self,X,y):
         """Fitting model"""
+        X, y = self.__oversample(X,y)
         X = np.float64(X)
         N = len(y)
         w = np.array([1/N for i in range(N)])

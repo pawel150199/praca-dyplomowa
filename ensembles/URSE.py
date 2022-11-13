@@ -16,11 +16,17 @@ class URSE(BaseEnsemble, ClassifierMixin):
         self.voting = voting
         self.random_state = random_state
         np.random.seed(self.random_state)
+    
+    def __undersample(self, X, y):
+        """Undersampling"""
+        preproc = ModifiedClusterCentroids()
+        X_new, y_new = preproc.fit_resample(X,y)
+        return X_new, y_new
         
     def fit(self, X, y):
         """Fitting"""
         # Undersampling
-        X, y = self.undersample(X,y)
+        X, y = self.__undersample(X,y)
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]
@@ -66,9 +72,3 @@ class URSE(BaseEnsemble, ClassifierMixin):
         for i, member_clf in enumerate(self.ensemble_):
             probas_.append(member_clf.predict_proba(X[:, self.subspaces[i]]))
         return np.array(probas_)
-
-    def undersample(self, X, y):
-        """Undersampling"""
-        preproc = ModifiedClusterCentroids()
-        X_new, y_new = preproc.fit_resample(X,y)
-        return X_new, y_new

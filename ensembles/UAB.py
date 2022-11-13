@@ -1,10 +1,11 @@
 import numpy as np
 from sklearn.ensemble import BaseEnsemble
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.base import ClassifierMixin, clone 
+from sklearn.base import ClassifierMixin, clone
+import execution.preprocessing.ModifiedClusterCentroids as ModifiedClusterCentroids
 
 
-"""Implementation of Adaptive Boosting"""
+"""Implementation of Adaptive Boosting with undersampling"""
 
 
 class AdaBoostClassifier(ClassifierMixin, BaseEnsemble):
@@ -38,8 +39,15 @@ class AdaBoostClassifier(ClassifierMixin, BaseEnsemble):
         for i,cl in enumerate(classes):
             self.labelDict[cl] = i
 
+    def __undersample(self, X, y):
+        """Undersampling"""
+        preproc = ModifiedClusterCentroids()
+        X_new, y_new = preproc.fit_resample(X,y)
+        return X_new, y_new
+
     def fit(self,X,y):
         """Fitting model"""
+        X, y = self.__undersample(X,y) 
         X = np.float64(X)
         N = len(y)
         w = np.array([1/N for i in range(N)])

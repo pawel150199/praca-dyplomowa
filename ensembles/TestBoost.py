@@ -1,12 +1,9 @@
-import numpy as np
-import os, sys
 from sklearn.metrics import balanced_accuracy_score
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from AdaBoost import AdaBoostClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification
-import matplotlib.pyplot as plt
 
 # Dane
 X, y = make_classification(
@@ -23,11 +20,8 @@ X, y = make_classification(
 # Podział na zbiór uczący i testowy
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 10)
 # Klasyfikator
-clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(max_depth=3), n_estimators=10)
+clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(max_depth=1), n_estimators=10)
 clf.fit(X_train,y_train)
 y_pred = clf.predict(X_test)
-print(len(X_test))
-print(len(y_test))
-print(y_pred)
 acc = balanced_accuracy_score(y_test, y_pred)
 print("Accuracy score: %.3f" % (acc))
