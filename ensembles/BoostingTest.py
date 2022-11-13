@@ -1,8 +1,6 @@
 import os
 from sklearn.naive_bayes import GaussianNB
 from Boosting import Boosting
-from OBO import OBO
-from UBO import UBO
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification
 import  matplotlib.pyplot as plt
