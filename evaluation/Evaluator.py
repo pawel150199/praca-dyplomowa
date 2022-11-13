@@ -1,17 +1,15 @@
 import numpy as np
-import os, sys
+import os
 import warnings
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import RepeatedStratifiedKFold
-from sklearn.ensemble import BaggingClassifier as OBgg
-
-sys.path.append('../ensemble')
-from Bagging import BaggingClassifier
 
 
 """
 Class is used for evaluate experiment
 """
+
+
 class Evaluator():
     def __init__(self, datasets, storage_dir=None, n_splits=2, n_repeats=5, random_state=None, metrics=accuracy_score):
         self.datasets = datasets
@@ -33,7 +31,7 @@ class Evaluator():
         """
         # Ignore warnings
         warnings.filterwarnings("ignore")
-        
+
         self.clfs = clfs
         rskf = rskf = RepeatedStratifiedKFold(n_splits=self.n_splits, n_repeats=self.n_repeats, random_state = self.random_state)
         self.scores = np.zeros((len(self.datasets), self.n_splits*self.n_repeats, len(self.clfs), len(self.metrics)))
@@ -56,8 +54,8 @@ class Evaluator():
         # Show outputs
         self.mean = np.mean(self.scores, axis=1)
         self.std = np.std(self.scores, axis=1)
-        for clf_id, clf_name in enumerate(clfs):
-            print("%s: %.3f (%.3f)" % (clf_name, self.mean[0,clf_id,0], self.std[0,clf_id,0]))
+        #for clf_id, clf_name in enumerate(clfs):
+        #   print("%s: %.3f (%.3f)" % (clf_name, self.mean[0,clf_id,0], self.std[0,clf_id,0]))
 
         if result_name != None:
             # Save outputs

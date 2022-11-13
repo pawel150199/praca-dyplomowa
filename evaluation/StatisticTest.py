@@ -5,9 +5,11 @@ import os
 from tabulate import tabulate
 from scipy.stats import ttest_ind
 
+
 """ 
 Class generate tables with paired statistic tests and store it
 """
+
 
 class StatisticTest():
     def __init__(self, evaluator):

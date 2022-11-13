@@ -1,13 +1,7 @@
-import ensembles
-import analysis
-import tests
-import evaluation
-import preprocessing
+from . import preprocessing
+from . import ensembles
+from . import evaluation
+from . import analysis
 
-__all__ = [
-    "ensembles",
-    "analysis",
-    "tests",
-    "evaluation",
-    "preprocessing"
-]
+
+__all__ = ["preprocessing", "ensembles", "analysis", "evaluation", ]

@@ -1,14 +1,11 @@
 import unittest
-import sys
 import warnings
 from sklearn.datasets import make_classification
-sys.path.append("../preprocessing")
-from ModifiedClusterCentroids import ModifiedClusterCentroids
+from execution.preprocessing.ModifiedClusterCentroids import ModifiedClusterCentroids
+
 
 """Test ModifiedClusterCentroids class"""
 
-# Ignore warnings
-warnings.filterwarnings("ignore")
 
 X,y = make_classification(
             n_samples=1000,
@@ -63,4 +60,6 @@ class Test(unittest.TestCase):
             X_new, y_new = preprocs.fit_resample(X,y)
 
 if __name__=="__main__":
+    # Ignore warnings
+    warnings.filterwarnings("ignore")
     unittest.main()

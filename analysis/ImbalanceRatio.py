@@ -2,15 +2,19 @@ import numpy as np
 import os
 from tabulate import tabulate
 
-class IR:
-    """
-    Class is used for generate table with imbalacement ratio of choosen datasets
 
-    Usage:
-        obj = IR(['datasetname'])
-        obj.calculate()
-        obj.tab(true)
-    """
+"""
+Class is used for generate table with imbalacement ratio of choosen datasets
+
+Usage:
+    obj = IR(['datasetname'])
+    obj.calculate()
+    obj.tab(true)
+"""
+
+
+class IR:
+    
     def __init__(self):
         self.datasets = os.listdir("../datasets")
     

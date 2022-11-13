@@ -19,6 +19,11 @@ Icon
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
+# Building files
+execution.egg-info
+dist
+build
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop

@@ -1,18 +1,5 @@
-#! /usr/bin/env python
-from setuptools import find_packages, setup
-
-DISTNAME = "Inzynierka"
-DESCRIPTION = "Praca inzynierska"
-MAINTAINER = "Pawel Polski"
-MAINTAINER_EMAIL = "253401@student.pwr.edu.pl"
-URL = "https://github.com/pawel150199/Inzynierka"
-INSTALL_REQUIRES = ["numpy", "scipy", "scikit-learn", "tabulate", "imblearn"]
-
+from setuptools import setup, find_packages  
 setup(
-    name = DISTNAME,
-    maintainer=MAINTAINER,
-    description=DESCRIPTION,
-    maintainer_email=MAINTAINER_EMAIL,
-    url=URL,
-    install_requires=INSTALL_REQUIRES
-)
+    name = 'execution', 
+    packages = find_packages()
+    )

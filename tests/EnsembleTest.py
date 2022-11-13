@@ -1,24 +1,22 @@
+import os
 import numpy as np
 import warnings
-import os, sys
 from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import RepeatedStratifiedKFold
-sys.path.append('../ensemble')
-from Bagging import BaggingClassifier
-from RandomSamplePartition import RandomSamplePartition
-from RandomSubspaceEnsemble import RandomSubspaceEnsemble
-from UB import UB
-from URSE import URSE
-from URSP import URSP
-from OB import OB
-from ORSE import ORSE
-from ORSP import ORSP
+from execution.ensembles.Bagging import BaggingClassifier
+from execution.ensembles.RandomSamplePartition import RandomSamplePartition
+from execution.ensembles.RandomSubspaceEnsemble import RandomSubspaceEnsemble
+from execution.ensembles.UB import UB
+from execution.ensembles.URSE import URSE
+from execution.ensembles.URSP import URSP
+from execution.ensembles.OB import OB
+from execution.ensembles.ORSE import ORSE
+from execution.ensembles.ORSP import ORSP
 from sklearn.metrics import balanced_accuracy_score
 
-# Ignore warnings
-warnings.filterwarnings("ignore")
 
 """Test e2e Ensemble methods"""
+
 
 # Classifiers
 clfs = {
@@ -37,6 +35,8 @@ clfs = {
 datasets = ['ecoli2']
 
 def main():
+    # Ignore warnings
+    warnings.filterwarnings("ignore")
     n_splits = 2
     n_repeats = 5
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
@@ -61,8 +61,8 @@ def main():
     # Show outputs
     mean = np.mean(scores, axis=1)
     std = np.std(scores, axis=1)
-    for clf_id, clf_name in enumerate(clfs):
-        print("%s: %.3f (%.3f)" % (clf_name, mean[clf_id], std[clf_id]))
+    #for clf_id, clf_name in enumerate(clfs):
+    #    print("%s: %.3f (%.3f)" % (clf_name, mean[clf_id], std[clf_id]))
 
 if __name__ =='__main__':
     main()

@@ -1,20 +1,17 @@
-import sys
 import warnings
 from strlearn.metrics import balanced_accuracy_score, recall
 from sklearn.neural_network import MLPClassifier
-sys.path.append('../ensemble')
-from Bagging import BaggingClassifier
-sys.path.append('../evaluation')
-from Evaluator import Evaluator
-from StatisticTest import StatisticTest
+from execution.ensembles.Bagging import BaggingClassifier
+from execution.evaluation.Evaluator import Evaluator
+from execution.evaluation.StatisticTest import StatisticTest
 
-# Ignore warnings
-warnings.filterwarnings("ignore")
 
 """Test e2e experiment evaluation"""
 
 
 def main():
+    # Ignore warnings
+    warnings.filterwarnings("ignore")
     # Classifiers
     clfs = {
         'Bagging LSVC5' : BaggingClassifier(MLPClassifier(hidden_layer_sizes=10), n_estimators=1),

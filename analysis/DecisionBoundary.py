@@ -3,17 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.base import clone
 
-sys.path.append('../ensemble')
-from Bagging import BaggingClassifier
-from RandomSubspaceEnsemble import RandomSubspaceEnsemble
-from RandomSamplePartition import RandomSamplePartition
 
 """
 Own implementatiom
 Show decision boundary of classificators
 """
 
-class DecisionBoundary():
+
+class DecisionBoundaryAlternative():
 
     def __init__(self, clfs, name):
         self.clfs = clfs

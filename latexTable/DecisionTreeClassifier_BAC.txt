@@ -1,8 +1,8 @@
-\begin{tabular}{lrllllrlll}
+\begin{tabular}{llllllllll}
 \hline
- datasets     &   Bagging & RSE      & RSP      & OB       & ORSE     &     ORSP & UB       & URSE     & URSP     \\
+ datasets   & Bagging   & RSE      & RSP      & OB       & ORSE     & ORSP     & UB       & URSE     & URSP     \\
 \hline
- appendicitis &  0.719128 & 0.715152 & 0.740223 & 0.722037 & 0.713251 & 0.667782 & 0.695496 & 0.712078 & 0.708440 \\
-              &  5        & ---      & 4, 5, 8  & ---      & ---      & 5        & ---      & ---      & ---      \\
+ ecoli2     & 0.854930  & 0.805282 & 0.582449 & 0.871696 & 0.831067 & 0.840114 & 0.826571 & 0.842795 & 0.791658 \\
+            & ---       & ---      & ---      & ---      & ---      & ---      & ---      & ---      & ---      \\
 \hline
 \end{tabular}

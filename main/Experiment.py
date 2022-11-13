@@ -1,4 +1,3 @@
-import sys
 import warnings
 from strlearn.metrics import balanced_accuracy_score, recall
 from sklearn.neighbors import KNeighborsClassifier
@@ -6,19 +5,18 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neural_network import MLPClassifier
-sys.path.append('../ensemble')
-from Bagging import BaggingClassifier
-from RandomSamplePartition import RandomSamplePartition
-from RandomSubspaceEnsemble import RandomSubspaceEnsemble
-from UB import UB
-from URSE import URSE
-from URSP import URSP
-from OB import OB
-from ORSE import ORSE
-from ORSP import ORSP
-sys.path.append('../evaluation')
-from Evaluator import Evaluator
-from StatisticTest import StatisticTest
+from execution.ensembles.Bagging import BaggingClassifier
+from execution.ensembles.RandomSubspaceEnsemble import RandomSubspaceEnsemble
+from execution.ensembles.RandomSamplePartition import RandomSamplePartition
+from execution.ensembles.OB import OB
+from execution.ensembles.ORSE import ORSE
+from execution.ensembles.ORSP import ORSP
+from execution.ensembles.UB import UB
+from execution.ensembles.URSE import URSE
+from execution.ensembles.URSP import URSP
+from execution.evaluation.Evaluator import Evaluator
+from execution.evaluation.StatisticTest import StatisticTest
+
 
 """Experiment evaluation"""
 
@@ -42,7 +40,7 @@ def evaluation(base_estimator, n_estimators, name):
         'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators),
     }
     # Datasets
-    datasets = ['appendicitis']
+    datasets = ['ecoli2']
 
     # Metrics
     metrics = {

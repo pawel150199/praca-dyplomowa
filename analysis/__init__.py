@@ -1,4 +1,4 @@
-from ImbalanceRatio import IR
-from DecisionBoundary2 import DecisionBoundary
+from .DecisionBoundary2 import DecisionBoundary
+from .ImbalanceRatio import IR
 
-__all__=["IR", "DecisionBoundary"]
+__all__ = ["DecisionBoundary", "IR"]

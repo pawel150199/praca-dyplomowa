@@ -1,15 +1,11 @@
 import unittest
 import warnings
-import os, sys
-from sklearn.datasets import make_classification
+import os
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.datasets import load_iris
-sys.path.append('../ensemble')
-from Bagging import BaggingClassifier
-from RandomSubspaceEnsemble import RandomSubspaceEnsemble
-from RandomSamplePartition import RandomSamplePartition
-sys.path.append('../analysis')
-from DecisionBoundary2 import DecisionBoundary
+from execution.ensembles.RandomSubspaceEnsemble import RandomSubspaceEnsemble
+from execution.analysis.DecisionBoundary2 import DecisionBoundary
+
 
 # Ignore warnings
 warnings.filterwarnings("ignore")
@@ -24,10 +20,7 @@ class Test(unittest.TestCase):
 
         # Ensemble classifiers
         self.clfs = {
-            #'kNN' : KNeighborsClassifier(n_neighbors=5),
-            'RSE kNN x5' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=5, random_state=1410, n_subspace_features=2),
-            'RSE kNN x10' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=10, random_state=1410, n_subspace_features=2),
-            'RSE kNN x15' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=15, random_state=1410, n_subspace_features=2),
+            'RSE kNN' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=5, random_state=1410, n_subspace_features=2),
         }
     
     def testDecisionBoundary(self):

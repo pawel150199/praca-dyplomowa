@@ -1,15 +1,12 @@
-import os, sys
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.base import clone
 from sklearn.inspection import DecisionBoundaryDisplay
 
-sys.path.append('../ensemble')
-from Bagging import BaggingClassifier
-from RandomSubspaceEnsemble import RandomSubspaceEnsemble
-from RandomSamplePartition import RandomSamplePartition
 
 """Show decision boundary of choosen classifiers"""
+
 
 class DecisionBoundary():
     
