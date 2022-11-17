@@ -12,7 +12,6 @@ jobs:
             python3 -m venv test
             source test/bin/activate
             pip3 install -r requirements.txt
-            python3 setup.py install
             cd tests
             ./run_tests.sh
 
