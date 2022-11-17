@@ -1,8 +1,8 @@
 \begin{tabular}{lll}
 \hline
- datasets   & Bagging   & Bagging-sklearn   \\
+ datasets   & RSP      & RSPmod   \\
 \hline
- ecoli2     & 0.501923  & 0.503846          \\
-            & ---       & ---               \\
+ ecoli2     & 0.500000 & 0.500000 \\
+            & ---      & ---      \\
 \hline
 \end{tabular}

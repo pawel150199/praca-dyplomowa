@@ -3,9 +3,9 @@ from sklearn.ensemble import BaseEnsemble
 from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 
-"""Random Subspace Ensemble"""
+"""Random Subspace Method"""
 
-class RandomSubspaceEnsemble(BaseEnsemble, ClassifierMixin):
+class RandomSubspaceMethod(BaseEnsemble, ClassifierMixin):
 
     def __init__(self, base_estimator=None, n_estimators=10, n_subspace_features=5, voting='hard', random_state=None):
         self.base_estimator = base_estimator

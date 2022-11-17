@@ -9,7 +9,7 @@ function log_sh() {
 
 for i in $tests
 do
-    python3 $i > /dev/null
+    python3 $i 1>&2 > /dev/null
     if [ ! $? -eq 0 ]
     then
         log_sh "Test $i failed!"

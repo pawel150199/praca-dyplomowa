@@ -1,8 +1,8 @@
-\begin{tabular}{llll}
+\begin{tabular}{lll}
 \hline
- datasets   & Bagging LSVC5   & Bagging LSVC10   & Bagging LSVC15   \\
+ datasets   & RSP      & RSPmod   \\
 \hline
- ecoli2     & 0.000000        & 0.000000         & 0.000000         \\
-            & ---             & ---              & ---              \\
+ ecoli2     & 0.000000 & 0.000000 \\
+            & ---      & ---      \\
 \hline
 \end{tabular}

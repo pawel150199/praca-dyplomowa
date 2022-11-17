@@ -6,12 +6,12 @@ from sklearn.model_selection import RepeatedStratifiedKFold
 sys.path.append("../ensembles")
 from Bagging import BaggingClassifier
 from RandomSamplePartition import RandomSamplePartition
-from RandomSubspaceEnsemble import RandomSubspaceEnsemble
+from RandomSubspaceMethod import RandomSubspaceMethod
 from UB import UB
-from URSE import URSE
+from URSM import URSM
 from URSP import URSP
 from OB import OB
-from ORSE import ORSE
+from ORSM import ORSM
 from ORSP import ORSP
 from sklearn.metrics import balanced_accuracy_score
 
