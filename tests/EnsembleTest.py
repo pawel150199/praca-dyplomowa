@@ -23,7 +23,7 @@ from sklearn.metrics import balanced_accuracy_score
 clfs = {
     'Bagging' : BaggingClassifier(base_estimator=GaussianNB(), n_estimators=5),
     'RSP': RandomSamplePartition(base_estimator=GaussianNB(), n_estimators=5),
-    'RSE': RandomSubspaceEnsemble(base_estimator=GaussianNB(), n_estimators=5),
+    'RSE': RandomSubspaceMethod(base_estimator=GaussianNB(), n_estimators=5),
     'OB' : OB(base_estimator=GaussianNB(), n_estimators=5),
     'ORSP': ORSP(base_estimator=GaussianNB(), n_estimators=5),
     'ORSE': ORSE(base_estimator=GaussianNB(), n_estimators=5),
