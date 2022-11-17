@@ -28,11 +28,11 @@ class Test(unittest.TestCase):
     def testDecisionBoundary(self):
         """Decision Boundary test"""
         self.prepare()
-        db = DecisionBoundary(self.clfs, 'kNN')
+        db = DecisionBoundary(self.clfs, 'Test')
         db.process(self.X, self.y)
         os.chdir('../images')
         for _, clf_name in enumerate(self.clfs):
-            self.assertTrue(os.path.exists(f"kNN-BoundaryDecision-{clf_name}.png"))
+            self.assertTrue(os.path.exists(f"Test-BoundaryDecision-{clf_name}.png"))
     
 
 if __name__=='__main__':

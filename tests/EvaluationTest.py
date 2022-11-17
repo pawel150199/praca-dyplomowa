@@ -31,7 +31,7 @@ def main():
     }
 
     ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
-    ev.process(clfs, 'nowy')
+    ev.process(clfs, 'test')
     st = StatisticTest(ev)
     st.process('MLP')
 
