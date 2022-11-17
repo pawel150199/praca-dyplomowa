@@ -1,8 +1,9 @@
 import unittest
 import warnings
-import os
+import os,sys
 import warnings
-from execution.analysis.ImbalanceRatio import IR
+sys.path.insert("../analysis")
+from ImbalanceRatio import IR
 
 
 """Test e2e ImbalanceRatio class"""

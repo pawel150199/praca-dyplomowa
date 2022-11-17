@@ -1,8 +1,8 @@
-\begin{tabular}{llllllllll}
+\begin{tabular}{lll}
 \hline
- datasets   & Bagging   & RSE      & RSP      & OB       & ORSE     & ORSP     & UB       & URSE     & URSP     \\
+ datasets   & Bagging   & Bagging-sklearn   \\
 \hline
- ecoli2     & 0.898348  & 0.828602 & 0.560645 & 0.939545 & 0.910428 & 0.911701 & 0.921046 & 0.903088 & 0.853088 \\
-            & ---       & ---      & ---      & ---      & ---      & ---      & ---      & ---      & ---      \\
+ ecoli2     & 0.918797  & 0.924404          \\
+            & ---       & ---               \\
 \hline
 \end{tabular}

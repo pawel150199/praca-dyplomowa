@@ -9,7 +9,7 @@ from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 """Implementation of Adaptive Boosting"""
 
 
-class AdaBoostClassifier(ClassifierMixin, BaseEnsemble):
+class OAB(ClassifierMixin, BaseEnsemble):
     
     def __init__(self,base_estimator=DecisionTreeClassifier(max_depth=1),n_estimators=50, random_state=None):
         self.n_estimators = n_estimators

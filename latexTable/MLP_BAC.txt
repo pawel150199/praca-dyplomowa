@@ -1,8 +1,8 @@
-\begin{tabular}{llll}
+\begin{tabular}{lll}
 \hline
- datasets   & Bagging LSVC5   & Bagging LSVC10   & Bagging LSVC15   \\
+ datasets   & Bagging   & Bagging-sklearn   \\
 \hline
- ecoli2     & 0.500000        & 0.500000         & 0.500000         \\
-            & ---             & ---              & ---              \\
+ ecoli2     & 0.501923  & 0.503846          \\
+            & ---       & ---               \\
 \hline
 \end{tabular}

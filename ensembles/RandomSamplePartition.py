@@ -41,9 +41,15 @@ class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
             self.n_estimators = self.n_subspace_choose
 
         # Fit new models and save it in ensemble matrix
+
         self.ensemble_ = []
         for i in range(self.n_estimators):
             self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
+
+        #self.ensemble_ = []
+        #for i in range(self.n_estimators):
+        #    self.bootstrap = np.random.choice(len(self.subspaces),size=len(self.subspaces), replace=True)
+        #    self.ensemble_.append(clone(self.base_estimator).fit(X[self.bootstrap,self.subspaces[i]], y[self.bootstrap]))
         return self
 
 

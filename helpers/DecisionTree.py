@@ -9,7 +9,7 @@ class_names = dataset.target_names
 feature_names = dataset.feature_names
 
 # Classifier
-clf = tree.DecisionTreeClassifier(random_state=1410)
+clf = tree.DecisionTreeClassifier(random_state=1410, max_depth=3)
 clf.fit(X,y)
 
 # Plot tree

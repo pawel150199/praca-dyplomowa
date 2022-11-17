@@ -1,7 +1,9 @@
+import sys
 import unittest
 import warnings
 from sklearn.datasets import make_classification
-from execution.preprocessing.ModifiedClusterCentroids import ModifiedClusterCentroids
+sys.path.insert("../preprocessiong")
+ModifiedClusterCentroids import ModifiedClusterCentroids
 
 
 """Test ModifiedClusterCentroids class"""

@@ -1,17 +1,18 @@
-import os
+import os,sys
 import numpy as np
 import warnings
 from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import RepeatedStratifiedKFold
-from execution.ensembles.Bagging import BaggingClassifier
-from execution.ensembles.RandomSamplePartition import RandomSamplePartition
-from execution.ensembles.RandomSubspaceEnsemble import RandomSubspaceEnsemble
-from execution.ensembles.UB import UB
-from execution.ensembles.URSE import URSE
-from execution.ensembles.URSP import URSP
-from execution.ensembles.OB import OB
-from execution.ensembles.ORSE import ORSE
-from execution.ensembles.ORSP import ORSP
+sys.path.insert("../ensembles")
+from Bagging import BaggingClassifier
+from RandomSamplePartition import RandomSamplePartition
+from RandomSubspaceEnsemble import RandomSubspaceEnsemble
+from UB import UB
+from URSE import URSE
+from URSP import URSP
+from OB import OB
+from ORSE import ORSE
+from ORSP import ORSP
 from sklearn.metrics import balanced_accuracy_score
 
 

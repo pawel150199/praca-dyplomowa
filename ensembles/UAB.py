@@ -1,15 +1,17 @@
+import sys
 import numpy as np
 from sklearn.ensemble import BaseEnsemble
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone
-import execution.preprocessing.ModifiedClusterCentroids as ModifiedClusterCentroids
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
+sys.path.insert("../preprocessing")
+from ModifiedClusterCentroids import ModifiedClusterCentroids
 
 
 """Implementation of Adaptive Boosting with undersampling"""
 
 
-class AdaBoostClassifier(ClassifierMixin, BaseEnsemble):
+class UAB(ClassifierMixin, BaseEnsemble):
     
     def __init__(self,base_estimator=DecisionTreeClassifier(max_depth=1),n_estimators=50, random_state=None):
         self.n_estimators = n_estimators

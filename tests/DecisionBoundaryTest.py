@@ -1,11 +1,13 @@
+import sys
 import unittest
 import warnings
 import os
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.datasets import load_iris
-from execution.ensembles.RandomSubspaceEnsemble import RandomSubspaceEnsemble
-from execution.analysis.DecisionBoundary2 import DecisionBoundary
-
+sys.path.insert("../ensembles")
+from RandomSubspaceEnsemble import RandomSubspaceEnsemble
+sys.path.insert("../analysis")
+from DecisionBoundary2 import DecisionBoundary
 
 # Ignore warnings
 warnings.filterwarnings("ignore")

@@ -67,5 +67,6 @@ class StatisticTest():
                 os.chdir('../latexTable')
                 with open('%s_%s.txt' % (table_name, m_name), 'w') as f:
                     f.write(tabulate(t, headers, tablefmt='latex'))
+
         except ValueError:
             error('Incorrect value!')

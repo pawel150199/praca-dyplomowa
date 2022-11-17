@@ -5,7 +5,8 @@ from sklearn.svm import LinearSVC
 from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 from scipy.stats import mode
-import execution.preprocessing.ModifiedClusterCentroids as ModifiedClusterCentroids
+sys.path.insert("../preprocessing")
+from ModifiedClusterCentroids import ModifiedClusterCentroids
 
 """Undersampled Random Sample Partition - on features"""
 
