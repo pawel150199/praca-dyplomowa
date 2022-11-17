@@ -4,9 +4,9 @@ import warnings
 import os
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.datasets import load_iris
-sys.path.insert("../ensembles")
+sys.path.append("../ensembles")
 from RandomSubspaceEnsemble import RandomSubspaceEnsemble
-sys.path.insert("../analysis")
+sys.path.append("../analysis")
 from DecisionBoundary2 import DecisionBoundary
 
 # Ignore warnings

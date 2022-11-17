@@ -7,9 +7,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neural_network import MLPClassifier
 from strlearn.metrics import balanced_accuracy_score
 from sklearn.ensemble import AdaBoostClassifier as AdaBoostSklearn
-sys.path.insert("../ensembles")
+sys.path.append("../ensembles")
 from AdaBoost import AdaBoostClassifier
-sys.path.insert("../evaluation")
+sys.path.append("../evaluation")
 from Evaluator import Evaluator
 from StatisticTest import StatisticTest
 

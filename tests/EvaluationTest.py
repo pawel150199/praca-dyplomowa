@@ -2,9 +2,9 @@ import sys
 import warnings
 from strlearn.metrics import balanced_accuracy_score, recall
 from sklearn.neural_network import MLPClassifier
-sys.path.insert("../ensembles")
+sys.path.append("../ensembles")
 from Bagging import BaggingClassifier
-sys.path.insert("../evaluation")
+sys.path.append("../evaluation")
 from Evaluator import Evaluator
 from StatisticTest import StatisticTest
 

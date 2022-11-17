@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.ensemble import BaseEnsemble
 from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
-sys.path.insert("../preprocessing")
+sys.path.append("../preprocessing")
 from ModifiedClusterCentroids import ModifiedClusterCentroids
 
 """Undesampled Random Subspace Ensemble"""

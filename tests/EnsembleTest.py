@@ -3,7 +3,7 @@ import numpy as np
 import warnings
 from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import RepeatedStratifiedKFold
-sys.path.insert("../ensembles")
+sys.path.append("../ensembles")
 from Bagging import BaggingClassifier
 from RandomSamplePartition import RandomSamplePartition
 from RandomSubspaceEnsemble import RandomSubspaceEnsemble

@@ -2,7 +2,7 @@ import unittest
 import warnings
 import os,sys
 import warnings
-sys.path.insert("../analysis")
+sys.path.append("../analysis")
 from ImbalanceRatio import IR
 
 

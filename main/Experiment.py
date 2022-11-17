@@ -6,7 +6,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC, LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neural_network import MLPClassifier
-sys.path.insert("../ensembles")
+sys.path.append("../ensembles")
 from Bagging import BaggingClassifier
 from RandomSubspaceEnsemble import RandomSubspaceEnsemble
 from RandomSamplePartition import RandomSamplePartition
@@ -16,7 +16,7 @@ from ORSP import ORSP
 from UB import UB
 from URSE import URSE
 from URSP import URSP
-sys.path.insert("../evaluation")
+sys.path.append("../evaluation")
 from Evaluator import Evaluator
 from StatisticTest import StatisticTest
 
