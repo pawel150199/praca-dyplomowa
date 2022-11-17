@@ -22,7 +22,7 @@ class Test(unittest.TestCase):
 
         # Ensemble classifiers
         self.clfs = {
-            'RSE kNN' : RandomSubspaceEnsemble(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=5, random_state=1410, n_subspace_features=2),
+            'RSE kNN' : RandomSubspaceMethod(base_estimator=KNeighborsClassifier(n_neighbors=5), n_estimators=5, random_state=1410, n_subspace_features=2),
         }
     
     def testDecisionBoundary(self):
