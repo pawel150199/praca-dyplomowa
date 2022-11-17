@@ -2,7 +2,7 @@ import sys
 import unittest
 import warnings
 from sklearn.datasets import make_classification
-sys.path.append("../preprocessiong")
+sys.path.append("../preprocessing")
 from ModifiedClusterCentroids import  ModifiedClusterCentroids
 
 
