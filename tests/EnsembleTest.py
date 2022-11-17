@@ -26,10 +26,10 @@ clfs = {
     'RSE': RandomSubspaceMethod(base_estimator=GaussianNB(), n_estimators=5),
     'OB' : OB(base_estimator=GaussianNB(), n_estimators=5),
     'ORSP': ORSP(base_estimator=GaussianNB(), n_estimators=5),
-    'ORSE': ORSE(base_estimator=GaussianNB(), n_estimators=5),
+    'ORSE': ORSM(base_estimator=GaussianNB(), n_estimators=5),
     'UB' : UB(base_estimator=GaussianNB(), n_estimators=5),
     'URSP': URSP(base_estimator=GaussianNB(), n_estimators=5),
-    'URSE': URSE(base_estimator=GaussianNB(), n_estimators=5)
+    'URSE': URSM(base_estimator=GaussianNB(), n_estimators=5)
 }
 
 # Datasets
