@@ -52,10 +52,14 @@ def evaluation(base_estimator, n_estimators, name):
         'BAC' : balanced_accuracy_score,
         'Recall' : recall
     }
+    print("Evaluation")
     ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
     ev.process(clfs, name)
+    ev.process_ranks()
     st = StatisticTest(ev)
     st.process(name)
+    print("Global rank")
+    st.rank_process(name)
 
 def main():
     """Main function"""

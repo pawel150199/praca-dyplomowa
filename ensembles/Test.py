@@ -1,22 +1,27 @@
 import numpy as np
 import os
+import warnings
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC, LinearSVC
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
 from Bagging import BaggingClassifier
-from RandomSubspaceEnsemble import RandomSubspaceEnsemble
 from sklearn.ensemble import BaggingClassifier as OBgg
 from strlearn.metrics import balanced_accuracy_score
 from sklearn.neural_network import MLPClassifier
 from AdaBoost import AdaBoostClassifier
+from sklearn.ensemble import AdaBoostClassifier as AdaBoostSklearn
 from HybridEnsemble import HybridEnsemble
+
+warnings.filterwarnings('ignore')
 
 #Klasyfikatory
 clfs = {
-    'Hybrid' : HybridEnsemble(base_estimator=GaussianNB(), n_estimators=10, boosting_estimators=5),
-    'Bagging' : BaggingClassifier(base_estimator=GaussianNB(), n_estimators=10),
-    'AdaBoost' : AdaBoostClassifier(base_estimator=GaussianNB(), n_estimators=10),
+    #'Hybrid' : HybridEnsemble(base_estimator=GaussianNB(), n_estimators=10, boosting_estimators=5),
+    #'Bagging' : BaggingClassifier(base_estimator=DecisionTreeClassifier(random_state=1234), n_estimators=10),
+    #'AdaBoost' : AdaBoostClassifier(DecisionTreeClassifier(random_state=1234), n_estimators=10),
+    #'AdaBoostSklearn' : AdaBoostSklearn(base_estimator=DecisionTreeClassifier(random_state=1234), n_estimators=10)
 }
 
 #Zbiór danych

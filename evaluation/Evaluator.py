@@ -1,6 +1,7 @@
 import numpy as np
 import os
 import warnings
+from sklearn.base import clone
 from scipy.stats import rankdata
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import RepeatedStratifiedKFold
@@ -12,7 +13,7 @@ Class is used for evaluate experiment
 
 
 class Evaluator():
-    def __init__(self, datasets, storage_dir=None, n_splits=2, n_repeats=5, random_state=None, metrics=accuracy_score):
+    def __init__(self, datasets, storage_dir=None, n_splits=5, n_repeats=2, random_state=None, metrics=accuracy_score):
         self.datasets = datasets
         self.storage_dir = storage_dir
         self.n_splits = n_splits

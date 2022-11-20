@@ -4,6 +4,7 @@ import warnings
 import os
 from tabulate import tabulate
 from scipy.stats import ttest_ind
+from scipy.stats import rankdata, ranksums
 
 
 """ 
@@ -30,17 +31,16 @@ class StatisticTest():
             clfs = list(self.evaluator.clfs.keys())
             datasets = self.evaluator.datasets
             n_clfs = len(clfs)
-
+            t = []
             # Generate tables 
             for m_id, m_name in enumerate(metrics):
-                #
-                t = []
+                t.append([db_fmt % m_name])
                 for db_idx, db_name in enumerate(datasets):
                     # Mean value
-                    t.append([db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :, m_id]])
+                    t.append(['']+[db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :, m_id]])
                     # If std_fmt is not None, std will appear in tables
                     if std_fmt:
-                        t.append( [std_fmt % v for v in std[db_idx, :, m_id]])
+                        t.append([''] + [std_fmt % v for v in std[db_idx, :, m_id]])
                     # Calculate T and P for T-studenta test
                     T, p = np.array(
                         [[ttest_ind(scores[db_idx, i, :],
@@ -52,21 +52,59 @@ class StatisticTest():
                     conclusions = [list(1 + _[1][_[0] == i])
                                 for i in range(n_clfs)]
             
-                    t.append([''] + [", ".join(["%i" % i for i in c])
+                    t.append([''] + [''] + [", ".join(["%i" % i for i in c])
                                     if len(c) > 0 and len(c) < len(clfs)-1 else ("all" if len(c) == len(clfs)-1 else nc)
                                     for c in conclusions])
 
-                # Show outputs 
-                print('\n\n\n', m_name, '\n')  
-                headers = ['datasets']
-                for i in clfs:
-                    headers.append(i)
-                print(tabulate(t, headers))
+            # Show outputs  
+            headers = ['Metric','Dataset']
+            for i in clfs:
+                headers.append(i)
+            print(tabulate(t, headers))
 
-                # Save outputs as .tex extension
-                os.chdir('../latexTable')
-                with open('%s_%s.txt' % (table_name, m_name), 'w') as f:
+            # Save outputs as .tex extension
+            os.chdir('../latexTable')
+            with open('%s_T_student.txt' % (table_name), 'w') as f:
                     f.write(tabulate(t, headers, tablefmt='latex'))
 
         except ValueError:
             error('Incorrect value!')
+
+    def rank_process(self, table_name, alpha=.05, nc="---", tablefmt="plain"):
+        ranks = self.evaluator.ranks
+        clfs = list(self.evaluator.clfs.keys())
+        mean_ranks = np.mean(ranks, axis=1)
+        t = []
+
+        for m, metric in enumerate(self.evaluator.metrics):
+            metric_ranks = ranks[m,:,:]
+            length = len(clfs)
+
+            s = np.zeros((length, length))
+            p = np.zeros((length, length))
+
+            for i in range(length):
+                for j in range(length):
+                    s[i, j], p[i, j] = ranksums(metric_ranks.T[i], metric_ranks.T[j])
+            _ = np.where((p < alpha) * (s > 0))
+            conclusions = [list(1 + _[1][_[0] == i])
+                           for i in range(length)]
+
+            t.append(["%s" % metric] + ["%.3f" %
+                                           v for v in
+                                           mean_ranks[m]])
+
+            # t.append([''] + [", ".join(["%i" % i for i in c])
+            #                  if len(c) > 0 else nc
+            #                  for c in conclusions])
+            t.append([''] + [", ".join(["%i" % i for i in c])
+                             if len(c) > 0 and len(c) < len(clfs)-1 else ("all" if len(c) == len(clfs)-1 else nc)
+                             for c in conclusions])
+
+        # Show outputs
+        print(tabulate(t, headers=(clfs), tablefmt='plain'))
+
+        # Save outputs
+        os.chdir('../latexTable')
+        with open('%s_GlobalRanks.txt' % (table_name), 'w') as f:
+            f.write(tabulate(t, headers=(clfs), tablefmt='latex'))

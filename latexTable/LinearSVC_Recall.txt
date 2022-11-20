@@ -1,8 +1,0 @@
-\begin{tabular}{lll}
-\hline
- datasets   & RSP      & RSPmod   \\
-\hline
- ecoli2     & 0.007692 & 0.007692 \\
-            & ---      & ---      \\
-\hline
-\end{tabular}
