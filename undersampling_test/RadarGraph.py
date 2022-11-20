@@ -1,9 +1,6 @@
-import pandas as pd
 import matplotlib.pyplot as plt
 from math import pi
 import numpy as np
-from matplotlib import rcParams
-import seaborn as sb
 
 preprocs= ['RUS', 'CC', 'NM', 'OSS', 'CNN', 'MCC']
 metrics = ["BAC", "G-mean", "F1", "Precision", "Recall", "Specificity"]
@@ -22,6 +19,7 @@ ax.set_rlabel_position(0)
 plt.xticks(angles[:-1], metrics)
 plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="grey", size=7)
 plt.ylim(0,6)
+plt.title("Uśrednione rangi")
 
 for method_id, method in enumerate(preprocs):
     values = mean_ranks[:, method_id].tolist()

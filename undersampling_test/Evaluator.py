@@ -1,7 +1,7 @@
 import warnings
 import sys
 import numpy as np
-from scipy.stats import rankdata, ranksums
+from scipy.stats import rankdata
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMiss, OneSidedSelection, CondensedNearestNeighbour
