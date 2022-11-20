@@ -21,17 +21,25 @@ N_ESTIMATORS = 5
 
 def evaluation(base_estimator, n_estimators, name):
     """Evaluation"""
+    algorithm = ''
+    print(base_estimator)
+    if str(base_estimator) == "SVC(random_state=1410)" or str(base_estimator) == "LinearSVC(random_state=1410)":
+        algorithm = 'SAMME'
+    else:
+        algorithm = 'SAMME.R'
+
+    print(algorithm)
     # Classificators
     clfs = {
-        'Bagging' : AdaBoostClassifier(base_estimator=base_estimator, n_estimators=n_estimators),
-        'Bagging-sklearn' : AdaBoostSklearn(base_estimator=base_estimator, n_estimators=n_estimators, random_state=1234)
+        'AdaBoost' : AdaBoostClassifier(base_estimator=base_estimator, n_estimators=n_estimators),
+        'AdaBoost-sklearn' : AdaBoostSklearn(base_estimator=base_estimator, n_estimators=n_estimators, algorithm=algorithm)
     }
     # Dataset
     datasets = ['ecoli2']
 
     # Metric
     metrics = {'BAC' : balanced_accuracy_score}
-    ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
+    ev = Evaluator(datasets=datasets, storage_dir="results", metrics=metrics)
     ev.process(clfs, name)
     st = StatisticTest(ev)
     st.process(name)
@@ -39,23 +47,16 @@ def evaluation(base_estimator, n_estimators, name):
 def main():
     """Main function"""
     #GaussianNB
-    #print("\nGaussianNB\n")
-    #evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='AdaBoostGNB')
-    #kNN doesn't support weights
-    #print("\nkNN\n")
-    #evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='AdaBoostkNN')
+    print("\nGaussianNB\n")
+    evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='AdaBoostGNB')
     #SVC
-    #print("\nSVC\n")
-    #evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='AdaBoostSVC')
+    print("\nSVC\n")
+    evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='AdaBoostSVC')
     #Linear SVC
-    #print("\nLinear SVC\n")
-    #evaluation(base_estimator=LinearSVC(random_state=1410), n_estimators=N_ESTIMATORS, name='AdaBoostLinearSVC')
+    print("\nLinear SVC\n")
+    evaluation(base_estimator=LinearSVC(random_state=1410), n_estimators=N_ESTIMATORS, name='AdaBoostLinearSVC')
     #DecisionTreeClassifier
     print("\nDecisionTree\n")
-    evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='AdaBoostDecisionTreeClassifier')
-    #MLP
-    print("\nMLP\n")
-    evaluation(base_estimator=MLPClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='AdaBoostMLP')
-
+    evaluation(base_estimator=DecisionTreeClassifier(random_state=1410, max_depth=1), n_estimators=N_ESTIMATORS, name='AdaBoostDecisionTreeClassifier')
 if __name__=='__main__':
     main()

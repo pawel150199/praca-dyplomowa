@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import BaseEnsemble
@@ -5,10 +6,12 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone 
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 from scipy.stats import mode
+sys.path.append("../preprocessing")
+from ModifiedClusterCentroids import ModifiedClusterCentroids
 
-"""Hybrid Ensemble"""
+"""Undersampled Hybrid Ensemble"""
 
-class HybridEnsemble(BaseEnsemble, ClassifierMixin):
+class UHE(BaseEnsemble, ClassifierMixin):
 
     def __init__(self, base_estimator=DecisionTreeClassifier(), n_estimators=5, boosting_estimators=5, random_state=None, hard_voting=True):
         self.base_estimator = base_estimator
@@ -17,9 +20,17 @@ class HybridEnsemble(BaseEnsemble, ClassifierMixin):
         self.boosting_estimators = boosting_estimators
         self.random_state = random_state
         np.random.seed(self.random_state)
+
+    def __undersample(self, X, y):
+        """Undersampling"""
+        preproc = ModifiedClusterCentroids()
+        X_new, y_new = preproc.fit_resample(X,y)
+        return X_new, y_new
     
     def fit(self, X, y):
         """Training"""
+        # Undersampling
+        X, y = self.__undersample(X,y) 
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]

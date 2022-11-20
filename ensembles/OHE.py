@@ -1,14 +1,15 @@
 import numpy as np
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import BaseEnsemble
+from imblearn.over_sampling import SMOTE
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone 
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 from scipy.stats import mode
 
-"""Hybrid Ensemble"""
+"""Oversampled Hybrid Ensemble"""
 
-class HybridEnsemble(BaseEnsemble, ClassifierMixin):
+class OHE(BaseEnsemble, ClassifierMixin):
 
     def __init__(self, base_estimator=DecisionTreeClassifier(), n_estimators=5, boosting_estimators=5, random_state=None, hard_voting=True):
         self.base_estimator = base_estimator
@@ -18,8 +19,16 @@ class HybridEnsemble(BaseEnsemble, ClassifierMixin):
         self.random_state = random_state
         np.random.seed(self.random_state)
     
+    def __oversample(self, X, y):
+        """Oversampling"""
+        preproc = SMOTE(random_state=1410, k_neighbors=3)
+        X_new, y_new = preproc.fit_resample(X,y)
+        return X_new, y_new
+    
     def fit(self, X, y):
         """Training"""
+        # Oversampling 
+        X, y = self.__oversample(X,y)
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]

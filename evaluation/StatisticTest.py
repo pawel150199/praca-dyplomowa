@@ -43,8 +43,8 @@ class StatisticTest():
                         t.append([''] + [std_fmt % v for v in std[db_idx, :, m_id]])
                     # Calculate T and P for T-studenta test
                     T, p = np.array(
-                        [[ttest_ind(scores[db_idx, i, :],
-                            scores[db_idx, j, :])
+                        [[ttest_ind(scores[db_idx, :, i],
+                            scores[db_idx, :, j])
                         for i in range(len(clfs))]
                         for j in range(len(clfs))]
                     ).swapaxes(0, 2)

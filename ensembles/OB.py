@@ -19,7 +19,7 @@ class OB(BaseEnsemble, ClassifierMixin):
     
     def __oversample(self, X, y):
         """Oversampling"""
-        preproc = SMOTE(random_state=1410)
+        preproc = SMOTE(random_state=1410, k_neighbors=3)
         X_new, y_new = preproc.fit_resample(X,y)
         return X_new, y_new
     
