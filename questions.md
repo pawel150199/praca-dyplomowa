@@ -9,6 +9,6 @@
 
 # Przemyślenia
 ## Zaimplementowano boosting, lecz zastanawiam się czy umieścic go w finalnym badaniu
-## Zaimplementowano hybrydę, połączenie boostingu i baggingu. Duza złozonośc obliczeniowa, 
+## Zaimplementowano hybrydę, połączenie boostingu i baggingu. Duza złozonośc obliczeniowa.
 
 
