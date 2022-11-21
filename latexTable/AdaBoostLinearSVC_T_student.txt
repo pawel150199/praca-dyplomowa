@@ -1,0 +1,9 @@
+\begin{tabular}{llll}
+\hline
+ Metric   & Dataset   & AdaBoost   & AdaBoost-sklearn   \\
+\hline
+ BAC      &           &            &                    \\
+          & ecoli2    & 0.830512   & 0.874014           \\
+          &           & ---        & ---                \\
+\hline
+\end{tabular}
