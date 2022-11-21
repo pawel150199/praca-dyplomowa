@@ -96,8 +96,8 @@ def evaluation(base_estimator, n_estimators, name):
 def main():
     """Main function"""
     #GaussianNB
-    print("\n####################GaussianNB##################\n")
-    evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
+    #print("\n####################GaussianNB##################\n")
+    #evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
     #SVC
     print("\n####################SVC##################\n")
     evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='SVC')

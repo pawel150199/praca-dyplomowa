@@ -40,6 +40,7 @@ class Evaluator():
 
         for data_id, data_name in enumerate(self.datasets):
             os.chdir('../datasets')
+            print(data_name)
             dataset = np.genfromtxt("%s.csv" % (data_name) , delimiter=',')
             X = dataset[:, :-1]
             y = dataset[:, -1].astype(int)

@@ -52,7 +52,6 @@ class ORSM(BaseEnsemble, ClassifierMixin):
                 pred_.append(member_clf.predict(X[:, self.subspaces[i]]))
             pred_ = np.array(pred_)
             prediction = np.apply_along_axis(lambda x: np.argmax(np.bincount(x)), axis=1, arr=pred_.T)
-            print(prediction)
             return self.classes_[prediction]
 
         elif self.voting == 'soft':
