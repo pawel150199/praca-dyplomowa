@@ -1,6 +1,6 @@
 import sys
 import numpy as np
-from sklearn.ensemble import AdaBoostClassifier
+from AdaBoost import AdaBoostClassifier
 from sklearn.ensemble import BaseEnsemble
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.base import ClassifierMixin, clone 
@@ -41,12 +41,7 @@ class UHE(BaseEnsemble, ClassifierMixin):
         # Bagging
         for i in range(self.n_estimators):
             self.bootstrap = np.random.choice(len(X),size=len(X), replace=True)
-            algorithm = ''
-            if str(self.base_estimator) == "SVC(random_state=1410)" or str(self.base_estimator) == "LinearSVC(random_state=1410)":
-                algorithm = 'SAMME'
-            else:
-                algorithm = 'SAMME.R'
-            ab = AdaBoostClassifier(base_estimator=self.base_estimator, n_estimators=self.boosting_estimators, algorithm=algorithm)
+            ab = AdaBoostClassifier(base_estimator=self.base_estimator, n_estimators=self.boosting_estimators)
             self.ensemble_.append(ab.fit(X[self.bootstrap], y[self.bootstrap]))
         return self
     

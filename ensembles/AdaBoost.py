@@ -60,6 +60,7 @@ class AdaBoostClassifier(ClassifierMixin, BaseEnsemble):
             BetaM = (np.log((1 - errM)/errM) + np.log(k - 1))
             w *= np.exp(BetaM * incorrect * (w > 0))
             self.models[m] = (BetaM,Gm)
+        return self
 
     def predict(self,X):
         "Predict labels"

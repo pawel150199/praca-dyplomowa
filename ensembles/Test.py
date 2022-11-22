@@ -19,9 +19,9 @@ warnings.filterwarnings('ignore')
 #Klasyfikatory
 clfs = {
     'Hybrid' : HybridEnsemble(base_estimator=GaussianNB(), n_estimators=10, boosting_estimators=5),
-    #'Bagging' : BaggingClassifier(base_estimator=DecisionTreeClassifier(random_state=1234), n_estimators=10),
-    'AdaBoost' : AdaBoostClassifier(base_estimator=DecisionTreeClassifier(max_depth=1), n_estimators=10),
-    'AdaBoostSklearn' : AdaBoostSklearn(base_estimator=DecisionTreeClassifier(max_depth=1), n_estimators=10)
+    'Bagging' : BaggingClassifier(base_estimator=DecisionTreeClassifier(random_state=1234), n_estimators=10),
+    #'AdaBoost' : AdaBoostClassifier(base_estimator=DecisionTreeClassifier(max_depth=1), n_estimators=10),
+    #'AdaBoostSklearn' : AdaBoostSklearn(base_estimator=DecisionTreeClassifier(max_depth=1), n_estimators=10)
 }
 
 #Zbiór danych

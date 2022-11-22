@@ -3,7 +3,6 @@
  datasets                     &   N\_min &   N\_maj &    IR \\
 \hline
  newthyroid2.csv              &      35 &     180 &  5.14 \\
- winequality-white-9\_vs\_4.csv &       5 &     163 & 32.6  \\
  ecoli-0-1-4-7\_vs\_5-6.csv     &      25 &     307 & 12.28 \\
  ecoli-0-1\_vs\_2-3-5.csv       &      24 &     220 &  9.17 \\
  glass-0-1-6\_vs\_5.csv         &       9 &     175 & 19.44 \\
@@ -14,7 +13,6 @@
  glass-0-1-6\_vs\_2.csv         &      17 &     175 & 10.29 \\
  abalone-21\_vs\_8.csv          &      14 &     567 & 40.5  \\
  yeast-2\_vs\_8.csv             &      20 &     462 & 23.1  \\
- poker-9\_vs\_7.csv             &       8 &     236 & 29.5  \\
  ecoli2.csv                   &      52 &     284 &  5.46 \\
  shuttle-6\_vs\_2-3.csv         &      10 &     220 & 22    \\
  glass2.csv                   &      17 &     197 & 11.59 \\

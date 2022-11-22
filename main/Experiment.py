@@ -30,7 +30,7 @@ from StatisticTest import StatisticTest
 # Ignore warnings
 warnings.filterwarnings("ignore")
 
-N_ESTIMATORS = 5
+N_ESTIMATORS = 10
 
 def evaluation(base_estimator, n_estimators, name):
     """Evaluation"""    
@@ -39,15 +39,12 @@ def evaluation(base_estimator, n_estimators, name):
         'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators),
         'RSM' : RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators),
         'RSP' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators),
-        'HE' : HybridEnsemble(base_estimator=base_estimator, n_estimators=n_estimators, boosting_estimators=n_estimators),
-        'OHE' : OHE(base_estimator=base_estimator, n_estimators=n_estimators, boosting_estimators=n_estimators),
         'OB' : OB(base_estimator=base_estimator, n_estimators=n_estimators),
         'ORSE' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators),
         'ORSP' : ORSP(base_estimator=base_estimator, n_estimators=n_estimators),
         'UB' : UB(base_estimator=base_estimator, n_estimators=n_estimators),
         'URSE' : URSM(base_estimator=base_estimator, n_estimators=n_estimators),
         'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators),
-        'UHE' : UHE(base_estimator=base_estimator, n_estimators=n_estimators, boosting_estimators=n_estimators)
     }
     # Datasets
     datasets = [
@@ -67,9 +64,6 @@ def evaluation(base_estimator, n_estimators, name):
         'glass5',
         'new-thyroid1',
         'newthyroid2',
-        'poker-9_vs_7',
-        'shuttle-6_vs_2-3',
-        'winequality-white-9_vs_4',
         'yeast-0-2-5-7-9_vs_3-6-8',
         'yeast-0-3-5-9_vs_7-8',
         'yeast-2_vs_8',
@@ -96,17 +90,29 @@ def evaluation(base_estimator, n_estimators, name):
 def main():
     """Main function"""
     #GaussianNB
-    #print("\n####################GaussianNB##################\n")
-    #evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
+    print("\n####################GaussianNB##################\n")
+    evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
+
+    #kNN
+    print("\n####################kNN##################\n")
+    evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='SVC')
+
     #SVC
     print("\n####################SVC##################\n")
     evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='SVC')
+
     #Linear SVC
     print("\n####################Linear SVC##################\n")
     evaluation(base_estimator=LinearSVC(random_state=1410), n_estimators=N_ESTIMATORS, name='LinearSVC')
+
     #DecisionTreeClassifier
     print("\n####################DecisionTree##################\n")
     evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='DecisionTreeClassifier')
+
+    #MLP
+    print("\n####################MLP##################\n")
+    evaluation(base_estimator=MLPClassifier(), n_estimators=N_ESTIMATORS, name='SVC')
+
 
 if __name__=='__main__':
     main()
