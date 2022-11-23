@@ -13,7 +13,7 @@ Class is used for evaluate experiment
 
 
 class Evaluator():
-    def __init__(self, datasets, storage_dir=None, n_splits=5, n_repeats=2, random_state=None, metrics=accuracy_score):
+    def __init__(self, datasets, storage_dir=None, n_splits=5, n_repeats=2, random_state=None, metrics=[accuracy_score]):
         self.datasets = datasets
         self.storage_dir = 'results'
         self.n_splits = n_splits
@@ -60,15 +60,10 @@ class Evaluator():
         #for clf_id, clf_name in enumerate(clfs):
         #    print("%s: %.3f (%.3f)" % (clf_name, self.mean[0,clf_id,0], self.std[0,clf_id,0]))
 
-        if result_name != None:
-            # Save outputs
-            try:
-                os.chdir('../%s' % (self.storage_dir))
-                np.save(result_name, self.scores)
-            except ValueError:
-                print("Incorrect value!")
+        #Save scores
+        np.save(f"../{self.storage_dir}/{result_name}", self.scores)
 
-    def process_ranks(self):
+    def process_ranks(self, result_name):
         """Calculate global ranks"""
 
         self.mean_ranks = []
@@ -89,3 +84,6 @@ class Evaluator():
 
         self.mean_ranks = np.array(self.mean_ranks)
         self.ranks = np.array(self.ranks)
+
+        # Save ranks
+        np.save(f"../{self.storage_dir}/{result_name}", self.scores)

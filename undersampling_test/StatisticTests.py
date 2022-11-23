@@ -1,7 +1,7 @@
 import numpy as np
 from tabulate import tabulate
 from scipy.stats import ttest_ind, ranksums
-from Evaluator import preprocs, datasets, clfs, metrics
+from Evaluator import preprocs, datasets, metrics
 
 """ 
 Pair tests
@@ -17,23 +17,24 @@ tablefmt="plain"
 n_preprocs = len(preprocs)
 
 if __name__=="__main__":
-    # Generate tables
-    for clf_id, clf_name in enumerate(clfs):
+    # Generate table
+    t = []
+
+    for m_id, m_name in enumerate(metrics):
         # Load scores
         scores = np.load("../results/CART_Undersampling.npy")
-        # Use one classifier
-        scores = scores[:,:,:,clf_id]
-        # Calculate mean and std score
+        scores = scores[:,:,:,m_id]
         mean_scores = np.mean(scores, axis=2)
         stds = np.std(scores, axis=2)
-        t = []
+        # Calculate mean and std score
+        t.append([db_fmt % m_name])
 
         for db_idx, db_name in enumerate(datasets):
             # Mean score
-            t.append([db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :]])
+            t.append([''] + [db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :]])
             # Std score
             if std_fmt:
-                t.append( [std_fmt % v for v in stds[db_idx, :]])
+                t.append([''] + [std_fmt % v for v in stds[db_idx, :]])
             # t-student
             T, p = np.array(
                 [[ttest_ind(scores[db_idx, i, :],
@@ -45,7 +46,7 @@ if __name__=="__main__":
             conclusions = [list(1 + _[1][_[0] == i])
                         for i in range(n_preprocs)]
     
-            t.append([''] + [", ".join(["%i" % i for i in c])
+            t.append([''] + [''] + [", ".join(["%i" % i for i in c])
                             if len(c) > 0 and len(c) < len(preprocs)-1 else ("all" if len(c) == len(preprocs)-1 else nc)
                             for c in conclusions])
 
@@ -73,9 +74,8 @@ if __name__=="__main__":
         r.append([''] + [", ".join(["%i" % i for i in c]) if len(c) > 0 and len(c) < len(preprocs)-1 else ("all" if len(c) == len(preprocs)-1 else nc) for c in conclusions])
         
     ################################# T-Student ######################################
-    # Show outputs
-    print('\n\n\n', clf_name, '\n')  
-    headers = ['datasets']
+    # Show outputs 
+    headers = ['metrics','datasets']
     for i in preprocs:
         headers.append(i)
     print(tabulate(t, headers))
@@ -92,8 +92,3 @@ if __name__=="__main__":
     # Save outputs
     with open('../latexTable/CART_RanksUndersampling.txt', 'w') as f:
         f.write(tabulate(r, headers=(preprocs), tablefmt='latex'))
-
-    
-
-
-    

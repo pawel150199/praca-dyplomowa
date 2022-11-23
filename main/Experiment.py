@@ -3,9 +3,8 @@ import warnings
 from strlearn.metrics import balanced_accuracy_score, geometric_mean_score_1, f1_score, precision, recall, specificity
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC, LinearSVC
+from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.neural_network import MLPClassifier
 sys.path.append("../ensembles")
 from Bagging import BaggingClassifier
 from RSPmod import RandomSamplePartition as RSP
@@ -100,10 +99,6 @@ def main():
     #SVC
     print("\n####################SVC##################\n")
     evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='SVC')
-
-    #Linear SVC
-    print("\n####################Linear SVC##################\n")
-    evaluation(base_estimator=LinearSVC(random_state=1410), n_estimators=N_ESTIMATORS, name='LinearSVC')
 
     #DecisionTreeClassifier
     print("\n####################DecisionTree##################\n")

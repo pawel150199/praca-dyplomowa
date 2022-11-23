@@ -31,5 +31,3 @@ plt.legend(bbox_to_anchor=(1.15, -0.06), ncol=8, fontsize=9)
 
 # Save image
 plt.savefig("../images/CART_UndersamplingRadar", dpi=400)
-
-

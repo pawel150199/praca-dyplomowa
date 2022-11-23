@@ -2,12 +2,12 @@ import matplotlib.pyplot as plt
 from math import pi
 import numpy as np
 
-preprocs= ['RUS', 'CC', 'NM', 'OSS', 'CNN', 'MCC']
+clfs = ["Bagging", "Bagging-sklearn"]
 metrics = ["BAC", "G-mean", "F1", "Precision", "Recall", "Specificity"]
 
-ranks = np.load("../results/RanksUndersamplingComparision.npy")
+ranks = np.load("../results/Ranks_BaggingGNB.npy")
 mean_ranks = np.mean(ranks, axis=1)
-N = len(preprocs)
+N = len(clfs)
 angles = [n / float(N) * 2 * pi for n in range(N)]
 angles += angles[:1]
 
@@ -21,7 +21,7 @@ plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="gre
 plt.ylim(0,6)
 plt.title("Uśrednione rangi")
 
-for method_id, method in enumerate(preprocs):
+for method_id, method in enumerate(clfs):
     values = mean_ranks[:, method_id].tolist()
     values += values[:1]
     ax.plot(angles, values, linewidth=1.3, linestyle='solid', label=method)
@@ -30,6 +30,6 @@ for method_id, method in enumerate(preprocs):
 plt.legend(bbox_to_anchor=(1.15, -0.06), ncol=8, fontsize=9)
 
 # Save image
-plt.savefig("../images/UndersamplingRadar", dpi=400)
+plt.savefig("../images/GNBBaggingRadar", dpi=400)
 
 

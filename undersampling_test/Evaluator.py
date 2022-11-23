@@ -78,6 +78,7 @@ if __name__ =='__main__':
     
     # Experiment
     for data_id, data_name in enumerate(datasets):
+        print(data_name)
         dataset = np.genfromtxt("../datasets/%s.csv" % (data_name) , delimiter=',')
         X = dataset[:, :-1]
         y = dataset[:, -1].astype(int)
@@ -117,3 +118,4 @@ if __name__ =='__main__':
     # Save results 
     np.save('../results/CART_RanksUndersampling', ranks)
     np.save('../results/CART_Undersampling', scores)
+    
