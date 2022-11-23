@@ -95,7 +95,7 @@ def main():
 
     #kNN
     print("\n####################kNN##################\n")
-    evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='SVC')
+    evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='KNN')
 
     #SVC
     print("\n####################SVC##################\n")
@@ -109,9 +109,6 @@ def main():
     print("\n####################DecisionTree##################\n")
     evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='DecisionTreeClassifier')
 
-    #MLP
-    print("\n####################MLP##################\n")
-    evaluation(base_estimator=MLPClassifier(), n_estimators=N_ESTIMATORS, name='SVC')
 
 
 if __name__=='__main__':

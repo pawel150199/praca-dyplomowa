@@ -15,7 +15,7 @@ Class is used for evaluate experiment
 class Evaluator():
     def __init__(self, datasets, storage_dir=None, n_splits=5, n_repeats=2, random_state=None, metrics=accuracy_score):
         self.datasets = datasets
-        self.storage_dir = storage_dir
+        self.storage_dir = 'results'
         self.n_splits = n_splits
         self.n_repeats = n_repeats
         self.random_state = random_state

@@ -20,7 +20,7 @@ if __name__=="__main__":
     # Generate tables
     for clf_id, clf_name in enumerate(clfs):
         # Load scores
-        scores = np.load("../results/UndersamplingComparision.npy")
+        scores = np.load("../results/CART_Undersampling.npy")
         # Use one classifier
         scores = scores[:,:,:,clf_id]
         # Calculate mean and std score
@@ -50,7 +50,7 @@ if __name__=="__main__":
                             for c in conclusions])
 
     # Wilcoxon - global ranks
-    ranks = np.load("../results/RanksUndersamplingComparision.npy")
+    ranks = np.load("../results/CART_RanksUndersampling.npy")
 
     preprocs = list(preprocs.keys())
     mean_ranks = np.mean(ranks, axis=1)
@@ -81,7 +81,7 @@ if __name__=="__main__":
     print(tabulate(t, headers))
 
     # Save outputs
-    with open('../latexTable/UndersamplingComparision.txt', 'w') as f:
+    with open('../latexTable/CART_TstudentUndersampling.txt', 'w') as f:
         f.write(tabulate(t, headers, tablefmt='latex'))
         
     ################################### Ranks #########################################
@@ -90,7 +90,7 @@ if __name__=="__main__":
     print(tabulate(r, headers=(preprocs), tablefmt='plain'))
 
     # Save outputs
-    with open('../latexTable/RanksUndersamplingComparision.txt', 'w') as f:
+    with open('../latexTable/CART_RanksUndersampling.txt', 'w') as f:
         f.write(tabulate(r, headers=(preprocs), tablefmt='latex'))
 
     

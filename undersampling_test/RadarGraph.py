@@ -5,7 +5,7 @@ import numpy as np
 preprocs= ['RUS', 'CC', 'NM', 'OSS', 'CNN', 'MCC']
 metrics = ["BAC", "G-mean", "F1", "Precision", "Recall", "Specificity"]
 
-ranks = np.load("../results/RanksUndersamplingComparision.npy")
+ranks = np.load("../results/CART_RanksUndersampling.npy")
 mean_ranks = np.mean(ranks, axis=1)
 N = len(preprocs)
 angles = [n / float(N) * 2 * pi for n in range(N)]
@@ -30,6 +30,6 @@ for method_id, method in enumerate(preprocs):
 plt.legend(bbox_to_anchor=(1.15, -0.06), ncol=8, fontsize=9)
 
 # Save image
-plt.savefig("../images/UndersamplingRadar", dpi=400)
+plt.savefig("../images/CART_UndersamplingRadar", dpi=400)
 
 

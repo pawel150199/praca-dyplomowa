@@ -2,9 +2,12 @@ import warnings
 import sys
 import numpy as np
 from scipy.stats import rankdata
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC, LinearSVC
 from sklearn.model_selection import RepeatedStratifiedKFold
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMiss, OneSidedSelection, CondensedNearestNeighbour
+from sklearn.tree import DecisionTreeClassifier
 from strlearn.metrics import balanced_accuracy_score, geometric_mean_score_1, f1_score, precision, recall, specificity
 sys.path.append("../preprocessing")
 from ModifiedClusterCentroids import ModifiedClusterCentroids
@@ -17,7 +20,7 @@ warnings.filterwarnings('ignore')
 
 # Classifiers
 clfs = {
-    'GNB': KNeighborsClassifier()
+    'CART': DecisionTreeClassifier(random_state=1234)
 }
 
 # Undersamplings methods
@@ -57,9 +60,7 @@ datasets = [
     'glass5',
     'new-thyroid1',
     'newthyroid2',
-    'poker-9_vs_7',
     'shuttle-6_vs_2-3',
-    'winequality-white-9_vs_4',
     'yeast-0-2-5-7-9_vs_3-6-8',
     'yeast-0-3-5-9_vs_7-8',
     'yeast-2_vs_8',
@@ -114,5 +115,5 @@ if __name__ =='__main__':
 
 
     # Save results 
-    np.save('../results/RanksUndersamplingComparision', ranks)
-    np.save('../results/UndersamplingComparision', scores)
+    np.save('../results/CART_RanksUndersampling', ranks)
+    np.save('../results/CART_Undersampling', scores)
