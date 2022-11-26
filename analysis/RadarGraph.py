@@ -2,10 +2,10 @@ import matplotlib.pyplot as plt
 from math import pi
 import numpy as np
 
-clfs = ["Bagging", "Bagging-sklearn"]
+clfs = ["Bagging", "RSM", "RSP", "OB", "ORSM", "ORSP", "UB", "URSM", "URSP"]
 metrics = ["BAC", "G-mean", "F1", "Precision", "Recall", "Specificity"]
 
-ranks = np.load("../results/Ranks_BaggingGNB.npy")
+ranks = np.load("../results/Ranks_GNB.npy")
 mean_ranks = np.mean(ranks, axis=1)
 N = len(clfs)
 angles = [n / float(N) * 2 * pi for n in range(N)]
@@ -16,7 +16,7 @@ ax.set_theta_offset(pi / 2)
 ax.set_theta_direction(-1)
 ax.set_rlabel_position(0)
 
-plt.xticks(angles[:-1], metrics)
+plt.xticks(angles, metrics)
 plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="grey", size=7)
 plt.ylim(0,6)
 plt.title("Uśrednione rangi")

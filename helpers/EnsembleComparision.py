@@ -1,5 +1,7 @@
 from cmath import sqrt
 import numpy as np
+import sys
+import warnings
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from sklearn.model_selection import train_test_split
@@ -11,42 +13,55 @@ from sklearn.svm import SVC
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.gaussian_process.kernels import RBF
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.inspection import DecisionBoundaryDisplay
+sys.path.append("../ensembles")
+from Bagging import BaggingClassifier
+from RSPmod import RandomSamplePartition as RSP
+from RandomSubspaceMethod import RandomSubspaceMethod
+from RandomSamplePartition import RandomSamplePartition
+from OB import OB
+from ORSM import ORSM
+from ORSP import ORSP
+from UB import UB
+from URSM import URSM
+from URSP import URSP
 
 """
 This code is used to display comparision between implemented ensemble methods
 """
+
+warnings.filterwarnings('ignore')
+
 names = [
-    "Nearest Neighbors",
-    "Linear SVM",
-    "RBF SVM",
-    "Gaussian Process",
-    "Decision Tree",
-    "Random Forest",
-    "Neural Net",
-    "AdaBoost",
-    "Naive Bayes",
-    "QDA",
+    #"Bagging",
+    "UB",
+    "OB",
+    "RSM",
+    "ORSM",
+    "URSM",
+    "RSP",
+    "ORSP",
+    "URSP",
 ]
 
+base_estimator = GaussianNB()
+n_estimators = 5
 classifiers = [
-    KNeighborsClassifier(3),
-    SVC(kernel="linear", C=0.025),
-    SVC(gamma=2, C=1),
-    GaussianProcessClassifier(1.0 * RBF(1.0)),
-    DecisionTreeClassifier(max_depth=5),
-    RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
-    MLPClassifier(alpha=1, max_iter=1000),
-    AdaBoostClassifier(),
-    GaussianNB(),
-    QuadraticDiscriminantAnalysis(),
+    #BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators),
+    RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators, n_subspace_features=2),
+    RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators, n_subspace_features=2),
+    OB(base_estimator=base_estimator, n_estimators=n_estimators),
+    ORSM(base_estimator=base_estimator, n_estimators=n_estimators, n_subspace_features=2),
+    ORSP(base_estimator=base_estimator, n_estimators=n_estimators, n_subspace_features=2),
+    UB(base_estimator=base_estimator, n_estimators=n_estimators),
+    URSM(base_estimator=base_estimator, n_estimators=n_estimators, n_subspace_features=2),
+    URSP(base_estimator=base_estimator, n_estimators=n_estimators, n_subspace_features=2)
 ]
 
 X, y = make_classification(
-    n_features=2, n_redundant=0, n_informative=2, random_state=1, n_clusters_per_class=1
+    n_features=10, n_redundant=0, n_informative=10, random_state=1, n_clusters_per_class=1, n_classes=2
 )
 rng = np.random.RandomState(2)
 X += 2 * rng.uniform(size=X.shape)

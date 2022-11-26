@@ -16,9 +16,6 @@ from ORSP import ORSP
 from UB import UB
 from URSM import URSM
 from URSP import URSP
-from HybridEnsemble import HybridEnsemble
-from OHE import OHE
-from UHE import UHE
 sys.path.append("../evaluation")
 from Evaluator import Evaluator
 from StatisticTest import StatisticTest
@@ -39,10 +36,10 @@ def evaluation(base_estimator, n_estimators, name):
         'RSM' : RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators),
         'RSP' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators),
         'OB' : OB(base_estimator=base_estimator, n_estimators=n_estimators),
-        'ORSE' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators),
+        'ORSM' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators),
         'ORSP' : ORSP(base_estimator=base_estimator, n_estimators=n_estimators),
         'UB' : UB(base_estimator=base_estimator, n_estimators=n_estimators),
-        'URSE' : URSM(base_estimator=base_estimator, n_estimators=n_estimators),
+        'URSM' : URSM(base_estimator=base_estimator, n_estimators=n_estimators),
         'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators),
     }
     # Datasets
@@ -80,11 +77,11 @@ def evaluation(base_estimator, n_estimators, name):
     }   
     print("Evaluation")
     ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
-    ev.process(clfs, name)
-    ev.process_ranks()
+    ev.process(clfs, result_name=f"Scores_{name}")
+    ev.process_ranks(result_name=f"Ranks_{name}")
     st = StatisticTest(ev)
-    st.process(name)
-    st.rank_process(name)
+    st.process(table_name=f"T_student_{name}")
+    st.rank_process(table_name=f"Wilcoxon_{name}")
 
 def main():
     """Main function"""
