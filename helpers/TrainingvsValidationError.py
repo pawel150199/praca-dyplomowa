@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import balanced_accuracy_score
 import matplotlib.pyplot as plt
 sys.path.append("../ensembles")
 from Bagging import BaggingClassifier
@@ -41,7 +41,7 @@ for n in n_estimators:
     clf = BaggingClassifier(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.subplots(1,1,figsize=(10,5))
@@ -55,7 +55,7 @@ for n in n_estimators:
     clf = RSM(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.plot(n_estimators, train_errors, label="RSM")
@@ -68,7 +68,7 @@ for n in n_estimators:
     clf = RSP(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.plot(n_estimators, train_errors, label="RSP")
@@ -91,7 +91,7 @@ for n in n_estimators:
     clf = OB(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.plot(n_estimators, train_errors, label="OB")
@@ -104,7 +104,7 @@ for n in n_estimators:
     clf = ORSM(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.plot(n_estimators, train_errors, label="ORSM")
@@ -117,7 +117,7 @@ for n in n_estimators:
     clf = ORSP(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.plot(n_estimators, train_errors, label="ORSP")
@@ -140,7 +140,7 @@ for n in n_estimators:
     clf = UB(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.plot(n_estimators, train_errors, label="UB")
@@ -153,7 +153,7 @@ for n in n_estimators:
     clf = URSM(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.plot(n_estimators, train_errors, label="URSM")
@@ -166,7 +166,7 @@ for n in n_estimators:
     clf = URSP(base_estimator=KNeighborsClassifier(), n_estimators=int(n))
     clf.fit(X_train, y_train)
     pred_train = clf.predict(X_train)
-    acc_train = accuracy_score(y_train, pred_train)
+    acc_train = balanced_accuracy_score(y_train, pred_train)
     train_errors.append(1 - acc_train)
 
 plt.plot(n_estimators, train_errors, label="URSP")
