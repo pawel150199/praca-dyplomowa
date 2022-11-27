@@ -4,7 +4,7 @@ import numpy as np
 from scipy.stats import rankdata
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC, LinearSVC
+from sklearn.svm import SVC
 from sklearn.model_selection import RepeatedStratifiedKFold
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMiss, OneSidedSelection, CondensedNearestNeighbour
 from sklearn.tree import DecisionTreeClassifier
@@ -20,7 +20,7 @@ warnings.filterwarnings('ignore')
 
 # Classifiers
 clfs = {
-    'CART': DecisionTreeClassifier(random_state=1234)
+    'GNB': GaussianNB()
 }
 
 # Undersamplings methods
@@ -116,6 +116,6 @@ if __name__ =='__main__':
 
 
     # Save results 
-    np.save('../results/CART_RanksUndersampling', ranks)
-    np.save('../results/CART_Undersampling', scores)
+    np.save('../results/GNB_RanksUndersampling', ranks)
+    np.save('../results/GNB_Undersampling', scores)
     
