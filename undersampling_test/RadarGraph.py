@@ -19,7 +19,7 @@ ax.set_rlabel_position(0)
 plt.xticks(angles[:-1], metrics)
 plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="grey", size=7)
 plt.ylim(0,6)
-plt.title("Uśrednione rangi")
+plt.title("GNB")
 
 for method_id, method in enumerate(preprocs):
     values = mean_ranks[:, method_id].tolist()
@@ -30,4 +30,4 @@ for method_id, method in enumerate(preprocs):
 plt.legend(bbox_to_anchor=(1.15, -0.06), ncol=8, fontsize=9)
 
 # Save image
-plt.savefig("../images/GNB_UndersamplingRadar", dpi=400)
+plt.savefig("../images/GNB_UndersamplingRadar", dpi=1000)
