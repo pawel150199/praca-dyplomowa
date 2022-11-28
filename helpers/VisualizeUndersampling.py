@@ -61,7 +61,7 @@ preprocs = CondensedNearestNeighbour(random_state=1234)
 X_CNN, y_CNN = preproc.fit_resample(X,y)
 
 # Vizualization
-fig, ax = plt.subplots(2,5, figsize=(15,7))
+fig, ax = plt.subplots(2,5, figsize=(18,9))
 # Original dataset
 ax[0,0].scatter(*X.T, c=y)
 ax[0,0].set_xlim(-5,5)
@@ -79,28 +79,28 @@ ax[0,1].set_ylabel('x2')
 ax[0,1].set_title('MCC DBSCAN-const')
 
 # MCC OPTICS-const
-ax[1,0].scatter(*X_OPTICS.T, c=y_OPTICS)
+ax[0,3].scatter(*X_OPTICS.T, c=y_OPTICS)
+ax[0,3].set_xlim(-5,5)
+ax[0,3].set_ylim(-5,5)
+ax[0,3].set_xlabel('x1')
+ax[0,3].set_ylabel('x2')
+ax[0,3].set_title('MCC OPTICS-const')
+
+# RUS
+ax[1,0].scatter(*X_RUS.T, c=y_RUS)
 ax[1,0].set_xlim(-5,5)
 ax[1,0].set_ylim(-5,5)
 ax[1,0].set_xlabel('x1')
 ax[1,0].set_ylabel('x2')
-ax[1,0].set_title('MCC OPTICS-const')
+ax[1,0].set_title('RUS')
 
-# RUS
-ax[1,1].scatter(*X_RUS.T, c=y_RUS)
+# CC
+ax[1,1].scatter(*X_CC.T, c=y_CC)
 ax[1,1].set_xlim(-5,5)
 ax[1,1].set_ylim(-5,5)
 ax[1,1].set_xlabel('x1')
 ax[1,1].set_ylabel('x2')
-ax[1,1].set_title('RUS')
-
-# CC
-ax[0,2].scatter(*X_CC.T, c=y_CC)
-ax[0,2].set_xlim(-5,5)
-ax[0,2].set_ylim(-5,5)
-ax[0,2].set_xlabel('x1')
-ax[0,2].set_ylabel('x2')
-ax[0,2].set_title('CC')
+ax[1,1].set_title('CC')
 
 # NearMiss
 ax[1,2].scatter(*X_NM.T, c=y_NM)
@@ -111,12 +111,12 @@ ax[1,2].set_ylabel('x2')
 ax[1,2].set_title('NearMiss')
 
 # MCC OPTICS-auto
-ax[0,3].scatter(*X_OPTICS_auto.T, c=y_OPTICS_auto)
-ax[0,3].set_xlim(-5,5)
-ax[0,3].set_ylim(-5,5)
-ax[0,3].set_xlabel('x1')
-ax[0,3].set_ylabel('x2')
-ax[0,3].set_title('MCC OPTICS-auto')
+ax[0,4].scatter(*X_OPTICS_auto.T, c=y_OPTICS_auto)
+ax[0,4].set_xlim(-5,5)
+ax[0,4].set_ylim(-5,5)
+ax[0,4].set_xlabel('x1')
+ax[0,4].set_ylabel('x2')
+ax[0,4].set_title('MCC OPTICS-auto')
 
 # CNN
 ax[1,3].scatter(*X_CNN.T, c=y_CNN)
@@ -127,20 +127,20 @@ ax[1,3].set_ylabel('x2')
 ax[1,3].set_title('CNN')
 
 # MCC DBSCAN-auto
-ax[1,3].scatter(*X_DBSCAN_auto.T, c=y_DBSCAN_auto)
-ax[1,3].set_xlim(-5,5)
-ax[1,3].set_ylim(-5,5)
-ax[1,3].set_xlabel('x1')
-ax[1,3].set_ylabel('x2')
-ax[1,3].set_title('MCC DBSCAN-auto')
+ax[0,2].scatter(*X_DBSCAN_auto.T, c=y_DBSCAN_auto)
+ax[0,2].set_xlim(-5,5)
+ax[0,2].set_ylim(-5,5)
+ax[0,2].set_xlabel('x1')
+ax[0,2].set_ylabel('x2')
+ax[0,2].set_title('MCC DBSCAN-auto')
 
 # OSS
-ax[1,3].scatter(*X_OSS.T, c=y_OSS)
-ax[1,3].set_xlim(-5,5)
-ax[1,3].set_ylim(-5,5)
-ax[1,3].set_xlabel('x1')
-ax[1,3].set_ylabel('x2')
-ax[1,3].set_title('OSS')
+ax[1,4].scatter(*X_OSS.T, c=y_OSS)
+ax[1,4].set_xlim(-5,5)
+ax[1,4].set_ylim(-5,5)
+ax[1,4].set_xlabel('x1')
+ax[1,4].set_ylabel('x2')
+ax[1,4].set_title('OSS')
 
 plt.tight_layout()
 plt.savefig("../images/UnersamplingVisualization.png", dpi=1000)
