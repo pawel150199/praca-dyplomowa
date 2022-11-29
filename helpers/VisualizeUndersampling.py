@@ -16,7 +16,7 @@ from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMi
 
 # Generowanie syntetycznego zbioru danych
 X, y = make_classification(
-    n_samples=1000,
+    n_samples=200,
     n_features=2,
     n_informative=2,
     n_redundant=0,
@@ -143,5 +143,5 @@ ax[1,4].set_ylabel('x2')
 ax[1,4].set_title('OSS')
 
 plt.tight_layout()
-plt.savefig("../images/UnersamplingVisualization.png", dpi=1000)
+plt.savefig("../images/UnersamplingVisualization.png", dpi=600)
 #y_new = np.reshape(y_new, (X_new.shape[0], 1))

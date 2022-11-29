@@ -63,7 +63,7 @@ class StatisticTest():
             print(tabulate(t, headers))
 
             # Save outputs as .tex extension
-            os.chdir('../latexTable')
+            os.chdir('/Users/pawelpolski/Desktop/Inzynierka/latexTable/ENSEMBLES')
             with open('%s_T_student.txt' % (table_name), 'w') as f:
                     f.write(tabulate(t, headers, tablefmt='latex'))
 
@@ -105,6 +105,7 @@ class StatisticTest():
         print(tabulate(t, headers=(clfs), tablefmt='plain'))
 
         # Save outputs
-        os.chdir('../latexTable')
+        #print(os.getcwd())
+        os.chdir('/Users/pawelpolski/Desktop/Inzynierka/latexTable/ENSEMBLES')
         with open('%s_GlobalRanks.txt' % (table_name), 'w') as f:
             f.write(tabulate(t, headers=(clfs), tablefmt='latex'))

@@ -39,7 +39,7 @@ class Evaluator():
         self.scores = np.zeros((len(self.datasets), self.n_splits*self.n_repeats, len(self.clfs), len(self.metrics)))
 
         for data_id, data_name in enumerate(self.datasets):
-            os.chdir('../datasets')
+            os.chdir('/Users/pawelpolski/Desktop/Inzynierka/datasets')
             print(data_name)
             dataset = np.genfromtxt("%s.csv" % (data_name) , delimiter=',')
             X = dataset[:, :-1]

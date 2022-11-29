@@ -76,7 +76,7 @@ def evaluation(base_estimator, n_estimators, name):
         'specificity' : specificity
     }   
     print("Evaluation")
-    ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
+    ev = Evaluator(datasets=datasets, storage_dir="results/ENSEMBLES", random_state=1410, metrics=metrics)
     ev.process(clfs, result_name=f"Scores_{name}")
     ev.process_ranks(result_name=f"Ranks_{name}")
     st = StatisticTest(ev)
@@ -87,19 +87,19 @@ def main():
     """Main function"""
     #GaussianNB
     print("\n####################GaussianNB##################\n")
-    evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
+    evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='2GNB')
 
     #kNN
     print("\n####################kNN##################\n")
-    evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='KNN')
+    evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='2KNN')
 
     #SVC
     print("\n####################SVC##################\n")
-    evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='SVC')
+    evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='2SVC')
 
     #DecisionTreeClassifier
     print("\n####################DecisionTree##################\n")
-    evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='DecisionTreeClassifier')
+    evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='2DecisionTreeClassifier')
 
 
 
