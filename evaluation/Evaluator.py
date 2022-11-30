@@ -86,4 +86,4 @@ class Evaluator():
         self.ranks = np.array(self.ranks)
 
         # Save ranks
-        np.save(f"../{self.storage_dir}/{result_name}", self.scores)
+        np.save(f"../{self.storage_dir}/{result_name}", self.ranks)

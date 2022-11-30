@@ -64,7 +64,7 @@ class StatisticTest():
 
             # Save outputs as .tex extension
             os.chdir('/Users/pawelpolski/Desktop/Inzynierka/latexTable/ENSEMBLES')
-            with open('%s_T_student.txt' % (table_name), 'w') as f:
+            with open('%s.txt' % (table_name), 'w') as f:
                     f.write(tabulate(t, headers, tablefmt='latex'))
 
         except ValueError:
@@ -107,5 +107,5 @@ class StatisticTest():
         # Save outputs
         #print(os.getcwd())
         os.chdir('/Users/pawelpolski/Desktop/Inzynierka/latexTable/ENSEMBLES')
-        with open('%s_GlobalRanks.txt' % (table_name), 'w') as f:
+        with open('%s.txt' % (table_name), 'w') as f:
             f.write(tabulate(t, headers=(clfs), tablefmt='latex'))

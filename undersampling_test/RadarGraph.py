@@ -5,7 +5,7 @@ import numpy as np
 preprocs= ['RUS', 'CC', 'NM', 'OSS', 'CNN', 'MCC']
 metrics = ["BAC", "G-mean", "F1", "Precision", "Recall", "Specificity"]
 
-ranks = np.load("../results/GNB_RanksUndersampling.npy")
+ranks = np.load("../results/UNDERSAMPLING/CART_RanksUndersampling.npy")
 mean_ranks = np.mean(ranks, axis=1)
 N = len(preprocs)
 angles = [n / float(N) * 2 * pi for n in range(N)]
@@ -21,13 +21,16 @@ plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="gre
 plt.ylim(0,6)
 plt.title("GNB")
 
+ls = ["-", "--", "-.", ":", "--", "-"]
+lw = [1, 1, 1, 1, 1, 1.5]
+
 for method_id, method in enumerate(preprocs):
     values = mean_ranks[:, method_id].tolist()
     values += values[:1]
-    ax.plot(angles, values, linewidth=1.3, linestyle='solid', label=method)
+    ax.plot(angles, values, linewidth=lw[method_id], linestyle=ls[method_id], label=method)
 
 # Legend
 plt.legend(bbox_to_anchor=(1.15, -0.06), ncol=8, fontsize=9)
 
 # Save image
-plt.savefig("../images/GNB_UndersamplingRadar", dpi=1000)
+plt.savefig("../images/CART_UndersamplingRadar", dpi=600)

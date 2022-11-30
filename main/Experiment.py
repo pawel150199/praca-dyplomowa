@@ -87,19 +87,19 @@ def main():
     """Main function"""
     #GaussianNB
     print("\n####################GaussianNB##################\n")
-    evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='2GNB')
+    evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
 
     #kNN
     print("\n####################kNN##################\n")
-    evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='2KNN')
+    evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='KNN')
 
     #SVC
     print("\n####################SVC##################\n")
-    evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='2SVC')
+    evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='SVC')
 
     #DecisionTreeClassifier
     print("\n####################DecisionTree##################\n")
-    evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='2DecisionTreeClassifier')
+    evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='DecisionTreeClassifier')
 
 
 
