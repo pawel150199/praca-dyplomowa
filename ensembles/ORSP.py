@@ -18,17 +18,17 @@ class ORSP(BaseEnsemble, ClassifierMixin):
         self.n_subspace_choose = n_subspace_choose
         self.random_state = random_state
         np.random.seed(self.random_state)
-
+    
     def __oversample(self, X, y):
         """Oversampling"""
-        X, y = self.__oversample(X,y)
         preproc = SMOTE(random_state=1410, k_neighbors=3)
         X_new, y_new = preproc.fit_resample(X,y)
         return X_new, y_new
 
     def fit(self, X, y):
         """Fitting"""
-        
+        self.n_subspace_choose=1
+        X, y = self.__oversample(X,y)
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]
@@ -49,15 +49,18 @@ class ORSP(BaseEnsemble, ClassifierMixin):
             self.n_estimators = self.n_subspace_choose
 
         # Fit new models and save it in ensemble matrix
-
+        # This part work only on 
         #self.ensemble_ = []
         #for i in range(self.n_estimators):
-        #    self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
+        #   self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
 
+        # Fit new models and save it in ensemble matrix
         self.ensemble_ = []
         for i in range(self.n_estimators):
-            self.bootstrap = np.random.choice(len(self.subspaces),size=len(self.subspaces), replace=True)
-            self.ensemble_.append(clone(self.base_estimator).fit(X[self.bootstrap,self.subspaces[i]], y[self.bootstrap]))
+            self.bootstrap = np.random.choice(len(X),size=len(X), replace=True)
+            X_par=X[self.bootstrap, :]
+            X_par=X_par[:, self.subspaces[i]]
+            self.ensemble_.append(clone(self.base_estimator).fit(X_par, y[self.bootstrap]))
         return self
 
 
@@ -73,7 +76,7 @@ class ORSP(BaseEnsemble, ClassifierMixin):
             # Hard voting
             pred_ = []
             for i in range(self.n_estimators):
-                pred_.append(self.ensemble_[i].predict(X[:, self.subspaces[i]]))
+                pred_.append(self.ensemble_[i].predict(X[:,self.subspaces[i]]))
             pred_ = np.array(pred_)
             prediction = mode(pred_, axis=0)[0].flatten()
             return self.classes_[prediction]
@@ -90,4 +93,3 @@ class ORSP(BaseEnsemble, ClassifierMixin):
         for i, member_clf in enumerate(self.ensemble_):
             probas_.append(member_clf.predict_proba(X[:, self.subspaces[i]]))
         return np.array(probas_)
-    

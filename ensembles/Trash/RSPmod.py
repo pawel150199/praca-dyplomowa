@@ -1,18 +1,15 @@
-import sys
 import numpy as np
 from sklearn.ensemble import BaseEnsemble
 from sklearn.svm import LinearSVC
 from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 from scipy.stats import mode
-sys.path.append("../preprocessing")
-from ModifiedClusterCentroids import ModifiedClusterCentroids
 
-"""Undersampled Random Sample Partition"""
+"""Random Sample Partition"""
 
-class URSP(BaseEnsemble, ClassifierMixin):
+class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
 
-    def __init__(self, base_estimator=LinearSVC(), n_estimators=10, n_subspace_choose=1, n_subspace_features=5, hard_voting=True, random_state=None):
+    def __init__(self, base_estimator=LinearSVC(), n_estimators=10, n_subspace_choose=0.4, n_subspace_features=2, hard_voting=True, random_state=None):
         self.base_estimator = base_estimator
         self.n_estimators = n_estimators
         self.n_subspace_features = n_subspace_features
@@ -20,16 +17,9 @@ class URSP(BaseEnsemble, ClassifierMixin):
         self.n_subspace_choose = n_subspace_choose
         self.random_state = random_state
         np.random.seed(self.random_state)
-    
-    def __undersample(self, X, y):
-        """Undersampling"""
-        preproc = ModifiedClusterCentroids()
-        X_new, y_new = preproc.fit_resample(X,y)
-        return X_new, y_new
 
     def fit(self, X, y):
         """Fitting"""
-        X, y = self.__undersample(X,y)
         self.n_subspace_choose=1
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)

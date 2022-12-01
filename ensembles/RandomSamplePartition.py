@@ -41,15 +41,18 @@ class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
             self.n_estimators = self.n_subspace_choose
 
         # Fit new models and save it in ensemble matrix
-
+        # This part work only on 
         #self.ensemble_ = []
         #for i in range(self.n_estimators):
-        #    self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
+        #   self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
 
+        # Fit new models and save it in ensemble matrix
         self.ensemble_ = []
         for i in range(self.n_estimators):
-            self.bootstrap = np.random.choice(len(self.subspaces),size=len(self.subspaces), replace=True)
-            self.ensemble_.append(clone(self.base_estimator).fit(X[self.bootstrap,self.subspaces[i]], y[self.bootstrap]))
+            self.bootstrap = np.random.choice(len(X),size=len(X), replace=True)
+            X_par=X[self.bootstrap, :]
+            X_par=X_par[:, self.subspaces[i]]
+            self.ensemble_.append(clone(self.base_estimator).fit(X_par, y[self.bootstrap]))
         return self
 
 
@@ -65,7 +68,7 @@ class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
             # Hard voting
             pred_ = []
             for i in range(self.n_estimators):
-                pred_.append(self.ensemble_[i].predict(X[:, self.subspaces[i]]))
+                pred_.append(self.ensemble_[i].predict(X[:,self.subspaces[i]]))
             pred_ = np.array(pred_)
             prediction = mode(pred_, axis=0)[0].flatten()
             return self.classes_[prediction]
