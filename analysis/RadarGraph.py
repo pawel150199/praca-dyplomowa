@@ -5,7 +5,7 @@ import numpy as np
 clfs = ["Bagging", "RSM", "RSP", "OB", "ORSM", "ORSP", "UB", "URSM", "URSP"]
 metrics = ["BAC", "G-mean", "F1-score", "Precision", "Recall", "Specificity"]
 
-ranks = np.load("../results/ENSEMBLES/Ranks_SVC.npy")
+ranks = np.load("../results/ENSEMBLES/Ranks_GNB.npy")
 mean_ranks = np.mean(ranks, axis=1)
 
 N = mean_ranks.shape[0]
@@ -21,7 +21,7 @@ ax.spines["polar"].set_visible(False)
 plt.xticks(angles[:-1], metrics)
 plt.yticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], color="grey", size=9)
 plt.ylim(0,9)
-plt.title("SVC", loc="center")
+plt.title("GNB", loc="center")
 
 # Line style
 ls = ["-", "--", "-.", ":", "-", "--", "-.", ":", "-", "--"]
@@ -37,6 +37,6 @@ plt.legend(bbox_to_anchor=(1.2, -0.08), ncol=5, fontsize=9)
 plt.tight_layout()
 
 # Save image
-plt.savefig("../images/SVCEnsmblesRadar", dpi=800, bbox_inches='tight')
+plt.savefig("../images/GNBEnsmblesRadar", dpi=800, bbox_inches='tight')
 
 
