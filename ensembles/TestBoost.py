@@ -3,6 +3,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification
+from RandomSamplePartition import RandomSamplePartition
+
 
 # Data
 X, y = make_classification(

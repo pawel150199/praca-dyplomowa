@@ -5,7 +5,7 @@ from sklearn.base import ClassifierMixin, clone
 from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
 from scipy.stats import mode
 
-"""Random Sample Partition - on features"""
+"""Random Sample Partition"""
 
 class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
 
@@ -42,14 +42,14 @@ class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
 
         # Fit new models and save it in ensemble matrix
 
-        self.ensemble_ = []
-        for i in range(self.n_estimators):
-            self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
-
         #self.ensemble_ = []
         #for i in range(self.n_estimators):
-        #    self.bootstrap = np.random.choice(len(self.subspaces),size=len(self.subspaces), replace=True)
-        #    self.ensemble_.append(clone(self.base_estimator).fit(X[self.bootstrap,self.subspaces[i]], y[self.bootstrap]))
+        #    self.ensemble_.append(clone(self.base_estimator).fit(X[:,self.subspaces[i]], y))
+
+        self.ensemble_ = []
+        for i in range(self.n_estimators):
+            self.bootstrap = np.random.choice(len(self.subspaces),size=len(self.subspaces), replace=True)
+            self.ensemble_.append(clone(self.base_estimator).fit(X[self.bootstrap,self.subspaces[i]], y[self.bootstrap]))
         return self
 
 

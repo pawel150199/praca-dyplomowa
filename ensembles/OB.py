@@ -10,7 +10,7 @@ from scipy.stats import mode
 
 class OB(BaseEnsemble, ClassifierMixin):
 
-    def __init__(self, base_estimator=DecisionTreeClassifier(), n_estimators=5, random_state=None, hard_voting=True):
+    def __init__(self, base_estimator=DecisionTreeClassifier(), n_estimators=10, random_state=None, hard_voting=True):
         self.base_estimator = base_estimator
         self.n_estimators = n_estimators
         self.hard_voting = hard_voting
