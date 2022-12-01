@@ -7,7 +7,6 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 sys.path.append("../ensembles")
 from Bagging import BaggingClassifier
-from RSPmod import RandomSamplePartition as RSP
 from RandomSubspaceMethod import RandomSubspaceMethod
 from RandomSamplePartition import RandomSamplePartition
 from OB import OB

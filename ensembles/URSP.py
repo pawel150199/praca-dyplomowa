@@ -10,7 +10,7 @@ from ModifiedClusterCentroids import ModifiedClusterCentroids
 
 """Undersampled Random Sample Partition"""
 
-class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
+class URSP(BaseEnsemble, ClassifierMixin):
 
     def __init__(self, base_estimator=LinearSVC(), n_estimators=10, n_subspace_choose=1, n_subspace_features=5, hard_voting=True, random_state=None):
         self.base_estimator = base_estimator
