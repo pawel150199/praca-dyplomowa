@@ -9,7 +9,7 @@ from scipy.stats import mode
 
 class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
 
-    def __init__(self, base_estimator=LinearSVC(), n_estimators=10, n_subspace_choose=1, n_subspace_features=2, hard_voting=True, random_state=None):
+    def __init__(self, base_estimator=LinearSVC(), n_estimators=10, n_subspace_choose=1, n_subspace_features=5, hard_voting=True, random_state=None):
         self.base_estimator = base_estimator
         self.n_estimators = n_estimators
         self.n_subspace_features = n_subspace_features

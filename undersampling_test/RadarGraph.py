@@ -3,9 +3,9 @@ from math import pi
 import numpy as np
 
 preprocs= ['RUS', 'CC', 'NM', 'OSS', 'CNN', 'MCC']
-metrics = ["BAC", "G-mean", "F1", "Precision", "Recall", "Specificity"]
+metrics = ["BAC", "G-mean", "F1-score", "Precision", "Recall", "Specificity"]
 
-ranks = np.load("../results/UNDERSAMPLING/CART_RanksUndersampling.npy")
+ranks = np.load("../results/UNDERSAMPLING/GNB_RanksUndersampling.npy")
 mean_ranks = np.mean(ranks, axis=1)
 N = len(preprocs)
 angles = [n / float(N) * 2 * pi for n in range(N)]
@@ -15,6 +15,7 @@ ax = plt.subplot(111, polar=True)
 ax.set_theta_offset(pi / 2)
 ax.set_theta_direction(-1)
 ax.set_rlabel_position(0)
+ax.spines["polar"].set_visible(False)
 
 plt.xticks(angles[:-1], metrics)
 plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="grey", size=7)
@@ -33,4 +34,4 @@ for method_id, method in enumerate(preprocs):
 plt.legend(bbox_to_anchor=(1.15, -0.06), ncol=8, fontsize=9)
 
 # Save image
-plt.savefig("../images/CART_UndersamplingRadar", dpi=600)
+plt.savefig("../images/GNB_UndersamplingRadar", dpi=600, bbox_inches='tight')
