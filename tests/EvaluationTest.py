@@ -29,9 +29,9 @@ def main():
     }
 
     ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
-    ev.process(clfs, 'test')
+    ev.process(clfs, 'Test')
     st = StatisticTest(ev)
-    st.process('MLP')
+    st.process('Test')
 
 if __name__=='__main__':
     main()
