@@ -1,7 +1,7 @@
 import sys
 import warnings
 from strlearn.metrics import balanced_accuracy_score, recall
-from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
 sys.path.append("../ensembles")
 from Bagging import BaggingClassifier
 sys.path.append("../evaluation")
@@ -16,9 +16,7 @@ def main():
     warnings.filterwarnings("ignore")
     # Classifiers
     clfs = {
-        'Bagging LSVC5' : BaggingClassifier(MLPClassifier(hidden_layer_sizes=10), n_estimators=1),
-        'Bagging LSVC10': BaggingClassifier(MLPClassifier(hidden_layer_sizes=10), n_estimators=9),
-        'Bagging LSVC15': BaggingClassifier(MLPClassifier(hidden_layer_sizes=10), n_estimators=12)
+        'Bagging LSVC5' : BaggingClassifier(KNeighborsClassifier(), n_estimators=20),
     }
 
     # Datasets

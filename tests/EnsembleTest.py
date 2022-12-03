@@ -60,8 +60,8 @@ def main():
                 scores[fold_id, clf_id] = balanced_accuracy_score(y[test],y_pred)
     
     # Show outputs
-    mean = np.mean(scores, axis=1)
-    std = np.std(scores, axis=1)
+    _ = np.mean(scores, axis=1)
+    _ = np.std(scores, axis=1)
     #for clf_id, clf_name in enumerate(clfs):
     #    print("%s: %.3f (%.3f)" % (clf_name, mean[clf_id], std[clf_id]))
 

@@ -1,0 +1,12 @@
+\begin{tabular}{lllll}
+\hline
+ Metric   & Dataset   & Bagging LSVC5   & Bagging LSVC10   & Bagging LSVC15   \\
+\hline
+ BAC      &           &                 &                  &                  \\
+          & ecoli2    & 0.500000        & 0.500000         & 0.500000         \\
+          &           & ---             & ---              & ---              \\
+ RECALL   &           &                 &                  &                  \\
+          & ecoli2    & 0.000000        & 0.000000         & 0.000000         \\
+          &           & ---             & ---              & ---              \\
+\hline
+\end{tabular}
