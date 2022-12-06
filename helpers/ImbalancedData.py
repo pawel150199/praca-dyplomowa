@@ -14,10 +14,10 @@ X,y = make_classification(
 )
 
 plt.scatter(X[:,0],X[:,1], marker="o", c=y, cmap="bwr")
-plt.title("Dane niezbalansowane")
 plt.xlabel("x1")
 plt.ylabel("x2")
-plt.xlim(-5,5)
-plt.ylim(-5,5)
+plt.xlim([-5,5])
+plt.ylim([-5,5])
+plt.grid()
 plt.tight_layout()
 plt.savefig("../images/ExampleOfImbalancedData.png")

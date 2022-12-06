@@ -27,13 +27,15 @@ class IR:
             os.chdir('../datasets')
             dataset = np.genfromtxt("%s" % (dataset), delimiter=',')
             self.y = dataset[:, -1].astype(int)
+            X = dataset[:, :-1]
             _, c = np.unique(self.y, return_counts=True)
             minor_probas = np.amin(c)
             idx = np.where(minor_probas!=c)
             n_max = sum(c[idx])
             n_min = minor_probas
             ir = round((n_max/n_min), 2)
-            self.scores.append([n_min, n_max, ir])
+            features = X.shape[1]
+            self.scores.append([features, n_min, n_max, ir])
         return self
 
     def tab(self, save):
@@ -42,7 +44,7 @@ class IR:
         t = []
         for data_id, data_name in enumerate(self.datasets):
             t.append(['%s' % data_name] + ['%.3f' % v for v in self.scores[data_id]])
-        headers = ['datasets', 'N_min', 'N_maj', 'IR']
+        headers = ['datasets', 'F', 'N_min', 'N_maj', 'IR']
 
         if save == True:
             os.chdir('../latexTable')

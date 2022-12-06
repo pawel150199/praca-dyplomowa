@@ -30,7 +30,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     test_size=0.2,
 )
 
-n_estimators = np.linspace(1,50,50)
+n_estimators = np.linspace(1,300,300)
 print(n_estimators)
 train_errors = []
 test_errors = []
@@ -74,7 +74,7 @@ for n in n_estimators:
 plt.plot(n_estimators, train_errors, label="RSP")
 plt.legend(loc="upper right")
 plt.ylim(0, 0.25)
-plt.xlim(1,50)
+plt.xlim(1,300)
 plt.xlabel("Liczba klasyfikatorów w zespole")
 plt.ylabel("Błąd")
 plt.title("Wykres zależności błędu klasyfikacji.")
@@ -123,7 +123,7 @@ for n in n_estimators:
 plt.plot(n_estimators, train_errors, label="ORSP")
 plt.legend(loc="upper right")
 plt.ylim(0, 0.25)
-plt.xlim(1,50)
+plt.xlim(1,300)
 plt.xlabel("Liczba klasyfikatorów w zespole")
 plt.ylabel("Błąd")
 plt.title("Wykres zależności błędu klasyfikacji.")
@@ -176,7 +176,7 @@ plt.plot(n_estimators, train_errors, label="URSP")
 
 plt.legend(loc="upper right")
 plt.ylim(0, 0.25)
-plt.xlim(1,50)
+plt.xlim(1,300)
 plt.xlabel("Liczba klasyfikatorów w zespole")
 plt.ylabel("Błąd")
 plt.title("Wykres zależności błędu klasyfikacji.")
