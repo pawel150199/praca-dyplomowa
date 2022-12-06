@@ -17,14 +17,15 @@ from StatisticTest import StatisticTest
 # Ignore warnings
 warnings.filterwarnings("ignore")
 
+RANDOM_STATE = 1410
 N_ESTIMATORS = 10
 
 def evaluation(base_estimator, n_estimators, name):
     """Evaluation"""
     # Classificators
     clfs = {
-        'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators),
-        'Bagging-sklearn' : BaggingSklearn(base_estimator=base_estimator, n_estimators=n_estimators)
+        'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'Bagging-sklearn' : BaggingSklearn(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE)
     }
 
     # Metrics
@@ -62,7 +63,7 @@ def evaluation(base_estimator, n_estimators, name):
         'yeast6'
     ]
     
-    ev = Evaluator(datasets=datasets, storage_dir="results", random_state=1410, metrics=metrics)
+    ev = Evaluator(datasets=datasets, storage_dir="results", random_state=RANDOM_STATE, metrics=metrics)
     ev.process(clfs, result_name=f"Scores_{name}")
     ev.process_ranks(result_name=f"Ranks_{name}")
     st = StatisticTest(ev)
@@ -81,11 +82,11 @@ def main():
 
     #SVC
     print("\nSVC\n")
-    evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='BaggingSVC')
+    evaluation(base_estimator=SVC(random_state=RANDOM_STATE), n_estimators=N_ESTIMATORS, name='BaggingSVC')
     
     #DecisionTreeClassifier
     print("\nDecisionTree\n")
-    evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='BaggingCART')
+    evaluation(base_estimator=DecisionTreeClassifier(random_state=RANDOM_STATE), n_estimators=N_ESTIMATORS, name='BaggingCART')
 
 if __name__=='__main__':
     main()

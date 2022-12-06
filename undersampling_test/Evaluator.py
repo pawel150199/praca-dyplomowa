@@ -18,6 +18,7 @@ from ModifiedClusterCentroids import ModifiedClusterCentroids
 # Ignore warnings
 warnings.filterwarnings('ignore')
 
+RANDOM_STATE = 1410
 # Classifiers
 clfs = {
     'GNB': GaussianNB()
@@ -25,11 +26,11 @@ clfs = {
 
 # Undersamplings methods
 preprocs = {
-    'RUS' : RandomUnderSampler(random_state=1234),
-    'CC': ClusterCentroids(random_state=1234),
+    'RUS' : RandomUnderSampler(random_state=RANDOM_STATE),
+    'CC': ClusterCentroids(random_state=RANDOM_STATE),
     'NM': NearMiss(version=1),
-    'OSS' : OneSidedSelection(random_state=1234),
-    'CNN' : CondensedNearestNeighbour(random_state=1234),
+    'OSS' : OneSidedSelection(rrandom_state=RANDOM_STATE),
+    'CNN' : CondensedNearestNeighbour(random_state=RANDOM_STATE),
     'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 }
 
@@ -71,7 +72,7 @@ if __name__ =='__main__':
     # Reapeated, Stratified, Cross validation
     n_splits = 5
     n_repeats = 2
-    rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
+    rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state=RANDOM_STATE)
 
     # Outputs with scores
     scores = np.zeros((len(datasets), len(preprocs), n_splits*n_repeats, len(metrics)))

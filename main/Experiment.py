@@ -26,20 +26,21 @@ from StatisticTest import StatisticTest
 warnings.filterwarnings("ignore")
 
 N_ESTIMATORS = 10
+RANDOM_STATE=1410
 
 def evaluation(base_estimator, n_estimators, name):
     """Evaluation"""    
     # Classificators
     clfs = {
-        'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators),
-        'RSM' : RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators),
-        'RSP' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators),
-        'OB' : OB(base_estimator=base_estimator, n_estimators=n_estimators),
-        'ORSM' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators),
-        'ORSP' : ORSP(base_estimator=base_estimator, n_estimators=n_estimators),
-        'UB' : UB(base_estimator=base_estimator, n_estimators=n_estimators),
-        'URSM' : URSM(base_estimator=base_estimator, n_estimators=n_estimators),
-        'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators),
+        'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'RSM' : RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'RSP' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'OB' : OB(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'ORSM' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'ORSP' : ORSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'UB' : UB(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'URSM' : URSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE)
     }
     # Datasets
     datasets = [
@@ -75,7 +76,7 @@ def evaluation(base_estimator, n_estimators, name):
         'specificity' : specificity
     }   
     print("Evaluation")
-    ev = Evaluator(datasets=datasets, storage_dir="results/ENSEMBLES", random_state=1410, metrics=metrics)
+    ev = Evaluator(datasets=datasets, storage_dir="results/ENSEMBLES", random_state=RANDOM_STATE, metrics=metrics)
     ev.process(clfs, result_name=f"Scores_{name}")
     ev.process_ranks(result_name=f"Ranks_{name}")
     st = StatisticTest(ev)
@@ -94,11 +95,11 @@ def main():
 
     #SVC
     print("\n####################SVC##################\n")
-    evaluation(base_estimator=SVC(random_state=1410), n_estimators=N_ESTIMATORS, name='SVC')
+    evaluation(base_estimator=SVC(random_state=RANDOM_STATE), n_estimators=N_ESTIMATORS, name='SVC')
 
     #DecisionTreeClassifier
     print("\n####################DecisionTree##################\n")
-    evaluation(base_estimator=DecisionTreeClassifier(random_state=1410), n_estimators=N_ESTIMATORS, name='DecisionTreeClassifier')
+    evaluation(base_estimator=DecisionTreeClassifier(random_state=RANDOM_STATE), n_estimators=N_ESTIMATORS, name='DecisionTreeClassifier')
 
 
 
