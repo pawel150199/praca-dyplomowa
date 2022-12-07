@@ -1,0 +1,18 @@
+\begin{tabular}{lll}
+\hline
+             & Bagging   & Bagging-sklearn   \\
+\hline
+ BAC         & 1.417     & 1.583             \\
+             & ---       & ---               \\
+ G-mean      & 1.417     & 1.583             \\
+             & ---       & ---               \\
+ F1-score    & 1.458     & 1.542             \\
+             & ---       & ---               \\
+ precision   & 1.312     & 1.688             \\
+             & ---       & all               \\
+ recall      & 1.438     & 1.562             \\
+             & ---       & ---               \\
+ specificity & 1.583     & 1.417             \\
+             & ---       & ---               \\
+\hline
+\end{tabular}

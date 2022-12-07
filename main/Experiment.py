@@ -58,11 +58,9 @@ def evaluation(base_estimator, n_estimators, name):
         'glass-0-1-6_vs_5',
         'glass2',
         'glass4',
-        'glass5',
         'page-blocks-1-3_vs_4',
         'popfailures',
         'shuttle-6_vs_2-3',
-        'shuttle-c2-vs-c4',
         'vowel0',
         'yeast-0-2-5-7-9_vs_3-6-8',
         'yeast-0-3-5-9_vs_7-8',
@@ -82,7 +80,7 @@ def evaluation(base_estimator, n_estimators, name):
         'specificity' : specificity
     }   
     print("Evaluation")
-    ev = Evaluator(datasets=datasets, storage_dir="results/ENSEMBLES", random_state=RANDOM_STATE, metrics=metrics)
+    ev = Evaluator(datasets=datasets, storage_dir="results/ENSEMBLES2", random_state=RANDOM_STATE, metrics=metrics)
     ev.process(clfs, result_name=f"Scores_{name}")
     ev.process_ranks(result_name=f"Ranks_{name}")
     st = StatisticTest(ev)
