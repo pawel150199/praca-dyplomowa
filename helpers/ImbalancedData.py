@@ -14,9 +14,9 @@ X,y = make_classification(
 )
 
 dim = np.arange(-4,5,1)
-plt.rc('axes', labelsize=14)
-plt.rc('xtick', labelsize=13)
-plt.rc('ytick', labelsize=13) 
+plt.rc('axes', labelsize=18)
+plt.rc('xtick', labelsize=16)
+plt.rc('ytick', labelsize=16) 
 plt.scatter(X[:,0],X[:,1], marker="o", c=y, cmap="bwr")
 plt.xlabel("x1")
 plt.ylabel("x2")

@@ -44,8 +44,10 @@ for k, col in zip(unique_labels, colors):
         markeredgecolor="k",
     )
 
-plt.title("Zbiór danych po klasteryzacji")
-plt.xlabel('x1')
-plt.ylabel('x2')
+plt.xlabel('x1', fontsize=13)
+plt.ylabel('x2', fontsize=13)
+plt.grid()
+plt.xlim([-3,3])
+plt.ylim([-3,3])
 plt.tight_layout()
 plt.savefig('../images/Clusters')

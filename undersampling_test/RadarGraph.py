@@ -5,7 +5,7 @@ import numpy as np
 preprocs= ['RUS', 'CC', 'NM', 'OSS', 'CNN', 'MCC']
 metrics = ["BAC", "G-mean", "F1-score", "Precision", "Recall", "Specificity"]
 
-ranks = np.load("../results/UNDERSAMPLING/GNB_RanksUndersampling.npy")
+ranks = np.load("../results/UNDERSAMPLING/CART_RanksUndersampling.npy")
 mean_ranks = np.mean(ranks, axis=1)
 N = len(preprocs)
 angles = [n / float(N) * 2 * pi for n in range(N)]
@@ -17,10 +17,10 @@ ax.set_theta_direction(-1)
 ax.set_rlabel_position(0)
 ax.spines["polar"].set_visible(False)
 
-plt.xticks(angles[:-1], metrics)
-plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="grey", size=7)
+plt.xticks(angles[:-1], metrics, fontsize=13)
+plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="grey", size=10)
 plt.ylim(0,6)
-plt.title("GNB")
+plt.title("CART", fontsize=15)
 
 ls = ["-", "--", "-.", ":", "--", "-"]
 lw = [1, 1, 1, 1, 1, 1.5]
@@ -31,7 +31,7 @@ for method_id, method in enumerate(preprocs):
     ax.plot(angles, values, linewidth=lw[method_id], linestyle=ls[method_id], label=method)
 
 # Legend
-plt.legend(bbox_to_anchor=(1.15, -0.06), ncol=8, fontsize=9)
+plt.legend(bbox_to_anchor=(1, -0.06), ncol=3, fontsize=13)
 
 # Save image
-plt.savefig("../images/GNB_UndersamplingRadar", dpi=600, bbox_inches='tight')
+plt.savefig("../images/CART_UndersamplingRadar", dpi=600, bbox_inches='tight')
