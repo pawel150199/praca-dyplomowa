@@ -37,7 +37,7 @@ class StatisticTest():
                 t.append([db_fmt % m_name])
                 for db_idx, db_name in enumerate(datasets):
                     # Mean value
-                    t.append(['']+[db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :, m_id]])
+                    t.append(['']+[db_fmt % db_name] + ["%.3f" % v for v in mean_scores[db_idx, :, m_id]])
                     # If std_fmt is not None, std will appear in tables
                     if std_fmt:
                         t.append([''] + [std_fmt % v for v in std[db_idx, :, m_id]])

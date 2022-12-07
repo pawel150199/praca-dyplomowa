@@ -62,6 +62,10 @@ X_CNN, y_CNN = preproc.fit_resample(X,y)
 
 # Vizualization
 fig, ax = plt.subplots(2,5, figsize=(18,9))
+fig.rc('axes', labelsize=14)
+fig.rc('xtick', labelsize=13)
+fig.rc('ytick', labelsize=13)
+fig.grid()
 # Original dataset
 ax[0,0].scatter(*X.T, c=y)
 ax[0,0].set_xlim(-5,5)
@@ -69,6 +73,10 @@ ax[0,0].set_ylim(-5,5)
 ax[0,0].set_xlabel('x1')
 ax[0,0].set_ylabel('x2')
 ax[0,0].set_title('Oryginalny zbiór' )
+ax[0,0].rc('axes', labelsize=14)
+ax[0,0].rc('xtick', labelsize=13)
+ax[0,0].rc('ytick', labelsize=13)
+ax[0,0].grid()
 
 # MCC DBSCAN-const
 ax[0,1].scatter(*X_DBSCAN.T, c=y_DBSCAN)
