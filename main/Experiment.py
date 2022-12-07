@@ -25,7 +25,7 @@ from StatisticTest import StatisticTest
 # Ignore warnings
 warnings.filterwarnings("ignore")
 
-N_ESTIMATORS = 10
+N_ESTIMATORS = 50
 RANDOM_STATE=1410
 SUBSPACES=3
 
@@ -34,14 +34,14 @@ def evaluation(base_estimator, n_estimators, name):
     # Classificators
     clfs = {
         'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        'RSM' : RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        'RSP' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'RSM' : RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
+        'RSP' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
         'OB' : OB(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        'ORSM' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        'ORSP' : ORSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'ORSM' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
+        'ORSP' : ORSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
         'UB' : UB(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        'URSM' : URSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE)
+        'URSM' : URSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
+        'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES)
     }
     # Datasets
     datasets = [
@@ -78,7 +78,7 @@ def evaluation(base_estimator, n_estimators, name):
         'specificity' : specificity
     }   
     print("Evaluation")
-    ev = Evaluator(datasets=datasets, storage_dir="results/ENSEMBLES2", random_state=RANDOM_STATE, metrics=metrics)
+    ev = Evaluator(datasets=datasets, storage_dir="results", random_state=RANDOM_STATE, metrics=metrics)
     ev.process(clfs, result_name=f"Scores_{name}")
     ev.process_ranks(result_name=f"Ranks_{name}")
     st = StatisticTest(ev)
