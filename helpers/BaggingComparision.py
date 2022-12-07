@@ -18,7 +18,7 @@ from StatisticTest import StatisticTest
 warnings.filterwarnings("ignore")
 
 RANDOM_STATE = 1410
-N_ESTIMATORS = 10
+N_ESTIMATORS = 50
 
 def evaluation(base_estimator, n_estimators, name):
     """Evaluation"""
