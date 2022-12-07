@@ -50,19 +50,16 @@ def evaluation(base_estimator, n_estimators, name):
         'ecoli4',
         'glass-0-1-5_vs_2',
         'glass-0-1-6_vs_2',
-        'glass-0-1-6_vs_5-1',
         'glass-0-1-6_vs_5',
         'glass2',
         'glass4',
-        'page-blocks-1-3_vs_4',
-        'popfailures',
+        'glass5',
+        'new-thyroid1',
+        'newthyroid2',
         'shuttle-6_vs_2-3',
-        'vowel0',
         'yeast-0-2-5-7-9_vs_3-6-8',
         'yeast-0-3-5-9_vs_7-8',
         'yeast-2_vs_8',
-        'yeast4',
-        'yeast5',
         'yeast6'
     ]
     
