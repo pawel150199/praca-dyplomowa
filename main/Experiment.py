@@ -27,22 +27,21 @@ warnings.filterwarnings("ignore")
 
 N_ESTIMATORS = 50
 RANDOM_STATE=1410
-SUBSPACES=3
+SUBSPACES=4
 
 def evaluation(base_estimator, n_estimators, name):
     """Evaluation"""    
     # Classificators
     clfs = {
-        #'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        #'RSM' : RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
-        'RSP-5' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=5),
-        'RSP-4' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=4),
-        #'OB' : OB(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        #'ORSM' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
-        #'ORSP' : ORSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
-        #'UB' : UB(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
-        #'URSM' : URSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
-        #'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES)
+        'Bagging' : BaggingClassifier(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'RSM' : RandomSubspaceMethod(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
+        'RSP' : RandomSamplePartition(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
+        'OB' : OB(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'ORSM' : ORSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
+        'ORSP' : ORSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
+        'UB' : UB(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE),
+        'URSM' : URSM(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES),
+        'URSP' : URSP(base_estimator=base_estimator, n_estimators=n_estimators, random_state=RANDOM_STATE, n_subspace_features=SUBSPACES)
     }
     # Datasets
     datasets = [
