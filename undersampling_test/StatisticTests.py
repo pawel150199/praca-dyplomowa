@@ -22,7 +22,7 @@ if __name__=="__main__":
 
     for m_id, m_name in enumerate(metrics):
         # Load scores
-        scores = np.load("../results/CART_Undersampling.npy")
+        scores = np.load("../results/SVC_Undersampling.npy")
         scores = scores[:,:,:,m_id]
         mean_scores = np.mean(scores, axis=2)
         stds = np.std(scores, axis=2)
@@ -51,7 +51,7 @@ if __name__=="__main__":
                             for c in conclusions])
 
     # Wilcoxon - global ranks
-    ranks = np.load("../results/CART_RanksUndersampling.npy")
+    ranks = np.load("../results/SVC_RanksUndersampling.npy")
 
     preprocs = list(preprocs.keys())
     mean_ranks = np.mean(ranks, axis=1)
@@ -81,7 +81,7 @@ if __name__=="__main__":
     print(tabulate(t, headers))
 
     # Save outputs
-    with open('../latexTable/CART_TstudentUndersampling.txt', 'w') as f:
+    with open('../latexTable/SVC_TstudentUndersampling.txt', 'w') as f:
         f.write(tabulate(t, headers, tablefmt='latex'))
         
     ################################### Ranks #########################################
@@ -90,5 +90,5 @@ if __name__=="__main__":
     print(tabulate(r, headers=(preprocs), tablefmt='plain'))
 
     # Save outputs
-    with open('../latexTable/CART_RanksUndersampling.txt', 'w') as f:
+    with open('../latexTable/SVC_RanksUndersampling.txt', 'w') as f:
         f.write(tabulate(r, headers=(preprocs), tablefmt='latex'))

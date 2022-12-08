@@ -55,7 +55,6 @@ def evaluation(base_estimator, n_estimators, name):
         'led7digit-0-2-4-5-6-7-8-9_vs_1',
         'new-thyroid1',
         'page-blocks-1-3_vs_4',
-        'shuttle-6_vs_2-3',
         'vowel0',
         'yeast-0-2-5-7-9_vs_3-6-8',
         'yeast-0-3-5-9_vs_7-8',

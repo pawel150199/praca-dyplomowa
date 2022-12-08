@@ -5,7 +5,7 @@ import numpy as np
 preprocs= ['RUS', 'CC', 'NM', 'OSS', 'CNN', 'MCC']
 metrics = ["BAC", "G-mean", "F1-score", "Precision", "Recall", "Specificity"]
 
-ranks = np.load("../results/UNDERSAMPLING/GNB_RanksUndersampling.npy")
+ranks = np.load("../results/UNDERSAMPLING/SVC_RanksUndersampling.npy")
 mean_ranks = np.mean(ranks, axis=1)
 N = len(preprocs)
 angles = [n / float(N) * 2 * pi for n in range(N)]
@@ -20,7 +20,7 @@ ax.spines["polar"].set_visible(False)
 plt.xticks(angles[:-1], metrics, fontsize=13)
 plt.yticks([0,1, 2, 3, 4, 5, 6], ["0", "1", "2", "3", "4", "5", "6"], color="grey", size=10)
 plt.ylim(0,6)
-plt.title("GNB", fontsize=15)
+plt.title("SVC", fontsize=15)
 
 ls = ["-", "--", "-.", ":", "--", "-"]
 lw = [1, 1, 1, 1, 1, 1.5]
@@ -34,4 +34,4 @@ for method_id, method in enumerate(preprocs):
 plt.legend(bbox_to_anchor=(1, -0.06), ncol=3, fontsize=13)
 
 # Save image
-plt.savefig("../images/GNB_UndersamplingRadar", dpi=600, bbox_inches='tight')
+plt.savefig("../images/SVC_UndersamplingRadar", dpi=600, bbox_inches='tight')

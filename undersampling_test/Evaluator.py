@@ -21,7 +21,7 @@ warnings.filterwarnings('ignore')
 RANDOM_STATE = 1410
 # Classifiers
 clfs = {
-    'CART': DecisionTreeClassifier(random_state=RANDOM_STATE)
+    'SVC': SVC(random_state=RANDOM_STATE)
 }
 
 # Undersamplings methods
@@ -60,7 +60,6 @@ datasets = [
     'led7digit-0-2-4-5-6-7-8-9_vs_1',
     'new-thyroid1',
     'page-blocks-1-3_vs_4',
-    'shuttle-6_vs_2-3',
     'vowel0',
     'yeast-0-2-5-7-9_vs_3-6-8',
     'yeast-0-3-5-9_vs_7-8',
@@ -120,6 +119,6 @@ if __name__ =='__main__':
 
 
     # Save results 
-    np.save('../results/CART_RanksUndersampling', ranks)
-    np.save('../results/CART_Undersampling', scores)
+    np.save('../results/SVC_RanksUndersampling', ranks)
+    np.save('../results/SVC_Undersampling', scores)
     
