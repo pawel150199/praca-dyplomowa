@@ -27,7 +27,7 @@ warnings.filterwarnings("ignore")
 
 N_ESTIMATORS = 50
 RANDOM_STATE=1410
-SUBSPACES=4
+SUBSPACES=3
 
 def evaluation(base_estimator, n_estimators, name):
     """Evaluation"""    
