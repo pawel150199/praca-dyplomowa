@@ -45,20 +45,20 @@ def evaluation(base_estimator, n_estimators, name):
     }
     # Datasets
     datasets = [
-        'abalone-21_vs_8',
-        'abalone-3_vs_11',
-        'abalone9-18',
-        'ecoli-0-1-4-7_vs_5-6',
-        'ecoli-0-1_vs_2-3-5',
-        'ecoli-0-6-7_vs_3-5',
-        'ecoli2',
-        'ecoli4',
-        'glass-0-1-5_vs_2',
-        'glass-0-1-6_vs_2',
-        'glass-0-1-6_vs_5',
+        #'abalone-21_vs_8',
+        #'abalone-3_vs_11',
+        #'abalone9-18',
+        #'ecoli-0-1-4-7_vs_5-6',
+        #'ecoli-0-1_vs_2-3-5',
+        #'ecoli-0-6-7_vs_3-5',
+        #'ecoli2',
+        #'ecoli4',
+        #'glass-0-1-5_vs_2',
+        #'glass-0-1-6_vs_2',
+        #'glass-0-1-6_vs_5',
         'glass2',
         'glass4',
-        'glass5',
+        #'glass5',
         'new-thyroid1',
         'newthyroid2',
         'shuttle-6_vs_2-3',
@@ -88,12 +88,12 @@ def evaluation(base_estimator, n_estimators, name):
 def main():
     """Main function"""
     #GaussianNB
-    print("\n####################GaussianNB##################\n")
-    evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
+    #print("\n####################GaussianNB##################\n")
+    #evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
 
     #kNN
-    print("\n####################kNN##################\n")
-    evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='KNN')
+    #print("\n####################kNN##################\n")
+    #evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='KNN')
 
     #SVC
     print("\n####################SVC##################\n")

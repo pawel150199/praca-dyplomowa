@@ -9,18 +9,16 @@ from scipy.stats import mode
 
 class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
 
-    def __init__(self, base_estimator=LinearSVC(), n_estimators=10, n_subspace_choose=1, n_subspace_features=5, hard_voting=True, random_state=None):
+    def __init__(self, base_estimator=LinearSVC(), n_estimators=10, n_subspace_features=5, hard_voting=True, random_state=None):
         self.base_estimator = base_estimator
         self.n_estimators = n_estimators
         self.n_subspace_features = n_subspace_features
         self.hard_voting = hard_voting
-        self.n_subspace_choose = n_subspace_choose
         self.random_state = random_state
         np.random.seed(self.random_state)
 
     def fit(self, X, y):
         """Fitting"""
-        self.n_subspace_choose=1
         X, y = check_X_y(X,y)
         self.classes_ = np.unique(y)
         self.n_features = X.shape[1]
@@ -28,18 +26,9 @@ class RandomSamplePartition(BaseEnsemble, ClassifierMixin):
         if self.n_subspace_features > self.n_features:
             raise ValueError("Number of features in subspace higher than number of features.")
 
-        n_subspace = int(X.shape[1]/self.n_subspace_features) 
-        self.n_subspace_choose = int(self.n_subspace_choose * n_subspace)
         self.subspaces =[]
-        self.subspaces = np.random.choice(X.shape[1], size=(n_subspace, self.n_subspace_features), replace=False) 
+        self.subspaces = np.random.randint(0, self.n_features, (self.n_estimators, self.n_subspace_features))
         
-        x = np.random.choice(n_subspace, size=(self.n_subspace_choose),replace=False)
-        self.subspaces = self.subspaces[x,:]
-
-        # If n_estimators value is higher than n_subspace_choose, n_estimator value will be changed
-        if self.n_estimators > self.n_subspace_choose:
-            self.n_estimators = self.n_subspace_choose
-
         # Fit new models and save it in ensemble matrix
         # This part work only on 
         #self.ensemble_ = []
