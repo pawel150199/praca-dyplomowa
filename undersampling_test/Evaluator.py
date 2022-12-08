@@ -55,17 +55,19 @@ datasets = [
     'ecoli4',
     'glass-0-1-5_vs_2',
     'glass-0-1-6_vs_2',
-    'glass-0-1-6_vs_5',
     'glass2',
     'glass4',
-    'glass5',
     'new-thyroid1',
     'newthyroid2',
     'shuttle-6_vs_2-3',
     'yeast-0-2-5-7-9_vs_3-6-8',
     'yeast-0-3-5-9_vs_7-8',
     'yeast-2_vs_8',
-    'yeast6'
+    'yeast6',
+    'led7digit-0-2-4-5-6-7-8-9_vs_1',
+    'page-blocks-1-3_vs_4',
+    'vowel0',
+    'yeast-1-2-8-9_vs_7'
 ]
 
 if __name__ =='__main__':
