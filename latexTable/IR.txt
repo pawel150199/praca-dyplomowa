@@ -2,7 +2,6 @@
 \hline
  datasets                           &   F &   N\_min &   N\_maj &    IR \\
 \hline
- newthyroid2.csv                    &   5 &      35 &     180 &  5.14 \\
  yeast-1-2-8-9\_vs\_7.csv             &   8 &      30 &     917 & 30.57 \\
  ecoli-0-1-4-7\_vs\_5-6.csv           &   6 &      25 &     307 & 12.28 \\
  ecoli-0-1\_vs\_2-3-5.csv             &   7 &      24 &     220 &  9.17 \\
@@ -23,7 +22,9 @@
  led7digit-0-2-4-5-6-7-8-9\_vs\_1.csv &   7 &      37 &     406 & 10.97 \\
  glass-0-1-5\_vs\_2.csv               &   9 &      17 &     155 &  9.12 \\
  yeast6.csv                         &   8 &      35 &    1449 & 41.4  \\
+ yeast4.csv                         &   8 &      51 &    1433 & 28.1  \\
  yeast-0-2-5-7-9\_vs\_3-6-8.csv       &   8 &      99 &     905 &  9.14 \\
  vowel0.csv                         &  13 &      90 &     898 &  9.98 \\
+ yeast5.csv                         &   8 &      44 &    1440 & 32.73 \\
 \hline
 \end{tabular}

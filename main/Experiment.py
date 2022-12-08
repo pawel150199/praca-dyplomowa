@@ -57,17 +57,18 @@ def evaluation(base_estimator, n_estimators, name):
         'glass-0-1-6_vs_2',
         'glass2',
         'glass4',
+        'led7digit-0-2-4-5-6-7-8-9_vs_1',
         'new-thyroid1',
-        'newthyroid2',
+        'page-blocks-1-3_vs_4',
         'shuttle-6_vs_2-3',
+        'vowel0',
         'yeast-0-2-5-7-9_vs_3-6-8',
         'yeast-0-3-5-9_vs_7-8',
+        'yeast-1-2-8-9_vs_7',
         'yeast-2_vs_8',
-        'yeast6',
-        'led7digit-0-2-4-5-6-7-8-9_vs_1',
-        'page-blocks-1-3_vs_4',
-        'vowel0',
-        'yeast-1-2-8-9_vs_7'
+        'yeast4',
+        'yeast5',
+        'yeast6'
     ]
 
     # Metrics
