@@ -2,17 +2,17 @@
 \hline
              & Bagging   & Bagging-sklearn   \\
 \hline
- BAC         & 1.405     & 1.595             \\
+ BAC         & 1.562     & 1.438             \\
              & ---       & ---               \\
- G-mean      & 1.405     & 1.595             \\
+ G-mean      & 1.521     & 1.479             \\
              & ---       & ---               \\
- F1-score    & 1.452     & 1.548             \\
+ F1-score    & 1.562     & 1.438             \\
              & ---       & ---               \\
- precision   & 1.405     & 1.595             \\
+ precision   & 1.542     & 1.458             \\
              & ---       & ---               \\
- recall      & 1.310     & 1.690             \\
+ recall      & 1.375     & 1.625             \\
              & ---       & all               \\
- specificity & 1.476     & 1.524             \\
+ specificity & 1.583     & 1.417             \\
              & ---       & ---               \\
 \hline
 \end{tabular}
