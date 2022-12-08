@@ -21,7 +21,7 @@ warnings.filterwarnings('ignore')
 RANDOM_STATE = 1410
 # Classifiers
 clfs = {
-    'GNB': GaussianNB()
+    'CART': DecisionTreeClassifier(random_state=RANDOM_STATE)
 }
 
 # Undersamplings methods
@@ -29,7 +29,7 @@ preprocs = {
     'RUS' : RandomUnderSampler(random_state=RANDOM_STATE),
     'CC': ClusterCentroids(random_state=RANDOM_STATE),
     'NM': NearMiss(version=1),
-    'OSS' : OneSidedSelection(rrandom_state=RANDOM_STATE),
+    'OSS' : OneSidedSelection(random_state=RANDOM_STATE),
     'CNN' : CondensedNearestNeighbour(random_state=RANDOM_STATE),
     'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 }
@@ -120,6 +120,6 @@ if __name__ =='__main__':
 
 
     # Save results 
-    np.save('../results/GNB_RanksUndersampling', ranks)
-    np.save('../results/GNB_Undersampling', scores)
+    np.save('../results/CART_RanksUndersampling', ranks)
+    np.save('../results/CART_Undersampling', scores)
     

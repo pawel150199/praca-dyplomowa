@@ -27,7 +27,7 @@ warnings.filterwarnings("ignore")
 
 N_ESTIMATORS = 50
 RANDOM_STATE=1410
-SUBSPACES=5
+SUBSPACES=3
 
 def evaluation(base_estimator, n_estimators, name):
     """Evaluation"""    
@@ -45,6 +45,7 @@ def evaluation(base_estimator, n_estimators, name):
     }
     # Datasets
     datasets = [
+        'shuttle-6_vs_2-3',
         'abalone-21_vs_8',
         'abalone-3_vs_11',
         'abalone9-18',
@@ -60,7 +61,6 @@ def evaluation(base_estimator, n_estimators, name):
         'led7digit-0-2-4-5-6-7-8-9_vs_1',
         'new-thyroid1',
         'page-blocks-1-3_vs_4',
-        'shuttle-6_vs_2-3',
         'vowel0',
         'yeast-0-2-5-7-9_vs_3-6-8',
         'yeast-0-3-5-9_vs_7-8',
@@ -90,6 +90,10 @@ def evaluation(base_estimator, n_estimators, name):
 
 def main():
     """Main function"""
+    #SVC
+    print("\n####################SVC##################\n")
+    evaluation(base_estimator=SVC(random_state=RANDOM_STATE), n_estimators=N_ESTIMATORS, name='SVC')
+    
     #GaussianNB
     print("\n####################GaussianNB##################\n")
     evaluation(base_estimator=GaussianNB(), n_estimators=N_ESTIMATORS, name='GNB')
@@ -97,10 +101,6 @@ def main():
     #kNN
     print("\n####################kNN##################\n")
     evaluation(base_estimator=KNeighborsClassifier(), n_estimators=N_ESTIMATORS, name='KNN')
-
-    #SVC
-    print("\n####################SVC##################\n")
-    evaluation(base_estimator=SVC(random_state=RANDOM_STATE), n_estimators=N_ESTIMATORS, name='SVC')
 
     #DecisionTreeClassifier
     print("\n####################DecisionTree##################\n")
