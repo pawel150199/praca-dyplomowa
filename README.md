@@ -1,6 +1,7 @@
 # Praca Inżynierska
 
 ## Struktura repozytorium
+```
 
 ├── analysis
 ├── datasets
@@ -24,4 +25,5 @@
 │   └── UNDERSAMPLING
 ├── tests
 └── undersampling_experiment
+```
 
