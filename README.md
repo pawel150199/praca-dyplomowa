@@ -1,4 +1,9 @@
 # Praca Inżynierska
+![CircleCI](https://img.shields.io/circleci/build/github/pawel150199/praca-dyplomowa)
+![GitHub top language](https://img.shields.io/github/languages/top/pawel150199/praca-dyplomowa)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/pawel150199/praca-dyplomowa)
+![GitHub last commit](https://img.shields.io/github/last-commit/pawel150199/praca-dyplomowa)
+
 ## Wykorzystane technologie
 ![CircleCI](https://img.shields.io/badge/circle%20ci-%23161616.svg?style=for-the-badge&logo=circleci&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
